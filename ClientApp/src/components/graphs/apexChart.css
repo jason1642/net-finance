@@ -1,0 +1,17 @@
+.sparkboxes .box .details {
+    position: absolute;
+    color: #fff;
+    transform: scale(0.7) translate(-22px, 20px);
+  }
+  .sparkboxes strong {
+    position: relative;
+    z-index: 3;
+    top: -8px;
+    color: #fff;
+  }
+
+
+  .apexcharts-svg{
+    border-radius: 12px;
+    padding: 10px;
+  }

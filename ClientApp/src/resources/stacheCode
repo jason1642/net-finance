@@ -1,0 +1,72 @@
+const isMarketOpenFunction = () => {
+
+  const usaTime = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
+  const splitTime = usaTime.split(' ')
+  console.log(splitTime)
+  const todaysDate = splitTime[0].slice(0, splitTime[0].length - 1)
+  const usaYear = todaysDate.slice(6, todaysDate.length)
+
+  const thisYearsHolidays = marketOpenDates.stockMarketHolidays.filter(ele => ele.year.toString() === usaYear)
+  console.log(todaysDate)
+  // console.log(usaYear)
+  // console.log(thisYearsHolidays)
+  // const currentTime = () => {
+  //   return todaysDate
+  // }
+  const splitHour = splitTime[1].split(":").slice(0, 2)
+  // console.log(todaysDate.slice(0, 5))
+  const isItAHoliday = () => thisYearsHolidays.filter(ele => ele === todaysDate.slice(0, 5)).length > 0 ? 'true' : 'false'
+  console.log(splitHour)
+  const isItAfterHours = () => {
+
+    if (splitTime[2] === 'PM' && splitTime[0] >= 4 && splitTime[0] <= 8) {
+      return true
+    } else {
+      return false
+    }
+  }
+  console.log(isItAfterHours())
+  //
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+const isMarketOpenFunction = {
+
+  usaTime: () => Date().toLocaleString("en-US", { timeZone: "America/New_York" }),
+
+  splitTime: () => this.usaTime.split(' '),
+
+  todaysDate: () => this.splitTime[0].slice(0, this.splitTime[0].length - 1),
+
+  usaYear: () => this.todaysDate.slice(6, this.todaysDate.length),
+
+  thisYearsHolidays: () => marketOpenDates.stockMarketHolidays.filter(ele => ele.year.toString() === this.usaYear),
+
+  splitHour: () => this.splitTime[1].split(":").slice(0, 2),
+
+  isItAHoliday: () => this.thisYearsHolidays.filter(ele => ele === this.todaysDate.slice(0, 5)).length > 0 ? 'true' : 'false',
+
+  isItAfterHours: () => {
+
+    if (this.splitTime[2] === 'PM' && this.splitTime[0] >= 4 && this.splitTime[0] <= 8) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+
+
+}

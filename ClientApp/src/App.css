@@ -1,0 +1,50 @@
+body {
+  background-color: #32323e;
+  min-height: 100vh;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-grey::-webkit-scrollbar {
+  /* background-color: #32323e; */
+  /* color: #1f1f24; */
+  /* width: 10px; */
+  display: none;
+}
+
+.no-scroll-feed::-webkit-scrollbar {
+  /* background-color: #32323e; */
+  /* color: #1f1f24; */
+  /* width: 10px; */
+  display: none;
+}
+
+html {
+  line-height: 1.15;
+}
+
+.App {
+  background-color: #32323e;
+  width: 100%;
+  min-height: 100vh;
+  /* height: auto; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between */
+}
+
+main {
+  padding: 2rem;
+  margin-top: -16px;
+  flex-direction: column;
+  
+}
+
+@media only screen and (max-width: 768px) {
+  main {
+    padding: 0;
+    margin-top: 0;
+  }
+}
