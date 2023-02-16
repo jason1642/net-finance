@@ -57,13 +57,13 @@ margin-top: 1rem;
 
 
 const PortfolioInfo: React.FunctionComponent<IPortfolioInfoProps> = ({user}) => {
-  
+    console.log(user)
     return (
     <Container>
            <Title> My Portfolio </Title>
 
            <TextRow>
-            <div>{user.portfolio.account_value}$</div>
+            <div>{user.portfolio.current_account_value}$</div>
            </TextRow>
     </Container>
   );
