@@ -69,6 +69,9 @@ import styled from 'styled-components'
 interface ComponentProps {
   businessNews: any;
 }
+
+const sources = ['Benzinga', 'Fortune', 'TipRanks', 'TheStreet.com', 'MarketWatch', 'MoneyWise', 'The Telegraph', 'Bloomberg', 'SmartAsset', 'The Wall Street Journal', 'Yahoo Finance', 'Barrons.com', 'CoinDesk', 'Quartz', 'CNN', 'Washington Post']
+
 const FeedMain: React.FunctionComponent<ComponentProps> = ({businessNews}) => {
 
   // console.log(businessNews)
@@ -76,8 +79,8 @@ const FeedMain: React.FunctionComponent<ComponentProps> = ({businessNews}) => {
     <Container className='no-scroll-feed'>
       {businessNews.map((ele:any, i:number) =>
         <ListItem key={i}>
-          <ListContent onClick={() => window.open(ele.url, "_blank")}>
-            <MetaData>{ele.source.name}</MetaData>
+          <ListContent onClick={() => window.open(ele.link, "_blank")}>
+            <MetaData>{sources[Math.floor(Math.random()*sources.length)]}</MetaData>
             <Title>
               {ele.title}
             </Title>

@@ -27,9 +27,14 @@ const Feed: React.FunctionComponent<ComponentProps> = () => {
 
 
     const fetchNewsData = async () => {
-      const response = await axios.get(`https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&apiKey=${NEWSAPI_KEY_TWO}`)
+      const response = await axios.get(`https://yahoo-finance15.p.rapidapi.com/api/yahoo/ne/news/spy`, {
+        headers: {
+          'X-RapidAPI-Key': '99c7685635msh8ab852673ebd9c8p11222bjsnf6f124405f1c',
+          'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'
+        }
+      })
       console.log(response)
-      setNewsApiData(response.data.articles)
+      setNewsApiData(response.data.item)
     }
     // const fetchNewsData = async () => {
 
