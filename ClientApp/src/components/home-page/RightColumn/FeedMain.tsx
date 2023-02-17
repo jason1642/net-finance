@@ -77,9 +77,9 @@ const FeedMain: React.FunctionComponent<ComponentProps> = ({businessNews}) => {
       {businessNews.map((ele:any, i:number) =>
         <ListItem key={i}>
           <ListContent onClick={() => window.open(ele.url, "_blank")}>
-            <MetaData>{ele.provider[0].name}</MetaData>
+            <MetaData>{ele.source.name}</MetaData>
             <Title>
-              {ele.name}
+              {ele.title}
             </Title>
             <Description>
               {ele.description}
