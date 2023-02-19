@@ -56,11 +56,11 @@ public class StockQuotes
 
     [BsonElement("previous_close_price")]
     [JsonPropertyName("previous_close_price")]
-    public string? previous_close_price { get; set; }
+    public int? previous_close_price { get; set; }
 
     [BsonElement("current_price")]
     [JsonPropertyName("current_price")]
-    public string? current_price { get; set; }
+    public int? current_price { get; set; }
 
     [BsonElement("volume")]
     [JsonPropertyName("volume")]
@@ -72,13 +72,13 @@ public class StockQuotes
 
     [BsonElement("market_cap")]
     [JsonPropertyName("market_cap")]
-    public string? market_cap { get; set; }
+    public int? market_cap { get; set; }
 
     [BsonElement("bid")]
     [JsonPropertyName("bid")]
-    public string? bid { get; set; }
+    public int? bid { get; set; }
 
     [BsonElement("ask")]
     [JsonPropertyName("ask")]
-    public string? ask { get; set; }
+    public int? ask { get; set; }
 }

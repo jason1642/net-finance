@@ -24,7 +24,7 @@ public class StockQuotesService
 
         _StockQuotesCollection = mongoDatabase.GetCollection<StockQuotes>(
             netFinanceDatabaseSettings.Value.StockQuotesCollectionName);
-    }
+    } 
      
     public async Task<List<StockQuotes>> GetAsync() =>
         await _StockQuotesCollection.Find(_ => true).ToListAsync();
