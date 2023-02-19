@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import { StockQuotesTypes } from '../../../../types/stock-quotes';
 
   const Container = styled.div`
     display:flex;
@@ -31,29 +32,29 @@ import styled from 'styled-components'
 
 
   `;
-
+ 
 interface ComponentProps {
-  stockData: any;
+  stockData: StockQuotesTypes[];
 }
 
-const HomeMyStocksInfo: React.FunctionComponent<ComponentProps> = ({stockData}) => {
+const HomeMyStocksInfo: React.FunctionComponent<ComponentProps> = ({stockData = []}) => {
 
 
-  // console.log(stockData)
+  console.log(stockData)
   return (
     <Container>
 
 
-      {stockData.map((ele: any, i: number) => <TestDiv key={i}>
+      {stockData.map(({current_price,price_change, market_cap, price_change_percent, previous_close_price}, i: number) => <TestDiv key={i}>
 
-        <Cell>${ele.latestPrice}</Cell>
-        <Cell style={{ color: ele.change > 0 ? '#52e3c2' : '#ff4463' }}>{(ele.changePercent * 100).toFixed(2)}%</Cell>
-        <Cell style={{ color: ele.change > 0 ? '#52e3c2' : '#ff4463' }}>${ele.change}</Cell>
-        <Cell>{(ele.ytdChange * 100).toFixed(2)}%</Cell>
-        <Cell>${ele.previousClose}</Cell>
-        <Cell>${ele.week52High}</Cell>
-        <Cell>${ele.week52Low}</Cell>
-        <Cell>${ele.marketCap}</Cell>
+        <Cell>${current_price}</Cell>
+        <Cell style={{ color: price_change > 0 ? '#52e3c2' : '#ff4463' }}>{(price_change_percent * 100).toFixed(2)}%</Cell>
+        <Cell style={{ color: price_change > 0 ? '#52e3c2' : '#ff4463' }}>${price_change}</Cell>
+        {/* <Cell>{(ele.ytdChange * 100).toFixed(2)}%</Cell> */}
+        <Cell>${previous_close_price}</Cell>
+        {/* <Cell>${ele.week52High}</Cell>
+        <Cell>${ele.week52Low}</Cell> */}
+        <Cell>${market_cap}</Cell>
       </TestDiv>)}
 
 

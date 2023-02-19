@@ -42,7 +42,7 @@ const App = () =>{
     //     market_day_low: regularMarketDayLow,
     //     market_open_price: regularMarketOpen,
     //     previous_close_price: regularMarketPreviousClose,
-    //     lastest_info_date: regularMarketTime.timestamp,
+    //     latest_info_date: regularMarketTime.timestamp,
     //     current_price: regularMarketPrice,
     //     volume: regularMarketVolume,
     //     market_cap: marketCap,

@@ -1,8 +1,10 @@
-// import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import HomeMyStocksMainHeader from './HomeMyStocksMainHeader'
-// import HomeMyStocksInfo from './HomeMyStocksInfo'
-// import { Link } from 'react-router-dom'
+import { getAllStockQuotes } from '../../../../api-requests/stock-quotes-requests';
+import { StockQuotesTypes } from '../../../../types/stock-quotes';
+import HomeMyStocksInfo from './HomeMyStocksInfo'
+import { Link } from 'react-router-dom'
 // import axios from 'axios'
 
   const Container = styled.div`
@@ -37,17 +39,17 @@ import HomeMyStocksMainHeader from './HomeMyStocksMainHeader'
     /* border-radius: 20px; */
   `;
 
-  // const Symbol = styled.p`
-  //   display: inline-block;
-  //   background-color: grey;
-  //   border-radius: 5px;
-  //   padding: 4px 6px;
-  //   &:hover{
-  //     background-color: white;
-  //     color: grey;
-  //     cursor: pointer;
-  //   }
-  // `;
+  const Symbol = styled.p`
+    display: inline-block;
+    background-color: grey;
+    border-radius: 5px;
+    padding: 4px 6px;
+    &:hover{
+      background-color: white;
+      color: grey;
+      cursor: pointer;
+    }
+  `;
   const OverflowXDiv = styled.div`
     overflow-x: auto;
     scrollbar-color: red yellow;
@@ -55,31 +57,15 @@ import HomeMyStocksMainHeader from './HomeMyStocksMainHeader'
 
 const HomeMyStocksMain = () => {
 
+  const [stockQuotesList, setStockQuotesList] = useState<Array<StockQuotesTypes>>([])
 
-  // const usersTestStocks = ['AAPL', 'MSFT', 'TSLA', 'FB']
-  // const [usersStocksData, setUsersStocksData] = useState<Array<any>>([])
-
-  // useEffect(() => {
-
-  //   const IEX_API_KEY = 'pk_3256652724eb490abdfd234401050f50';
-
-
-
-  //   usersTestStocks.map(async ele => {
-  //     const fetchStockData = async () => {
-
-  //       const response = await axios.get(`https://cloud.iexapis.com/stable/stock/${ele}/quote?token=${IEX_API_KEY}`)
-  //       setUsersStocksData(oldArr => [...oldArr, response.data])
-  //       console.log(response.data)
-  //     }
-  //     // setUsersStocksData(marketDataArray)
-  //     // fetchStockData()
-  //   })
-
-
-  // }, [])
-  // console.log(usersStocksData)
-
+  useEffect(()=>{
+    getAllStockQuotes().then(res=>{
+      setStockQuotesList(res.data)
+    }).catch(err=>{
+      console.error(err)
+    })
+  },[])
   return (
     <Container>
       <Main>
@@ -92,26 +78,26 @@ const HomeMyStocksMain = () => {
             height: '52px'
           }}>
             Symbol</StaticItem>
-          {/* {usersStocksData.map((ele, i) => <StaticItem key={i}>
+          {stockQuotesList.map(({symbol,price_change, }, i) => <StaticItem key={i}>
             <i style={{
-              paddingRight: '1rem', color: ele.change > 0 ? '#52e3c2' : '#ff4463'
+              paddingRight: '1rem', color: price_change > 0 ? '#52e3c2' : '#ff4463'
             }} className="fas fa-circle"></i>
 
 
-            <Link to={`/quote/${ele.symbol}`}
-            state={{stockData: ele}}
+            <Link to={`/quote/${symbol}`}
+            // state={{stockData: ele}}
      style={{ color: 'white' }}>
 
-              <Symbol>{ele.symbol}</Symbol>
+              <Symbol>{symbol}</Symbol>
             </Link>
-          </StaticItem>)} */}
+          </StaticItem>)}
 
         </StaticLeftColumn>
 
 
         <OverflowXDiv className='scrollbar-grey'>
           <HomeMyStocksMainHeader />
-          {/* <HomeMyStocksInfo stockData={usersStocksData} /> */}
+          <HomeMyStocksInfo stockData={stockQuotesList} />
 
 
 
