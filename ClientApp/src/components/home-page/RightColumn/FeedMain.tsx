@@ -59,7 +59,7 @@ import styled from 'styled-components'
     
 `;
   const Description = styled.div`
-    overflow: hidden;
+    overflow: hidden;   
     color: #b4b8cd;
     font-size: 14px;
     margin-top: 0.5rem;
