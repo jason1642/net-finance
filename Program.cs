@@ -19,6 +19,7 @@ builder.Services.Configure<NetFinanceDatabaseSettings>(
 builder.Services.AddSingleton<UsersService>();
 builder.Services.AddSingleton<MonthlyHistoricDataService>();
 builder.Services.AddSingleton<DailyHistoricDataService>();
+builder.Services.AddSingleton<StockQuotesService>();
 
 
 builder.Services.AddCors(options =>
