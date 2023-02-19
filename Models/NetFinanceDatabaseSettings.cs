@@ -11,4 +11,7 @@ public class NetFinanceDatabaseSettings
     public string? MonthlyHistoricDataCollectionName { get; set; }
 
     public string? DailyHistoricDataCollectionName { get; set; }
+
+    public string? StockQuotesCollectionName { get; set; }
+
 }
