@@ -90,4 +90,26 @@ public class StockQuotes
     [JsonPropertyName("ask")]
     [BsonRepresentation(BsonType.Int32, AllowTruncation = true)]
     public int? ask { get; set; }
+
+    [BsonElement("ytd_change")]
+    [JsonPropertyName("ytd_change")]
+    [BsonRepresentation(BsonType.Int32, AllowTruncation = true)]
+    public int? ytd_change { get; set; }
+
+    [BsonElement("ytd_change_percent")]
+    [JsonPropertyName("ytd_change_percent")]
+    [BsonRepresentation(BsonType.Int32, AllowTruncation = true)]
+    public int? ytd_change_percent { get; set; }
+
+    [BsonElement("fifty_two_week_high")]
+    [JsonPropertyName("fifty_two_week_high")]
+    [BsonRepresentation(BsonType.Int32, AllowTruncation = true)]
+    public int? fifty_two_week_high { get; set; }
+
+    [BsonElement("fifty_two_week_low")]
+    [JsonPropertyName("fifty_two_week_low")]
+    [BsonRepresentation(BsonType.Int32, AllowTruncation = true)]
+    public int? fifty_two_week_low { get; set; }
+
+  
 }
