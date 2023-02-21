@@ -18,7 +18,6 @@ interface ComponentProps{
   symbol: string;
 }
 const RightColumn: React.FunctionComponent<ComponentProps> = ({symbol}) => {
-
   return (
     <Container>
       <Feed symbol={symbol} />

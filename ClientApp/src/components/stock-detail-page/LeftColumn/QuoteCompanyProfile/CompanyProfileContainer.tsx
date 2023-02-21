@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components'
+import { MergedQuoteCompanyData } from '../../../../types/stock-quotes';
 import Description from './Description';
 import SectorIndustryOverview from './SectorIndustryOverview'
 // import {fetchStockData} from '../../../../api-requests/alphavantage-requests'
 interface ComponentProps {
-  symbol: string;
-  stockData: any;
+ 
+  stockData: MergedQuoteCompanyData;
 }
 
   const Container = styled.div`
@@ -16,30 +17,22 @@ interface ComponentProps {
     background-color: #393945;
     color: lightgrey;
   `;
-const QuoteCompanyProfile: React.FunctionComponent<ComponentProps> = ({symbol, stockData}) => {
+const QuoteCompanyProfile: React.FunctionComponent<ComponentProps> = ({ stockData }) => {
 
 
   // const [companyProfile, setCompanyProfile] = useState()
-  const companyProfile = undefined
   useEffect(() => {
 
+      console.log(stockData)
 
-
-    // fetchStockData(symbol).then(res=>{
-    //   console.log(res)
-    //   setCompanyProfile(res.data)
-    // })
-
-    
 
   }, [])
-  console.log(companyProfile)
 
 
   return (
     <Container>
-      { companyProfile ? <Description companyProfile={companyProfile} /> : <></>}
-      { companyProfile ? <SectorIndustryOverview stockData={stockData} companyProfile={companyProfile} /> : <></>}
+      { stockData ? <Description companyProfile={stockData} /> : <></>}
+      { stockData ? <SectorIndustryOverview stockData={stockData}/> : <></>}
     </Container>
   );
 }

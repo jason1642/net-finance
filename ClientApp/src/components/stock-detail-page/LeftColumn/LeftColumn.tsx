@@ -30,7 +30,7 @@ const LeftColumn: React.FunctionComponent<ComponentProps> = ({stockData, symbol}
       stockData ?
         <Container>
           {stockData ? <QuoteOverview stockData={stockData} /> : <></>}
-          <CompanyProfileContainer stockData={stockData} symbol={symbol} />
+          <CompanyProfileContainer stockData={stockData}  />
         </Container> : <></>
     }</>
   );

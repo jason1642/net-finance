@@ -57,17 +57,17 @@ import styled from 'styled-components'
   `;
 
   const overviewLeftTileArray = [
-    { name: 'Market Cap:', apiKey: 'marketCap' },
-    { name: '52 Week High:', apiKey: 'week52High' },
-    { name: '52 Week Low:', apiKey: 'week52Low' },
-    { name: 'Average Volume:', apiKey: 'avgTotalVolume' },
-    { name: 'Previous Volume:', apiKey: 'previousVolume' },
-    { name: 'Primary Exchange:', apiKey: 'primaryExchange' },
-    { name: 'Previous Close Price:', apiKey: 'previousClose' }
+    { name: 'Market Cap:', apiKey: 'market_cap' },
+    // { name: '52 Week High:', apiKey: 'week52High' },
+    // { name: '52 Week Low:', apiKey: 'week52Low' },
+    { name: 'Average Volume:', apiKey: 'volume' },
+    // { name: 'Previous Volume:', apiKey: 'previousVolume' },
+    { name: 'Primary Exchange:', apiKey: 'exchange' },
+    { name: 'Previous Close Price:', apiKey: 'previous_close_price' }
   ]
 
   const overviewRightTileArray = [
-    { name: 'CEO:', apiKey: 'CEO' },
+    { name: 'CEO:', apiKey: 'ceo' },
     { name: 'Employees:', apiKey: 'employees' },
     { name: 'Website:', apiKey: 'website' },
     { name: 'Phone:', apiKey: 'phone' },
@@ -78,24 +78,22 @@ import styled from 'styled-components'
 
   interface ComponentProps {
     stockData: any;
-    name?: any;
-    companyProfile: any;
   }
 
   
-const SectorIndustryOverview: React.FunctionComponent<ComponentProps> = ({stockData, name, companyProfile}) => {
+const SectorIndustryOverview: React.FunctionComponent<ComponentProps> = ({stockData,}) => {
 
- 
+ console.log(stockData)
   return (
     <Container>
       <SecIndContainer>
         <Sector>
           <Title>Sector:</Title>
-          <div>{companyProfile.sector}</div>
+          <div>{stockData.sector}</div>
         </Sector>
         <Industry>
           <Title>Industry:</Title>
-          {companyProfile.industry}
+          {stockData.industry}
         </Industry>
       </SecIndContainer>
 
@@ -105,10 +103,17 @@ const SectorIndustryOverview: React.FunctionComponent<ComponentProps> = ({stockD
         <Title>Overview</Title>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <OverviewTileLeft>
-            {overviewLeftTileArray.map((ele, i) =>
+            {overviewLeftTileArray.map(({name, apiKey}, i) =>
               <TileRow>
-                <TileSpan>{ele.name}</TileSpan>
-                <TileSpan>{stockData[ele.apiKey]}</TileSpan>
+                <TileSpan>{name}</TileSpan>
+                <TileSpan>{apiKey === 'market_cap' || apiKey === 'volume' ?
+                Intl.NumberFormat('en-US', {
+                  notation: "compact",
+                  maximumFractionDigits: 1
+                }).format(stockData[apiKey])
+                :
+                 stockData[apiKey]}
+                 </TileSpan>
               </TileRow>
             )}
             {/* {console.log(props.stockData)} */}
@@ -120,7 +125,7 @@ const SectorIndustryOverview: React.FunctionComponent<ComponentProps> = ({stockD
             {overviewRightTileArray.map((ele, i) =>
               <TileRow>
                 <TileSpan>{ele.name}</TileSpan>
-                <TileSpan>{companyProfile[ele.apiKey]}</TileSpan>
+                <TileSpan>{stockData[ele.apiKey]}</TileSpan>
               </TileRow>
             )}
 

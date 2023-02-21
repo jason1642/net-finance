@@ -6,6 +6,8 @@ import { fetchDailyStockDataSeries } from '../api-requests/alphavantage-requests
 import {useParams} from 'react-router-dom'
 import StockLineGraph from '../components/graphs/StockLineGraph'
 import { getCompanyProfile, getQuoteBySymbol } from '../api-requests/stock-quotes-requests'
+import { MergedQuoteCompanyData, StockQuotesTypes } from '../types/stock-quotes'
+import { CompanyProfileTypes } from '../types/company-profile'
 
 interface ComponentProps {
 
@@ -24,26 +26,32 @@ const StockDetailPage: React.FunctionComponent<ComponentProps> = () => {
     flex-direction: column;
   }
   `;
-  const [stockData, setStockData] = React.useState({})
+  const [stockData, setStockData] = React.useState<StockQuotesTypes | CompanyProfileTypes | MergedQuoteCompanyData | {}>()
 
+ const setSymbolData = async ()=> {
+  let results = {}
+  symbol && getCompanyProfile(symbol).then(res=>{
+    results = {...res}
+  })
+
+   symbol && getQuoteBySymbol(symbol).then(res=>{
+    results = {...res}
+   })
+   setStockData(results)
+ }
+  
   useEffect(() => {
 
+setSymbolData()
 
-
-       symbol && getCompanyProfile(symbol).then(res=>{
-        setStockData(res)
-       })
-
-       symbol && getQuoteBySymbol(symbol).then(res=>{
-        setStockData(prev => ({...prev, ...res}))
-       })
+    
 
   }, [symbol])
   console.log(stockData)
 
   return (
     <Container>
-     {stockData && symbol && <> <LeftColumn stockData={stockData} symbol={symbol} />
+     {stockData !== undefined && stockData.symbol !== undefined && stockData.current_price !== undefined && symbol && <> <LeftColumn stockData={stockData} symbol={symbol} />
 
       {/* <StockLineGraph 
         symbol={symbol}

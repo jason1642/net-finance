@@ -9,21 +9,18 @@ import axios from 'axios'
 interface ComponentProps {
   
 }
-    const NEWSAPI_KEY_TWO = '1fae1394978c433199f7c1279bd1cae4'
-    const BING_NEWS_API_KEY = '99c7685635msh8ab852673ebd9c8p11222bjsnf6f124405f1c'
+   
 
 const Feed: React.FunctionComponent<ComponentProps> = () => {
 
 
   const [newsApiData, setNewsApiData] = React.useState([])
-// const newsApiData : any[]= []
 
 
 
 
 
   useEffect(() => {
-    // const NEWSAPI_KEY = 'cce7827002dc4aacac0aa05b70ad0f33'
 
 
     const fetchNewsData = async () => {
