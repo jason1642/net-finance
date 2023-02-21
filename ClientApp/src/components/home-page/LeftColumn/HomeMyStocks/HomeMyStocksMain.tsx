@@ -8,12 +8,12 @@ import { Link } from 'react-router-dom'
 // import axios from 'axios'
 
   const Container = styled.div`
-    padding-bottom: 1rem;
+    /* padding-bottom: 1rem; */
 
   `;
 
   const Main = styled.div`
-    height: 100%;
+    /* height: 100%; */
     margin-bottom: 2rem;
     display: flex;
     `;

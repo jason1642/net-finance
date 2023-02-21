@@ -6,29 +6,31 @@ import { StockQuotesTypes } from '../../../../types/stock-quotes';
     display:flex;
     flex-direction: column;
     /* width: 2325px; */
-    height: auto;
+    /* height: auto; */
   `;
 
   const TestDiv = styled.div`
     display: flex;
-    
-   
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid grey;
+
   `;
   const Cell = styled.div`
   display: flex;
   align-items: center;
-  padding: 1.09rem 0 1.09rem 0;
-  height: 45px;
+  padding: 0.9rem 0 0.9rem 0;
+  height: 46px;
   text-align: right;
   padding-left: 2rem;
     width: 110px;
-    max-width: 110px;
+    /* max-width: 130px; */
     min-width: 110px;
     font-size: 14px;
     color: white;
-    
+    overflow: hidden;
+    /* font-size: 14px; */
   /* height: 100%; */
-  border-bottom: 1px solid grey;
 
 
   `;
@@ -54,7 +56,7 @@ const HomeMyStocksInfo: React.FunctionComponent<ComponentProps> = ({stockData = 
         <Cell>${previous_close_price}</Cell>
         {/* <Cell>${ele.week52High}</Cell>
         <Cell>${ele.week52Low}</Cell> */}
-        <Cell>${market_cap}</Cell>
+        <Cell style={{width: '220px'}}>${market_cap}!</Cell>
       </TestDiv>)}
 
 

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
   // Header
   const Header = styled.div`
-    height: 56px;
-    min-height: 56px;
+    height: 53px;
+    /* min-height: 56px; */
     display: flex;
     align-items: center;
     border-top-width: 2px;
@@ -19,7 +19,7 @@ import styled from 'styled-components';
     font-size: 14px;
     padding-left:2rem;
     align-items: center;
-    height: 50px;
+    height: 52px;
     width: 110px;
     max-width: 110px;
     min-width: 110px;
@@ -34,7 +34,16 @@ const HomeMyStocksMainHeader = () => {
 
 
 
-  const list = ['Price', 'Today % Change', 'Today $ Change', 'YTD Return', 'Prev Close', '52 Week High', '52 Week Low', 'Market Cap'];
+  const list = [
+    'Price',
+    'Today % Change',
+     'Today $ Change', 
+    //  'YTD Return', 
+     'Prev Close',
+      // '52 Week High',
+      // '52 Week Low',
+       'Market Cap'
+      ];
 
   const menu = list.map((ele, i) =>
     // <HeaderItem text={ele} key={i} selected={i} />
