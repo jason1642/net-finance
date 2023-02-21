@@ -14,4 +14,6 @@ public class NetFinanceDatabaseSettings
 
     public string? StockQuotesCollectionName { get; set; }
 
+    public string? CompanyProfileCollectionName { get; set; }
+
 }
