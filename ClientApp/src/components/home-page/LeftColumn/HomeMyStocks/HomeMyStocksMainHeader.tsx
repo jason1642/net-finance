@@ -17,8 +17,9 @@ import styled from 'styled-components';
     display: inline-flex;
     white-space: nowrap;
     font-size: 14px;
-    padding-left:2rem;
+    padding-left:1.5rem;
     align-items: center;
+    justify-content: center;
     height: 52px;
     width: 110px;
     max-width: 110px;
@@ -42,12 +43,13 @@ const HomeMyStocksMainHeader = () => {
      'Prev Close',
       // '52 Week High',
       // '52 Week Low',
+      'Volume',
        'Market Cap'
       ];
 
   const menu = list.map((ele, i) =>
     // <HeaderItem text={ele} key={i} selected={i} />
-    <HeaderItem key={i}>{ele}</HeaderItem>
+    <HeaderItem style={{paddingLeft: i === 0 ? 0 : '1.5rem'}} key={i}>{ele}</HeaderItem>
   )
 
 

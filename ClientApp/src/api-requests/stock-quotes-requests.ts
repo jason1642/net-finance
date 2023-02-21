@@ -16,3 +16,12 @@ export const getAllStockQuotes = async () =>
         console.log(res)
         return res
     }, err=> err)
+
+
+export const getQuoteBySymbol = async (symbol: string)=>
+    await api.get(`/StockQuotes/${symbol}`).then(res=>{
+        console.log(res)
+        return res.data
+    }, err=>{ 
+        console.error(err)
+    })

@@ -5,6 +5,7 @@ import RightColumn from '../components/stock-detail-page/RightColumn/RightColumn
 import { fetchDailyStockDataSeries } from '../api-requests/alphavantage-requests'
 import {useParams} from 'react-router-dom'
 import StockLineGraph from '../components/graphs/StockLineGraph'
+import { getQuoteBySymbol } from '../api-requests/stock-quotes-requests'
 
 interface ComponentProps {
 
@@ -23,15 +24,15 @@ const StockDetailPage: React.FunctionComponent<ComponentProps> = () => {
     flex-direction: column;
   }
   `;
-  // const [stockData, setStockData] = useState()
-  const stockData = undefined
+  const [stockData, setStockData] = React.useState()
+  
   useEffect(() => {
 
 
 
-       symbol && fetchDailyStockDataSeries(symbol).then(res=>{
-      console.log(res)
-    })
+       symbol && getQuoteBySymbol(symbol).then(res=>{
+        setStockData(res)
+       })
   }, [symbol])
   console.log(stockData)
 

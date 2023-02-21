@@ -10,7 +10,7 @@ interface ComponentProps {
 }
 
   const Container = styled.div`
-    
+    color: white;
   `;
 
 const Feed: React.FunctionComponent<ComponentProps> = ({symbol}) => {
@@ -61,6 +61,8 @@ const Feed: React.FunctionComponent<ComponentProps> = ({symbol}) => {
   return (
     <Container>
       <FeedHeader />
+      Here ther will be news depending on current symbol
+
       <FeedMain
         businessNews={newsApiData}
       />

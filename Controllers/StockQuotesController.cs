@@ -52,14 +52,22 @@ namespace net_finance.Controllers
         public async Task<List<StockQuotes>> Get() =>
             await _StockQuotesService.GetAsync();
 
+
+
+        //GET: api/StockQuotes/:symbol
+        [HttpGet("{symbol}")]
+        public async Task<StockQuotes?> GetBySymbol(string symbol) =>
+            await _StockQuotesService.GetAsync(symbol);
+
+
         // POST: api/StockQuotes
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT: api/StockQuotes/5
-        [HttpPut("{id}")]
+        // PUT: api/StockQuotes/symbol
+        [HttpPut("{symbol}")]
         public void Put(int id, [FromBody] string value)
         {
         }

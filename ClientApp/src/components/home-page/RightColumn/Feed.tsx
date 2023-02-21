@@ -62,7 +62,7 @@ const Feed: React.FunctionComponent<ComponentProps> = () => {
     //     })
 
     // }
-    fetchNewsData()
+    // fetchNewsData()
 
   }, [])
   return (

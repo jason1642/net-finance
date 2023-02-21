@@ -32,7 +32,7 @@ import { Link } from 'react-router-dom'
     justify-content: flex-start;
     align-items: center;
     color: white;
-    padding: .9rem 0 .9rem 0;
+    padding: .9rem 0 .9rem .6rem;
     height: 45px;
     border-bottom: 1px solid grey;
     /* background-color: grey; */
