@@ -63,13 +63,13 @@ const QuoteOverview: React.FunctionComponent<ComponentProps> = ({stockData}) => 
           <Content>
             <RowOne>
               <div style={{ display: 'block', color: 'white' }}>
-                <span style={{ fontSize: '28px' }}>{stockData.companyName}</span>
+                <span style={{ fontSize: '28px' }}>{stockData.name}</span>
 
-                <span style={{ fontSize: '20px', marginRight: '15px', marginLeft: '0.3rem' }}>${stockData.latestPrice}</span>
+                <span style={{ fontSize: '20px', marginRight: '15px', marginLeft: '0.3rem' }}>${stockData.current_price}</span>
                 <span style={{ fontSize: '16px', marginRight: '12px', marginLeft: '4px', color: greenOrRed() }}>{caretUpOrDown()}
-                  {(stockData.changePercent * 100).toFixed(2)}%
+                  {(stockData.price_change_percent * 100).toFixed(2)}%
                 </span>
-                <span style={{ color: greenOrRed() }}>{stockData.change}</span>
+                <span style={{ color: greenOrRed() }}>{stockData.price_change}</span>
               </div>
 
               <div style={{ textAlign: 'right', fontSize: '16px', color: 'white', alignSelf: 'flex-end' }}>
@@ -90,9 +90,12 @@ const QuoteOverview: React.FunctionComponent<ComponentProps> = ({stockData}) => 
                 <div style={{ fontStyle: 'italic', marginRight: '2rem' }}>Real Time (last trade Fri, 7:56pm EDT)</div>
               </div>
               <div style={{ display: 'flex' }}>
-                <RowTwoSpan style={{ paddingLeft: '0.5em' }}>Bid: 107.70</RowTwoSpan>
-                <RowTwoSpan style={{}}>Ask: 121.70</RowTwoSpan>
-                <RowTwoSpan style={{}}>Volume: 190.19m</RowTwoSpan>
+                <RowTwoSpan style={{ paddingLeft: '0.5em' }}>Bid: ${stockData.bid}</RowTwoSpan>
+                <RowTwoSpan style={{}}>Ask: ${stockData.ask}</RowTwoSpan>
+                <RowTwoSpan style={{}}>Volume: {Intl.NumberFormat('en-US', {
+                  notation: "compact",
+                  maximumFractionDigits: 1
+                }).format(stockData.volume)}</RowTwoSpan>
               </div>
 
 

@@ -25,3 +25,11 @@ export const getQuoteBySymbol = async (symbol: string)=>
     }, err=>{ 
         console.error(err)
     })
+
+export const getCompanyProfile = async(symbol: string) => 
+    await api.get(`/CompanyProfile/${symbol}`).then(res=>{
+        console.log(res)
+        return res.data
+    }, err=>{ 
+        console.error(err)
+    })
