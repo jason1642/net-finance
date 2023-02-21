@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components'
-
-
+import type { MergedQuoteCompanyData } from '../../../../types/stock-quotes';
 const Container = styled.div`
 margin-top: 2rem;
 display: flex;
@@ -39,7 +38,7 @@ const Content = styled.div`
 
 
 interface ComponentProps{ 
-  companyProfile: any;
+  companyProfile: MergedQuoteCompanyData
 }
 const Description:React.FunctionComponent<ComponentProps> = ({companyProfile, }) => {
 
