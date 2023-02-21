@@ -26,23 +26,24 @@ const StockDetailPage: React.FunctionComponent<ComponentProps> = () => {
     flex-direction: column;
   }
   `;
-  const [stockData, setStockData] = React.useState<StockQuotesTypes | CompanyProfileTypes | MergedQuoteCompanyData | {}>()
+  const [stockData, setStockData] = React.useState<MergedQuoteCompanyData>()
 
- const setSymbolData = async ()=> {
+ const setSymbolData = async (symbol: string)=> {
   let results = {}
-  symbol && getCompanyProfile(symbol).then(res=>{
+  await getCompanyProfile(symbol).then(res=>{
     results = {...res}
   })
 
-   symbol && getQuoteBySymbol(symbol).then(res=>{
-    results = {...res}
+  await getQuoteBySymbol(symbol).then(res=>{
+    setStockData({...results, ...res})
+
    })
-   setStockData(results)
  }
+ 
   
   useEffect(() => {
 
-setSymbolData()
+  symbol && setSymbolData(symbol)
 
     
 
