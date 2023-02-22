@@ -76,7 +76,7 @@ const Account: React.FunctionComponent<IAccountProps> = (props) => {
     <PortfolioStatistics />
 
 
-    <OrderHistoryTable />
+    <OrderHistoryTable userData={userData}/>
 
         </MainContainer>
 

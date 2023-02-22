@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import styled from 'styled-components';
+import { UserAccountTypes } from '../../../types/user-account';
 
 const TableCell = styled(TableCellMUI)`
   color: white !important;
@@ -120,9 +121,10 @@ function createData(
 
 
 interface IOrderHistoryTableProps {
+  userData: UserAccountTypes;
 }
 
-const OrderHistoryTable: React.FunctionComponent<IOrderHistoryTableProps> = (props) => {
+const OrderHistoryTable: React.FunctionComponent<IOrderHistoryTableProps> = ({userData}) => {
   return(
   <TableContainer>
       <Table aria-label="collapsible table">
