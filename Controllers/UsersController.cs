@@ -258,7 +258,7 @@ namespace net_finance_api.Controllers
         //};
             var filter = Builders<Users>.Filter.Eq("_id", ObjectId.Parse(user._id));
 
-            var Users update = Builders<Users>.Update.Push(x => x.order_history, new OrderHistory
+              var update = Builders<Users>.Update.Push(x => x.order_history, new OrderHistory
             {
                 symbol = order.symbol,
                 created_at = DateTime.Now,
@@ -269,7 +269,7 @@ namespace net_finance_api.Controllers
                 status = "fulfilled"
             });
 
-            await _usersService.UpdateAsync(user._id, update);
+            _usersService.FilterUpdateUser(filter, update);
             Console.WriteLine(user);
             
             return Ok(user);

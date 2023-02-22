@@ -47,6 +47,9 @@ public class UsersService
     public async Task UpdateAsync(string id, Users updatedUser) =>
         await _usersCollection.ReplaceOneAsync(x => x._id == id, updatedUser);
 
+    public UpdateResult FilterUpdateUser(FilterDefinition<Users> filter, UpdateDefinition<Users> update) =>
+        _usersCollection.UpdateOne(filter, update);
+
     public async Task RemoveAsync(string id) =>
         await _usersCollection.DeleteOneAsync(x => x._id == id);
 
