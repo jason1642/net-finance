@@ -10,6 +10,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using System.Collections.Generic;
 
 
 
@@ -234,18 +237,42 @@ namespace net_finance_api.Controllers
                 return BadRequest(ModelState);
 
         }
-
-        [HttpPost("createBuyOrder")]
-        public async Task<IActionResult> createBuyOrder([FromBody] string symbol, int quantity, string action, int price) 
+        // Post: api/Users/CreateNewOrder
+        [HttpPost("CreateNewOrder")]
+        public async Task<IActionResult> createBuyOrder([FromBody] OrderHistory order) 
         {
             if (!(Request.Cookies.TryGetValue("X-Username", out var username) && Request.Cookies.TryGetValue("X-Refresh-Token", out var refreshToken)))
                 return BadRequest();
             Users? user = await _usersService.verifyToken(username, refreshToken);
             if (user == null) return BadRequest();
-            user.created_at = user.updated_at = DateTime.Now;
-            Console.WriteLine(user);      
 
-            return Ok();
+        //    var order = new OrderHistory
+        //    {
+        //        symbol = symbol,
+        //        created_at = DateTime.Now,
+        //        updated_at = DateTime.Now,
+        //        price = price,
+        //        quantity = quantity,
+        //        action = action,
+        //        status = "fulfilled" 
+        //};
+            var filter = Builders<Users>.Filter.Eq("_id", ObjectId.Parse(user._id));
+
+            var Users update = Builders<Users>.Update.Push(x => x.order_history, new OrderHistory
+            {
+                symbol = order.symbol,
+                created_at = DateTime.Now,
+                updated_at = DateTime.Now,
+                price = order.price,
+                quantity = order.quantity,
+                action = order.action,
+                status = "fulfilled"
+            });
+
+            await _usersService.UpdateAsync(user._id, update);
+            Console.WriteLine(user);
+            
+            return Ok(user);
         }
 
 

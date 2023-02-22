@@ -81,15 +81,16 @@ public class Portfolio
 public class OrderHistory
 {
     [BsonElement("symbol")]
+    [JsonPropertyName("symbol")]
     public string? symbol { get; set; }
 
     [BsonElement("currency")]
-    public int currency {  get; set;}
+    [BsonDefaultValue("USD")]
+    public int currency { get; set;}
 
     [BsonElement("created_at")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public DateTime created_at { get; set; }
-
 
     // Manually set new updated_at in controllers with - put, create, 
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
@@ -97,14 +98,17 @@ public class OrderHistory
     public DateTime updated_at { get; set; }
 
     [BsonElement("price")]
-    public int price { get; set; }
+    public Decimal price { get; set; }
 
+    // examples: limit sell, limit buy, 
     [BsonElement("action")]
+    [JsonPropertyName("action")]
     public string? action { get; set; }
 
     [BsonElement("quantity")]
-    public int? quantity { get; set; }
+    public Decimal? quantity { get; set; }
 
+    // examples: fulfilled, canceled, pending
     [BsonElement("status")]
     public string? status { get; set;}
 
