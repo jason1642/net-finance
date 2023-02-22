@@ -236,15 +236,19 @@ namespace net_finance_api.Controllers
         }
 
         [HttpPost("createBuyOrder")]
-        public async Task<IActionResult> createBuyOrder([FromBody] string symbol, int quantity, string action, int price)
+        public async Task<IActionResult> createBuyOrder([FromBody] string symbol, int quantity, string action, int price) 
         {
             if (!(Request.Cookies.TryGetValue("X-Username", out var username) && Request.Cookies.TryGetValue("X-Refresh-Token", out var refreshToken)))
                 return BadRequest();
             Users? user = await _usersService.verifyToken(username, refreshToken);
+            if (user == null) return BadRequest();
+            user.created_at = user.updated_at = DateTime.Now;
             Console.WriteLine(user);      
 
             return Ok();
         }
+
+
         //private bool UsersExists(long id)
         //{
         //    return (_usersService.Users?.Any(e => e.Id == id)).GetValueOrDefault();

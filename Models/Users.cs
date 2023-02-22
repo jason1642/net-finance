@@ -86,6 +86,15 @@ public class OrderHistory
     [BsonElement("currency")]
     public int currency {  get; set;}
 
+    [BsonElement("created_at")]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public DateTime created_at { get; set; }
+
+
+    // Manually set new updated_at in controllers with - put, create, 
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+    [BsonElement("updated_at")]
+    public DateTime updated_at { get; set; }
 
     [BsonElement("price")]
     public int price { get; set; }

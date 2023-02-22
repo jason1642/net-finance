@@ -24,7 +24,7 @@ const LinkBatch: React.FunctionComponent<ComponentProps>  = ({userData, isLoadin
       {/* <StyledLink to=''>SCREENER</StyledLink> */}
       <div style={{ flexGrow: .7, display: 'flex' }}></div>
       <StyledLink to=''>HELP</StyledLink>
-      <StyledLink to='account'>Account</StyledLink>
+      {userData && !isLoading && <StyledLink to='account'>Account</StyledLink>}
 
       {
 
