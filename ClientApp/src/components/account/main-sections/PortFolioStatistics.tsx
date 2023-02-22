@@ -79,7 +79,7 @@ const PortfolioStatistics: React.FunctionComponent<IPortfolioStatisticsProps> = 
         <Title>Portfolio Statistics</Title>
         <Wrapper>
             {statisticFieldOptions.map(item=>  
-            <Item>
+            <Item key={item.name}>
                 <Label>{item.name}</Label>
                 <ItemValue>{item.value}</ItemValue>
                 </Item>)}
