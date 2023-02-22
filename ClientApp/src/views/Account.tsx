@@ -5,6 +5,9 @@ import OverviewLineGraph from '../components/account/main-sections/OverviewLineG
 import PortfolioStatistics from '../components/account/main-sections/PortFolioStatistics';
 import DonutGraphPortfolioOverview from '../components/account/side-panel/DonutGraphPortfolioOverview';
 // import SectorDonutGraph from '../components/account/side-panel/SectorDonutGraph';
+import { userApi } from "../redux/features/userApi";
+
+
 interface IAccountProps {
 }
 
@@ -53,6 +56,12 @@ const Wrapper = styled.div`
 // `;
 
 const Account: React.FunctionComponent<IAccountProps> = (props) => {
+
+   const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
+
+   React.useEffect(()=>{
+    console.log(userData)
+   },[userData])
   return (
     <Container>
         <Title>Portfolio</Title>

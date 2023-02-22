@@ -4,15 +4,18 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCellMUI  from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
- 
+import styled from 'styled-components';
+
+const TableCell = styled(TableCellMUI)`
+  color: white !important;
+`;
 function createData(
     name: string,
     calories: number,
@@ -63,16 +66,16 @@ function createData(
           <TableCell  component="th" scope="row">
             {row.name}
           </TableCell>
-          <TableCell style={{color: '#dbdbdb'}} align="right">{row.calories}</TableCell>
-          <TableCell style={{color: '#dbdbdb'}} align="right">{row.fat}</TableCell>
-          <TableCell style={{color: '#dbdbdb'}} align="right">{row.carbs}</TableCell>
-          <TableCell style={{color: '#dbdbdb'}} align="right">{row.protein}</TableCell>
+          <TableCell align="right">{row.calories}</TableCell>
+          <TableCell align="right">{row.fat}</TableCell>
+          <TableCell align="right">{row.carbs}</TableCell>
+          <TableCell align="right">{row.protein}</TableCell>
         </TableRow>
         <TableRow sx={{'& > *': {color: 'white'}}}>
           <TableCell sx={{'& > *': {color: 'white'}}} style={{ paddingBottom: 0,  paddingTop: 0, color: 'white'}} colSpan={6}>
             <Collapse  in={open} timeout="auto" unmountOnExit>
               <Box >
-                <Typography sx={{'& > *': {color: 'white'}}} variant="h6" gutterBottom component="div">
+                <Typography variant="h6" gutterBottom component="div">
                   History
                 </Typography>
                 <Table  size="small" aria-label="purchases">
@@ -87,10 +90,10 @@ function createData(
                   <TableBody>
                     {row.history.map((historyRow) => (
                       <TableRow  key={historyRow.date}>
-                        <TableCell  component="th" scope="row">
+                        <TableCell sx={{color: '#d9d9d9'}} component="th" scope="row">
                           {historyRow.date}
                         </TableCell>
-                        <TableCell>{historyRow.customerId}</TableCell>
+                        <TableCell sx={{color: '#d9d9d9'}}>{historyRow.customerId}</TableCell>
                         <TableCell align="right">{historyRow.amount}</TableCell>
                         <TableCell align="right">
                           {Math.round(historyRow.amount * row.price * 100) / 100}
