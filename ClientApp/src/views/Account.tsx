@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import OrderHistoryTable from '../components/account/main-sections/OrderHistoryTable';
 import OverviewLineGraph from '../components/account/main-sections/OverviewLineGraph';
 import PortfolioStatistics from '../components/account/main-sections/PortFolioStatistics';
 import DonutGraphPortfolioOverview from '../components/account/side-panel/DonutGraphPortfolioOverview';
@@ -64,6 +65,10 @@ const Account: React.FunctionComponent<IAccountProps> = (props) => {
     <OverviewLineGraph symbol={"MSFT"}/>
 
     <PortfolioStatistics />
+
+
+    <OrderHistoryTable />
+
         </MainContainer>
 
 
