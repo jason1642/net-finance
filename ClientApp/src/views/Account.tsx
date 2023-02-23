@@ -17,6 +17,7 @@ const Container = styled.div`
   flex-direction: column;
   color: white;
   padding: 0 1rem;
+  margin-bottom: 3rem;
 `;
 const Title = styled.div`
   display: flex;

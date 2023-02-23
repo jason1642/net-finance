@@ -13,39 +13,14 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import styled from 'styled-components';
 import type { UserAccountTypes, OrderHistoryItemTypes } from '../../../types/user-account';
+import moment from 'moment'
+
 
 const TableCell = styled(TableCellMUI)`
   color: white !important;
+  border-bottom: 1px solid rgb(255 255 255 / 34%) !important;
 `;
-function createData(
-    name: string,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number,
-    price: number,
-  ) {
-    return {
-      name,
-      calories,
-      fat,
-      carbs,
-      protein,
-      price,
-      history: [
-        {
-          date: '2020-01-05',
-          customerId: '11091700',
-          amount: 3,
-        },
-        {
-          date: '2020-01-02',
-          customerId: 'Anonymous',
-          amount: 1,
-        },
-      ],
-    };
-  }
+
 
   const Row: React.FunctionComponent<{order: OrderHistoryItemTypes}> = ({order: {symbol, action, created_at, price, status, quantity }}) =>{
    
@@ -54,7 +29,7 @@ function createData(
     return (
       <React.Fragment>
         <TableRow sx={{ '& > *': { borderBottom: 'unset', color: 'white' } }}>
-          <TableCell sx={{'& > *': {color: 'white'}}} >
+          {/* <TableCell sx={{'& > *': {color: 'white'}}} >
             <IconButton
               aria-label="expand row"
               size="small"
@@ -63,15 +38,15 @@ function createData(
             >
               {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
             </IconButton>
-          </TableCell>
+          </TableCell> */}
           <TableCell  component="th" scope="row">
             {symbol}
           </TableCell>
-          <TableCell align="right">{action}</TableCell>
-          <TableCell align="right">{created_at.toString()}</TableCell>
-          <TableCell align="right">{status}</TableCell>
-          <TableCell align="right">{quantity}</TableCell>
-          <TableCell align="right">{price}</TableCell>
+          <TableCell align="center">{action}</TableCell>
+          <TableCell align="center">{moment(created_at).format('MM/DD/YYYY')}</TableCell>
+          <TableCell align="center">{status}</TableCell>
+          <TableCell align="center">{quantity}</TableCell>
+          <TableCell align="center">${price.toFixed(2)}</TableCell>
 
         </TableRow>
         {/* <TableRow sx={{'& > *': {color: 'white'}}}>
@@ -122,17 +97,18 @@ interface IOrderHistoryTableProps {
 
 const OrderHistoryTable: React.FunctionComponent<IOrderHistoryTableProps> = ({userData}) => {
   return(
-  <TableContainer>
+  <TableContainer sx={{width: '95%', alignSelf: 'center'}}>
+    <h2>Order History</h2>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow sx={{'& > *': {color: 'white'}}}>
-            <TableCell />
+            {/* <TableCell /> */}
             <TableCell>Symbol</TableCell>
-            <TableCell align="right">Action</TableCell>
-            <TableCell align="right">Date</TableCell>
-            <TableCell align="right">Status</TableCell>
-            <TableCell align="right">Quantity</TableCell>
-            <TableCell align="right">Price</TableCell>
+            <TableCell align="center">Action</TableCell>
+            <TableCell align="center">Date</TableCell>
+            <TableCell align="center">Status</TableCell>
+            <TableCell align="center">Quantity</TableCell>
+            <TableCell align="center">Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody >
