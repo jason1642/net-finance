@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { UserAccountTypes } from '../../types/user-account';
 // import { createSelector } from '@reduxjs/toolkit'
 // import { RootState } from '../store';
 
 export interface UserState {
-    data: any,
+    data: UserAccountTypes,
     isAuthenticated: boolean,
     isLoading: boolean,
   }
@@ -39,7 +40,7 @@ export const userApi = createApi({
         })
       }),
 
-      verifyUser: builder.query<void, void>({
+      verifyUser: builder.query<UserAccountTypes, void>({
         query: () => ({
           url: '/verify',
           method: 'POST',
