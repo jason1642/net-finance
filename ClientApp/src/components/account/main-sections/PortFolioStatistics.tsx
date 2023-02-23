@@ -9,6 +9,8 @@ const Container = styled.div`
   display: flex;
   padding: 2rem;
   border-top: 1px solid #9b9b9b33;
+  border-bottom: 1px solid #9b9b9b33;
+
   flex-direction: column;
 `;
 
