@@ -86,7 +86,7 @@ public class OrderHistory
 
     [BsonElement("currency")]
     [BsonDefaultValue("USD")]
-    public string currency { get; set;}
+    public string? currency { get; set;}
 
     [BsonElement("created_at")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import styled from 'styled-components';
-import { UserAccountTypes } from '../../../types/user-account';
+import type { UserAccountTypes, OrderHistoryItemTypes } from '../../../types/user-account';
 
 const TableCell = styled(TableCellMUI)`
   color: white !important;
@@ -47,8 +47,8 @@ function createData(
     };
   }
 
-  function Row(props: { row: ReturnType<typeof createData> }) {
-    const { row } = props;
+  const Row: React.FunctionComponent<{order: OrderHistoryItemTypes}> = ({order: {symbol, action, created_at, price, status, quantity }}) =>{
+   
     const [open, setOpen] = React.useState<boolean>(false);
   
     return (
@@ -65,14 +65,16 @@ function createData(
             </IconButton>
           </TableCell>
           <TableCell  component="th" scope="row">
-            {row.name}
+            {symbol}
           </TableCell>
-          <TableCell align="right">{row.calories}</TableCell>
-          <TableCell align="right">{row.fat}</TableCell>
-          <TableCell align="right">{row.carbs}</TableCell>
-          <TableCell align="right">{row.protein}</TableCell>
+          <TableCell align="right">{action}</TableCell>
+          <TableCell align="right">{created_at.toString()}</TableCell>
+          <TableCell align="right">{status}</TableCell>
+          <TableCell align="right">{quantity}</TableCell>
+          <TableCell align="right">{price}</TableCell>
+
         </TableRow>
-        <TableRow sx={{'& > *': {color: 'white'}}}>
+        {/* <TableRow sx={{'& > *': {color: 'white'}}}>
           <TableCell sx={{'& > *': {color: 'white'}}} style={{ paddingBottom: 0,  paddingTop: 0, color: 'white'}} colSpan={6}>
             <Collapse  in={open} timeout="auto" unmountOnExit>
               <Box >
@@ -106,18 +108,12 @@ function createData(
               </Box>
             </Collapse>
           </TableCell>
-        </TableRow>
+        </TableRow> */}
       </React.Fragment>
     );
   }
   
-  const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-    createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-    createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-    createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
-  ];
+
 
 
 interface IOrderHistoryTableProps {
@@ -131,16 +127,17 @@ const OrderHistoryTable: React.FunctionComponent<IOrderHistoryTableProps> = ({us
         <TableHead>
           <TableRow sx={{'& > *': {color: 'white'}}}>
             <TableCell />
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>Symbol</TableCell>
+            <TableCell align="right">Action</TableCell>
+            <TableCell align="right">Date</TableCell>
+            <TableCell align="right">Status</TableCell>
+            <TableCell align="right">Quantity</TableCell>
+            <TableCell align="right">Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody >
-          {rows.map((row) => (
-            <Row key={row.name} row={row} />
+          {userData.order_history.map(order => (
+            <Row key={order.created_at.toString()} order={order} />
           ))}
         </TableBody>
       </Table>

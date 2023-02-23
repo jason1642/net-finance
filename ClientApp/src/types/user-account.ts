@@ -32,3 +32,16 @@ export interface UserAccountTypes  {
 
    }>;   
 }
+
+
+
+export interface OrderHistoryItemTypes {
+    action: string;
+    created_at: Date;
+    currency: any;
+    price: number;
+    quantity: number;
+    status: string;
+    symbol: string;
+    updated_at: Date;
+}

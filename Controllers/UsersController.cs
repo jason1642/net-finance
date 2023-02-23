@@ -266,7 +266,8 @@ namespace net_finance_api.Controllers
                 price = order.price,
                 quantity = order.quantity,
                 action = order.action,
-                status = "fulfilled"
+                status = "fulfilled",
+                currency = "USD"
             });
 
             _usersService.FilterUpdateUser(filter, update);
