@@ -14,7 +14,7 @@ interface ComponentProps {
 const Feed: React.FunctionComponent<ComponentProps> = () => {
 
 
-  const [newsApiData, setNewsApiData] = React.useState([])
+  const [newsApiData, setNewsApiData] = React.useState()
 
 
 

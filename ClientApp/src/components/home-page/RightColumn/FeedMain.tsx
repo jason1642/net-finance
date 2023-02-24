@@ -77,7 +77,7 @@ const FeedMain: React.FunctionComponent<ComponentProps> = ({businessNews}) => {
   // console.log(businessNews)
   return (<>
     <Container className='no-scroll-feed'>
-      {businessNews.map((ele:any, i:number) =>
+      {businessNews ? businessNews.map((ele:any, i:number) =>
         <ListItem key={i}>
           <ListContent onClick={() => window.open(ele.link, "_blank")}>
             <MetaData>{sources[Math.floor(Math.random()*sources.length)]}</MetaData>
@@ -90,7 +90,8 @@ const FeedMain: React.FunctionComponent<ComponentProps> = ({businessNews}) => {
 
           </ListContent>
         </ListItem>
-      )}
+      )
+    : <>Placec hholder</>}
     </Container>
 
   </>
