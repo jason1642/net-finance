@@ -11,7 +11,7 @@ interface ComponentProps {
 }
    
 
-const Feed: React.FunctionComponent<ComponentProps> = () => {
+const Feed: React.FunctionComponent< omponentProps> = () => {
 
 
   const [newsApiData, setNewsApiData] = React.useState()
@@ -33,7 +33,7 @@ const Feed: React.FunctionComponent<ComponentProps> = () => {
       console.log(response)
       setNewsApiData(response.data.item)
     }
-    // const fetchNewsData = async () => {
+    // const fetchNewsData = async () => { 
 
     //   axios({
     //     "method": "GET",
