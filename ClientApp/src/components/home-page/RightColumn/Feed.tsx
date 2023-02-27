@@ -11,7 +11,7 @@ interface ComponentProps {
 }
    
 
-const Feed: React.FunctionComponent< omponentProps> = () => {
+const Feed: React.FunctionComponent<ComponentProps> = () => {
 
 
   const [newsApiData, setNewsApiData] = React.useState()
@@ -30,11 +30,10 @@ const Feed: React.FunctionComponent< omponentProps> = () => {
           'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'
         }
       })
-      
       console.log(response)
       setNewsApiData(response.data.item)
     }
-    // const fetchNewsData = async () => { 
+    // const fetchNewsData = async () => {
 
     //   axios({
     //     "method": "GET",
