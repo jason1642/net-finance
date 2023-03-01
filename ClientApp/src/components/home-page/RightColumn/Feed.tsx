@@ -18,8 +18,6 @@ const Feed: React.FunctionComponent<ComponentProps> = () => {
 
 
 
-
-
   useEffect(() => {
 
 
