@@ -5,7 +5,7 @@ import { UserAccountTypes } from '../../types/user-account';
 
 export interface UserState {
     data: UserAccountTypes,
-    isAuthenticated: boolean,
+    isAuthenticated: boolean, 
     isLoading: boolean,
   }
 interface UserLoginSchema {
