@@ -17,6 +17,8 @@ public class Positions
     [BsonElement("average_price")]
     public int average_price { get; set; }
 
+
+
     [BsonElement("total_value")]
     public int total_value { get; set; }
 
