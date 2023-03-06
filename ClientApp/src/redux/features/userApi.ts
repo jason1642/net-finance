@@ -26,7 +26,7 @@ export const userApi = createApi({
       }),     
 
       loginUser: builder.query({
-        query: (userForm: UserLoginSchema) => ({
+        query: (userForm: UserLoginSchema) => ({ 
           url: '/login',
           method: 'POST',
           headers: { 
