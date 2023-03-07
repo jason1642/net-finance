@@ -17,7 +17,7 @@ export const userApi = createApi({
     reducerPath: 'userApi',
     baseQuery: fetchBaseQuery({  baseUrl: process.env.NODE_ENV === 'production' ?
     'https://netfinance.azurewebsites.net/api/users' 
-    :'https://localhost:7108/api/users', }),
+    :'https://localhost:7108/api/users', }), 
     tagTypes: ['User'],
     endpoints: (builder) => ({
       getAllUsers: builder.query<any, void>({
