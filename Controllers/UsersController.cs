@@ -220,7 +220,7 @@ namespace net_finance_api.Controllers
                     string RefreshToken = Guid.NewGuid().ToString();
 
                     user.refresh_token = RefreshToken;
-                    await _usersService.UpdateAsync(user._id, user);
+                    await _usersService.UpdateAsync(user._id, user);  
 
                     Response.Cookies.Append("X-Access-Token", token, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict, Domain = Environment.GetEnvironmentVariable("DOMAIN") });
                     Response.Cookies.Append("X-Username", user.username, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict, Domain = Environment.GetEnvironmentVariable("DOMAIN") });
