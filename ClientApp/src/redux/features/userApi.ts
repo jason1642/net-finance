@@ -23,7 +23,7 @@ export const userApi = createApi({
       getAllUsers: builder.query<any, void>({
         // query: (name) => `pokemon/${name}`,
         query: ()=>''
-      }),     
+      }),      
 
       loginUser: builder.query({
         query: (userForm: UserLoginSchema) => ({ 
