@@ -218,7 +218,7 @@ namespace net_finance_api.Controllers
                               signingCredentials: signIn).ToString();
 
                     string RefreshToken = Guid.NewGuid().ToString();
-
+                     
                     user.refresh_token = RefreshToken;
                     await _usersService.UpdateAsync(user._id, user);  
 
