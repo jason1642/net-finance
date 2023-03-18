@@ -227,7 +227,7 @@ namespace net_finance_api.Controllers
                     Response.Cookies.Append("X-Refresh-Token", RefreshToken, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict, Domain = Environment.GetEnvironmentVariable("DOMAIN") });
 
                     return Ok(RefreshToken);
-                }
+                }  
                 else
                 {
                     return BadRequest();  
