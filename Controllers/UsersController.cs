@@ -205,7 +205,7 @@ namespace net_finance_api.Controllers
                         new Claim("UserId", user._id.ToString()),
                         new Claim("Username", user.username)
                         };  
-                       
+                        
   
 
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
