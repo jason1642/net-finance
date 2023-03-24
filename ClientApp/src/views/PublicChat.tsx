@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { getRoomMessages } from '../api-requests/chat-room-requests';
-import ChatDisplay from '../components/public-chat/ChatDisplay';
-import ChatHeader from '../components/public-chat/Header';
-import UserInput from '../components/public-chat/UserInput';
+import ChatDisplay from '../components/chat-room/ChatDisplay';
+import ChatHeader from '../components/chat-room/Header';
+import UserInput from '../components/chat-room/UserInput';
 
 
 const Container = styled.div`
@@ -19,20 +19,22 @@ interface IPublicChatProps {
 
 const PublicChat: React.FunctionComponent<IPublicChatProps> = (props) => {
 
-    const [publicChatMessages, setPublicChatMessages]= React.useState<Array<any>>()
+    const [publicChatRoomData, setPublicChatRoomData]= React.useState<Array<any>>()
 
     React.useEffect(()=>{
-        getRoomMessages().then(res=>{
-            console.log(res)
+        getRoomMessages('641ddeb20052e8bc2b1edd6a').then(res=>{
+            console.log(res.data)
+            setPublicChatRoomData(res.data)
         })
     },[])
 
   return <Container>
-    <ChatHeader />
-
-    <ChatDisplay />
-
-
+    {
+      publicChatRoomData &&
+       <><ChatHeader chatRoomData={publicChatRoomData}/>
+    <ChatDisplay chatRoomData={publicChatRoomData}/>
+</> 
+}
     <UserInput />
   </Container>;
 };

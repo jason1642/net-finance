@@ -10,7 +10,7 @@ const api = axios.create({
 
 
 export const getRoomMessages = async(roomId:string)=> 
-    await api.get('').then(res=>{
+    await api.get(roomId).then(res=>{
         console.log(res)
         return res
     }, err=> {

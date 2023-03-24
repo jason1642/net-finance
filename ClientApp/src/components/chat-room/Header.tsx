@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 
 interface IChatHeaderProps {
+  chatRoomData: any;
 }
 
 const Container = styled.div`
@@ -14,7 +15,7 @@ const Container = styled.div`
   color: #eae8e8;
 `;
 
-const ChatHeader: React.FunctionComponent<IChatHeaderProps> = (props) => {
+const ChatHeader: React.FunctionComponent<IChatHeaderProps> = ({chatRoomData}) => {
   return <Container>
     Public Chat
   </Container>;

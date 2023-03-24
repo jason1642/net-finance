@@ -4,8 +4,8 @@ import ChatBubble from './ChatBubble';
 
 
 interface IChatDisplayProps {
+    chatRoomData: any;
 }
-
 
 const Container = styled.div`
    display: flex;
@@ -24,24 +24,15 @@ const Filler = styled.div`
   display: flex;
   flex-grow: 1;
 `;
-const SeedMessages = [
-    'Message1',
-    'Message2',
-    'Message3',
-    'Message4',
-    'Message5',
-    'Message6',
-    'Message7',
-    'Message8',
-    'Message9',
-]
 
-const ChatDisplay: React.FunctionComponent<IChatDisplayProps> = (props) => {
+
+const ChatDisplay: React.FunctionComponent<IChatDisplayProps> = ({chatRoomData:{messages}}) => {
+  console.log(messages)
   return <Container>
     This is the chat display - last 100 messages are displayed only
     {
-        SeedMessages.map(item=> <Row>
-            <ChatBubble message={item}/>
+        messages.map((item:any)=> <Row>
+            <ChatBubble message={item.message}/>
             <Filler />
         </Row>)
     }
