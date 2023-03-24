@@ -7,20 +7,28 @@ import styled from 'styled-components'
   const SecIndContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 0.25rem 0px;
-    margin-bottom : 2rem;
+    margin: 0.85rem 0px;
+    /* margin-bottom : 2rem; */
   `;
 
-  const Sector = styled.div`
-      width: calc(50% - 1rem);
-`;
+
   const Title = styled.div`
     font-size: 24px;
     font-weight: 500;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
   `;
-  const Industry = styled.div`
+
+  const Subtitle = styled.div`
+    display: flex;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding-right: 5px;
+  `;
+  const IndustrySector = styled.div`
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
     width: calc(50% - 1rem);
   `;
 
@@ -87,14 +95,14 @@ const SectorIndustryOverview: React.FunctionComponent<ComponentProps> = ({stockD
   return (
     <Container>
       <SecIndContainer>
-        <Sector>
-          <Title>Sector:</Title>
+        <IndustrySector>
+          <Subtitle>Sector: </Subtitle>
           <div>{stockData.sector}</div>
-        </Sector>
-        <Industry>
-          <Title>Industry:</Title>
+        </IndustrySector>
+        <IndustrySector>
+          <Subtitle>Industry: </Subtitle>
           {stockData.industry}
-        </Industry>
+        </IndustrySector>
       </SecIndContainer>
 
 

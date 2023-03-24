@@ -91,7 +91,7 @@ const FeedMain: React.FunctionComponent<ComponentProps> = ({businessNews}) => {
           </ListContent>
         </ListItem>
       )
-    : <>Placec hholder</>}
+    : <>Place Holder - To prevent excess calls of news API</>}
     </Container>
 
   </>
