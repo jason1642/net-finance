@@ -79,6 +79,34 @@ namespace net_finance_api.Controllers
             return NoContent();
         }
 
+
+
+
+        // POST: api/chatRoom/:room_name/message
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost("{room_name:length(24)}/message")]
+        public async Task<IActionResult> Post([FromBody] SingleMessage newMessage, string room_name)
+        {
+            //Check if user & room exists
+
+            var room = await _chatRoomService.GetRoomAsync(room_name);
+            if (room == null) return BadRequest();
+
+
+            var filter = Builders<ChatRoom>.Filter.Eq("_id", ObjectId.Parse(room._id));
+            var update = Builders<ChatRoom>.Update.Push(x => x.messages, new SingleMessage
+            {
+                created_at = DateTime.Now,
+                updated_at = DateTime.Now,
+                sender_id = newMessage.sender_id,
+                message = newMessage.message
+                
+            });
+
+            return CreatedAtAction(nameof(Get), newMessage);
+        }
+
+
         // POST: api/chatRoom
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -98,29 +126,20 @@ namespace net_finance_api.Controllers
             return CreatedAtAction(nameof(Get), newRoom);
         }
 
-        // POST: api/chatRoom/:room_name/message
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("{room:length(24)}/message")]
-        public async Task<IActionResult> Post([FromBody] SingleMessage newMessage)
-        {
-            //Check if user & room exists
-
-            var room = await _chatRoomService.GetRoomAsync("Public Chat");
-            if (room == null) return BadRequest();
 
 
-            var filter = Builders<ChatRoom>.Filter.Eq("_id", ObjectId.Parse(room._id));
-            var update = Builders<ChatRoom>.Update.Push(x => x.messages, new SingleMessage
-            {
-                created_at = DateTime.Now,
-                updated_at = DateTime.Now,
-                sender_id = newMessage.sender_id,
-                message = newMessage.message
-                
-            });
 
-            return CreatedAtAction(nameof(Get), newMessage);
-        }
+
+
+
+
+
+
+
+
+
+
+
 
         // DELETE: api/chatRoom/5
         [HttpDelete("{id:length(24)}")]
