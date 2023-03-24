@@ -16,8 +16,23 @@ const Container = styled.div`
    /* background-color: grey; */
    padding: 1rem;
    border-radius: 5px;
-
-`;
+   overflow-y: auto;
+   &::-webkit-scrollbar {
+        width: 6px;
+        border-radius: 15px;
+        /* background-color: rgb(82, 227, 194); */
+        :hover {
+        cursor: pointer;
+      }
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(82, 227, 193, 0.736);
+      border-radius: 15px;
+     
+    }
+   
+    
+    `;
 const Title = styled.div`
   display: flex;
   color: #e5e5e5;
@@ -43,7 +58,7 @@ const ChatDisplay: React.FunctionComponent<IChatDisplayProps> = ({chatRoomData:{
   console.log(messages)
   console.log(userData && userData._id)
   return <Container>
-    <Title>This is the chat display - last 100 messages are displayed only</Title>
+    <Title>Displaying up to 100 previous messages</Title>
     {
         userData && messages.map((item:any)=> <Row isFromCurrentUser={item.sender_id === userData._id}>
             <ChatBubble isFromCurrentUser={item.sender_id === userData._id} message={item.message}/>

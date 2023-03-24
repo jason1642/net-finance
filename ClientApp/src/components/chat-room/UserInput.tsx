@@ -9,7 +9,7 @@ const Container = styled.div`
   display:flex;
   width: 100%;      
   border: 1px solid white;
-  color: white;                     
+  color: white;             
   /* justify-content: flex-end; */
 `;
 
@@ -19,7 +19,7 @@ const UserInput: React.FunctionComponent<IUserInputProps> = (props) => {
           id="outlined-multiline-flexible"
           label="Message"
           multiline
-          color={"info"}
+          
           sx={{flexGrow: 1, color: "#ffffff5"}}
           maxRows={4}
         />

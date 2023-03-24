@@ -12,9 +12,12 @@ const Container = styled.div`
   flex-direction: column;
   flex: 1 1 auto;
   width: 80%;
-  margin: 0 auto;
-  border: 1px solid white;
+  margin: .5rem auto;
+  /* border: 1px solid grey; */
+  border-radius: 15px;
+  justify-content: space-between;
   padding: 1rem;
+  max-height: 85vh;
 `;
 interface IPublicChatProps {
 }
@@ -37,6 +40,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = (props) => {
     <ChatDisplay userData={userData} chatRoomData={publicChatRoomData}/>
 </> 
 }
+<div style={{flexGrow:1}}></div>
     <UserInput />
   </Container>;
 };
