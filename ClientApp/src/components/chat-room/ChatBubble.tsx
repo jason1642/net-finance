@@ -10,14 +10,14 @@ interface IChatBubbleProps {
 
 const Container= styled.div<{isFromCurrentUser: boolean}>`
   display: flex;
-  background-color: ${({isFromCurrentUser}) => isFromCurrentUser ? "green" : "#3838f0e6"};
-  
+  background-color: ${({isFromCurrentUser}) => isFromCurrentUser ? "#1eb816d4" : "#3838f0e6"};
+
   padding: .6rem;
   color: #ededed;
   margin: .45rem 0;
-  border-radius: 12px;
-  border-bottom-left-radius: 0;
-  width: 65%;
+  border-radius: ${({isFromCurrentUser}) => isFromCurrentUser ? "12px 12px 0px 12px" : "12px 12px 12px 0px"};
+  
+  max-width: 65%;
 `;
 
 
