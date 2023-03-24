@@ -9,7 +9,7 @@ const UserInput: React.FunctionComponent<IUserInputProps> = (props) => {
   return <>
    <TextField
           id="outlined-multiline-flexible"
-          label="Multiline"
+          label="Message"
           multiline
           maxRows={4}
         />
