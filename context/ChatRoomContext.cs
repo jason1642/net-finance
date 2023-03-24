@@ -9,6 +9,6 @@ public class ChatRoomContext : DbContext
     {
     }
 
-    public DbSet<ChatRoom> Users { get; set; } = null!;
+    public DbSet<ChatRoom> ChatRoom { get; set; } = null!;
 
 }
