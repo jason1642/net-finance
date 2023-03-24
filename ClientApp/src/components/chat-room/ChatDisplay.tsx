@@ -27,10 +27,11 @@ const Title = styled.div`
   text-align: center;
 `;
 
-const Row = styled.div`
+const Row = styled.div<{isFromCurrentUser: boolean}>`
   display: flex; 
+  flex-direction: ${({isFromCurrentUser}) => isFromCurrentUser ? "row-reverse" : "row"};
+
   width: 100%;
-  max-width: 65%;
 `;
 const Filler = styled.div`
   display: flex;
@@ -38,13 +39,14 @@ const Filler = styled.div`
 `;
 
 
-const ChatDisplay: React.FunctionComponent<IChatDisplayProps> = ({chatRoomData:{messages}, userData,}) => {
-  console.log(userData)
+const ChatDisplay: React.FunctionComponent<IChatDisplayProps> = ({chatRoomData:{messages}, userData}) => {
+  console.log(messages)
+  console.log(userData && userData._id)
   return <Container>
     <Title>This is the chat display - last 100 messages are displayed only</Title>
     {
-        messages.map((item:any)=> <Row>
-            <ChatBubble message={item.message}/>
+        userData && messages.map((item:any)=> <Row isFromCurrentUser={item.sender_id === userData._id}>
+            <ChatBubble isFromCurrentUser={item.sender_id === userData._id} message={item.message}/>
             <Filler />
         </Row>)
     }
