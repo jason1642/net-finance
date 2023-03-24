@@ -11,6 +11,7 @@ const UserInput: React.FunctionComponent<IUserInputProps> = (props) => {
           id="outlined-multiline-flexible"
           label="Message"
           multiline
+          sx={{color: 'white'}}
           maxRows={4}
         />
   </>;
