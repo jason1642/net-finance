@@ -81,32 +81,7 @@ namespace net_finance_api.Controllers
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // POST: api/chatRoom/:room_name/message
+        // POST: api/chatRoom/message
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("message")]
         public async Task<IActionResult> Post([FromBody] SingleMessage messageInput)
@@ -133,34 +108,6 @@ namespace net_finance_api.Controllers
 
             return CreatedAtAction(nameof(Get), newMessage);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         // POST: api/chatRoom

@@ -3,7 +3,7 @@ import axios from 'axios'
 const api = axios.create({
     baseURL: process.env.NODE_ENV === 'production' ?
     'https://netfinance.azurewebsites.net/api/users' 
-    :'https://localhost:7108/api',
+    :'https://localhost:7108/api/users',
     withCredentials: true,
 })
 
