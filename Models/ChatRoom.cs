@@ -18,6 +18,11 @@ public class SingleMessage
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? _id { get; set; }
+    
+
+    [BsonElement("room_id")]
+    [JsonPropertyName("room_id")]
+    public string? room_id { get; set; }
 
     [BsonElement("sender_id")]
     [JsonPropertyName("sender_id")]

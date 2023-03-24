@@ -82,29 +82,81 @@ namespace net_finance_api.Controllers
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // POST: api/chatRoom/:room_name/message
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("{room_name:length(24)}")]
-        public async Task<IActionResult> Post([FromBody] SingleMessage newMessage, string room_name)
+        [HttpPost("message")]
+        public async Task<IActionResult> Post([FromBody] SingleMessage? messageInput)
         {
             //Check if user & room exists
-
-            var room = await _chatRoomService.GetRoomAsync(room_name);
+            Console.WriteLine(messageInput.room_id);
+            ChatRoom? room = await _chatRoomService.GetRoomAsync(messageInput.room_id);
             if (room == null) return BadRequest();
 
-
-            var filter = Builders<ChatRoom>.Filter.Eq("_id", ObjectId.Parse(room._id));
-            var update = Builders<ChatRoom>.Update.Push(x => x.messages, new SingleMessage
+            SingleMessage newMessage = new SingleMessage
             {
                 created_at = DateTime.Now,
                 updated_at = DateTime.Now,
-                sender_id = newMessage.sender_id,
-                message = newMessage.message
-                
-            });
+                sender_id = messageInput.sender_id,
+                message = messageInput.message
+
+            };
+            var filter = Builders<ChatRoom>.Filter.Eq("_id", ObjectId.Parse(room._id));
+            var update = Builders<ChatRoom>.Update.Push(x => x.messages, newMessage);
 
             return CreatedAtAction(nameof(Get), newMessage);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         // POST: api/chatRoom
