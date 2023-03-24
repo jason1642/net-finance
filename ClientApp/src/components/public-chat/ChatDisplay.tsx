@@ -33,7 +33,7 @@ const SeedMessages = [
     'Message6',
     'Message7',
     'Message8',
-    'Message9W',
+    'Message9',
 ]
 
 const ChatDisplay: React.FunctionComponent<IChatDisplayProps> = (props) => {

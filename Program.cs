@@ -21,6 +21,7 @@ builder.Services.AddSingleton<MonthlyHistoricDataService>();
 builder.Services.AddSingleton<DailyHistoricDataService>();
 builder.Services.AddSingleton<StockQuotesService>();
 builder.Services.AddSingleton<CompanyProfileService>();
+builder.Services.AddSingleton<ChatRoomService>();
 
 
 

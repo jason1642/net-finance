@@ -12,7 +12,7 @@ const Container = styled.div`
   background-color: #3434f1;
   padding: .6rem;
   color: #ededed;
-  margin: .5rem 0;
+  margin: .45rem 0;
   border-radius: 9px;
 
   border-bottom-left-radius: 0;

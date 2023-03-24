@@ -14,13 +14,18 @@ namespace net_finance.Models;
 
 public class SingleMessage
 {
-    [BsonElement("senderId")]
-    [JsonPropertyName("senderId")]
-    public string? SenderID { get; set; }
+
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string? _id { get; set; }
+
+    [BsonElement("sender_id")]
+    [JsonPropertyName("sender_id")]
+    public string? sender_id { get; set; }
 
     [BsonElement("message")]
     [JsonPropertyName("message")]
-    public string? Message { get; set; }
+    public string? message { get; set; }
 
 
     [BsonElement("created_at")]
@@ -38,13 +43,17 @@ public class SingleMessage
 
 
 
-public class PublicChat
+public class ChatRoom
 {
     
 
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? _id { get; set; }
+
+    [BsonElement("room_name")]
+    [JsonPropertyName("room_name")]
+    public string? room_name { get; set; }
 
     [BsonElement("created_at")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -58,7 +67,7 @@ public class PublicChat
 
     [BsonElement("messages")]
     [JsonPropertyName("messages")]
-    public SingleMessage[]? Messages { get; set; }
+    public SingleMessage[]? messages { get; set; }
 
 
 
