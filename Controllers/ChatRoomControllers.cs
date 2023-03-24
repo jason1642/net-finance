@@ -84,7 +84,7 @@ namespace net_finance_api.Controllers
 
         // POST: api/chatRoom/:room_name/message
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("{room_name:length(24)}/message")]
+        [HttpPost("{room_name:length(24)}")]
         public async Task<IActionResult> Post([FromBody] SingleMessage newMessage, string room_name)
         {
             //Check if user & room exists
