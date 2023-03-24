@@ -16,4 +16,6 @@ public class NetFinanceDatabaseSettings
 
     public string? CompanyProfileCollectionName { get; set; }
 
+    public string? PublicChatCollectionName { get; set; }
+
 }

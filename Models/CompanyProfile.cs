@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Text.Json.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;

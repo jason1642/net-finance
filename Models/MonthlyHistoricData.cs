@@ -29,7 +29,7 @@ public class MetaData
 
 
 public class MonthlyTimeSeries
-{
+{ 
     [BsonElement("1. open")]
     [JsonPropertyName("1. open")]
     public string? Open { get; set; }
