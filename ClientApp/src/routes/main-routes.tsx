@@ -6,6 +6,7 @@ import SignUp from "../views/SignUp";
 import HomeSearchBar from "../components/search-bar/HomeSearchBar";
 import Account from "../views/Account";
 import { userApi } from "../redux/features/userApi";
+import PublicChat from "../views/PublicChat";
 
 
 const MainRoutes = () => {
@@ -25,6 +26,10 @@ const MainRoutes = () => {
         {
             path: '/sign-up',
             element: userData ? <Navigate to="/" /> : <SignUp /> 
+        },
+        {
+            path: '/chat',
+            element: userData ? <PublicChat /> : <Navigate to="/" /> 
         },
         {
             path: '/quote/:symbol',
