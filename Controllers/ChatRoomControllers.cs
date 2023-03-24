@@ -81,6 +81,25 @@ namespace net_finance_api.Controllers
 
         // POST: api/chatRoom
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] ChatRoom roomInput)
+        {
+            // Check if room exists
+            var roomExists = await _chatRoomService.GetRoomAsync(roomInput.room_name);
+           if(roomExists != null) return BadRequest();
+
+            ChatRoom newRoom = new ChatRoom();
+            
+            newRoom.created_at = DateTime.Now;
+            newRoom.updated_at = DateTime.Now;
+            newRoom.messages = new SingleMessage[0];
+            newRoom.room_name = roomInput.room_name;
+            await _chatRoomService.CreateAsync(newRoom);
+            return CreatedAtAction(nameof(Get), newRoom);
+        }
+
+        // POST: api/chatRoom/:room_name/message
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("{room:length(24)}/message")]
         public async Task<IActionResult> Post([FromBody] SingleMessage newMessage)
         {

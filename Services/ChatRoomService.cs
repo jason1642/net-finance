@@ -36,8 +36,8 @@ public class ChatRoomService
     public async Task<ChatRoom?> GetRoomAsync(string roomName) =>
         await _ChatRoomCollection.Find(x => x.room_name == roomName).FirstOrDefaultAsync();
 
-    public async Task CreateAsync(ChatRoom newMessage) =>
-        await _ChatRoomCollection.InsertOneAsync(newMessage);
+    public async Task CreateAsync(ChatRoom newRoom) =>
+        await _ChatRoomCollection.InsertOneAsync(newRoom);
 
 
     public async Task UpdateAsync(string id, ChatRoom updatedMessage) =>

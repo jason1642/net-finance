@@ -45,7 +45,10 @@ public class SingleMessage
 
 public class ChatRoom
 {
-    
+
+    // Creat
+    // Moderators
+    // Contribuitors / people who sent messages here
 
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
@@ -65,6 +68,7 @@ public class ChatRoom
     [BsonElement("updated_at")]
     public DateTime updated_at { get; set; }
 
+   
     [BsonElement("messages")]
     [JsonPropertyName("messages")]
     public SingleMessage[]? messages { get; set; }
