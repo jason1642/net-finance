@@ -9,12 +9,11 @@ interface IChatBubbleProps {
 
 const Container = styled.div`
   display: flex;
-  background-color: #3434f1;
+  background-color: #3838f0e6;
   padding: .6rem;
   color: #ededed;
   margin: .45rem 0;
-  border-radius: 9px;
-
+  border-radius: 12px;
   border-bottom-left-radius: 0;
   /* width: 56%; */
 `;

@@ -4,11 +4,13 @@ import { getRoomMessages } from '../api-requests/chat-room-requests';
 import ChatDisplay from '../components/chat-room/ChatDisplay';
 import ChatHeader from '../components/chat-room/Header';
 import UserInput from '../components/chat-room/UserInput';
+import { userApi } from "../redux/features/userApi";
 
 
 const Container = styled.div`
   display:flex;
   flex-direction: column;
+  flex: 1 1 auto;
   width: 80%;
   margin: 0 auto;
   border: 1px solid white;
@@ -18,7 +20,7 @@ interface IPublicChatProps {
 }
 
 const PublicChat: React.FunctionComponent<IPublicChatProps> = (props) => {
-
+    const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
     const [publicChatRoomData, setPublicChatRoomData]= React.useState<Array<any>>()
 
     React.useEffect(()=>{
@@ -31,8 +33,8 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = (props) => {
   return <Container>
     {
       publicChatRoomData &&
-       <><ChatHeader chatRoomData={publicChatRoomData}/>
-    <ChatDisplay chatRoomData={publicChatRoomData}/>
+       <><ChatHeader  chatRoomData={publicChatRoomData}/>
+    <ChatDisplay userData={userData} chatRoomData={publicChatRoomData}/>
 </> 
 }
     <UserInput />
