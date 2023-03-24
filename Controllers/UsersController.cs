@@ -95,7 +95,7 @@ namespace net_finance_api.Controllers
             //newUser.portfolio.account_value = 0;
             newUser.order_history = new OrderHistory[0];
             Console.WriteLine(newUser);
-             
+            
             await _usersService.CreateAsync(newUser);
 
             return CreatedAtAction(nameof(Get), newUser);

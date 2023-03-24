@@ -109,23 +109,27 @@ namespace net_finance_api.Controllers
         // POST: api/chatRoom/:room_name/message
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("message")]
-        public async Task<IActionResult> Post([FromBody] SingleMessage? messageInput)
+        public async Task<IActionResult> Post([FromBody] SingleMessage messageInput)
         {
             //Check if user & room exists
             Console.WriteLine(messageInput.room_id);
-            ChatRoom? room = await _chatRoomService.GetRoomAsync(messageInput.room_id);
-            if (room == null) return BadRequest();
+            ChatRoom? room = await _chatRoomService.GetAsync(messageInput.room_id);
+            if (room == null) return BadRequest(); 
 
             SingleMessage newMessage = new SingleMessage
             {
+                _id = ObjectId.GenerateNewId(),
                 created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 sender_id = messageInput.sender_id,
-                message = messageInput.message
+                message = messageInput.message,
+                room_id = room._id,
 
             };
             var filter = Builders<ChatRoom>.Filter.Eq("_id", ObjectId.Parse(room._id));
             var update = Builders<ChatRoom>.Update.Push(x => x.messages, newMessage);
+
+            _chatRoomService.FilterUpdateChatRoom(filter, update);
 
             return CreatedAtAction(nameof(Get), newMessage);
         }

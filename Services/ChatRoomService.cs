@@ -43,7 +43,7 @@ public class ChatRoomService
     public async Task UpdateAsync(string id, ChatRoom updatedMessage) =>
         await _ChatRoomCollection.ReplaceOneAsync(x => x._id == id, updatedMessage);
 
-    public UpdateResult FilterUpdateUser(FilterDefinition<ChatRoom> filter, UpdateDefinition<ChatRoom> update) =>
+    public UpdateResult FilterUpdateChatRoom(FilterDefinition<ChatRoom> filter, UpdateDefinition<ChatRoom> update) =>
         _ChatRoomCollection.UpdateOne(filter, update);
 
     public async Task RemoveAsync(string id) =>
