@@ -17,7 +17,7 @@ const Container = styled.div`
   border-radius: 15px;
   justify-content: space-between;
   padding: 1rem;
-  max-height: 85vh;
+  max-height: 80vh;
 `;
 interface IPublicChatProps {
 }
