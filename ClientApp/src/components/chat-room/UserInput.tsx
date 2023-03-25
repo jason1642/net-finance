@@ -24,7 +24,7 @@ const Container = styled.div`
 
 const TextBox = styled(TextArea)`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  width: 90%;
+  width: 85%;
   font-size: 1em;
   line-height: 1em;
   border-radius: 12px;
