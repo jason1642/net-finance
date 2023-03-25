@@ -16,13 +16,15 @@ const Container = styled.div`
   /* border: 1px solid grey; */
   border-radius: 15px;
   justify-content: space-between;
+  
   padding: 1rem;
-  max-height: 80vh;
+  max-height: 85vh;
 `;
 interface IPublicChatProps {
 }
 
 const PublicChat: React.FunctionComponent<IPublicChatProps> = (props) => {
+
     const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
     const [publicChatRoomData, setPublicChatRoomData]= React.useState<Array<any>>()
 
@@ -40,7 +42,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = (props) => {
     <ChatDisplay userData={userData} chatRoomData={publicChatRoomData}/>
 </> 
 }
-<div style={{flexGrow:1}}></div>
+{/* <div style={{flexGrow:1}}></div> */}
     <UserInput />
   </Container>;
 };

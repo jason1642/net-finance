@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components';
 import { UserAccountTypes } from '../../types/user-account';
 import ChatBubble from './ChatBubble';
@@ -57,6 +57,23 @@ const Filler = styled.div`
 const ChatDisplay: React.FunctionComponent<IChatDisplayProps> = ({chatRoomData:{messages}, userData}) => {
   console.log(messages)
   console.log(userData && userData._id)
+  const bottomElementRef = useRef<HTMLDivElement>(null)
+
+
+  const scrollToBottom = () => {
+    bottomElementRef.current?.scrollIntoView(
+      {
+        // behavior: 'smooth',
+        // Notify bottom of display that there is a new message, click button to scroll down smooth
+      }
+      )
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages]);
+
+
   return <Container>
     <Title>Displaying up to 100 previous messages</Title>
     {
@@ -65,6 +82,9 @@ const ChatDisplay: React.FunctionComponent<IChatDisplayProps> = ({chatRoomData:{
             <Filler />
         </Row>)
     }
+
+<div ref={bottomElementRef} />
+
   </Container>;
 };
 

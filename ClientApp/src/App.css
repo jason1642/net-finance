@@ -1,5 +1,5 @@
 body {
-  background-color: #32323e;
+  /* background-color: #32323e; */
   min-height: 100vh;
 }
 
@@ -31,14 +31,16 @@ html {
   min-height: 100vh;
   /* height: auto; */
   display: flex;
+  
   flex-direction: column;
-  /* justify-content: space-between */
+  justify-content: space-between
 }
 
 main {
   padding: 2rem;
   margin-top: -16px;
   flex-direction: column;
+  display: flex;
   
 }
 
