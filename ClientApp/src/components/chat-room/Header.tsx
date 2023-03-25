@@ -12,7 +12,6 @@ const Container = styled.div`
   justify-content: center;
   padding: 0.2rem 0;
   padding-bottom: 10px;
-
   font-size: 1.5rem;
   color: #eae8e8;
   border-bottom: 1px solid #b3b3b338;
