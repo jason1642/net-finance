@@ -12,10 +12,10 @@ interface IChatBubbleProps {
 const Container= styled.div<{isFromCurrentUser: boolean}>`
   display: flex;
   flex-direction: column;
-  background-color: ${({isFromCurrentUser}) => isFromCurrentUser ? "#1eb816d4" : "#3838f0e6"};
-
+  background-color: ${({isFromCurrentUser}) => isFromCurrentUser ? "#09a459" : "#1f7dd7"};
+  line-height: 1.3rem;
   padding: .6rem;
-  color: #ededed;
+  color: #ffffff;
   margin: .45rem 0;
   border-radius: ${({isFromCurrentUser}) => isFromCurrentUser ? "12px 12px 0px 12px" : "12px 12px 12px 0px"};
   
@@ -24,6 +24,8 @@ const Container= styled.div<{isFromCurrentUser: boolean}>`
 
 const TimeStamp = styled.div`
   display: flex;
+  color: #cbcaca;
+  justify-content: flex-end;
 `;
 
 
@@ -31,7 +33,7 @@ const ChatBubble: React.FunctionComponent<IChatBubbleProps> = ({message, dateCre
   return <Container isFromCurrentUser={isFromCurrentUser}>
    {message}
 
-   <TimeStamp>{moment(dateCreated).format()}</TimeStamp>
+   <TimeStamp>{new Date(dateCreated).toLocaleTimeString()}</TimeStamp>
   </Container>;
 };
 
