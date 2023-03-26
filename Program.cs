@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-
 var builder = WebApplication.CreateBuilder(args);
 var policyName = "_myAllowSpecificOrigins";
 
@@ -90,12 +89,6 @@ builder.Services.AddAuthentication().AddJwtBearer(options =>
 
 });
 Console.WriteLine("Hello World!");
-
-
-
-
-
-
 
 
 

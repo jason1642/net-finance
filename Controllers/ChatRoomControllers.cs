@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NetFinance.Services;
 using net_finance.Models;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using MongoDB.Driver;
 using MongoDB.Bson;
-using System.Collections.Generic;
+using SocketIOClient;
 
 
 
@@ -21,18 +12,22 @@ using System.Collections.Generic;
 namespace net_finance_api.Controllers
 {
     //[Route("api/[controller]")]
+
+
+    
     [Route("api/chatroom")]
     [ApiController]
+    
     public class chatRoomController : ControllerBase
     {
         public IConfiguration _configuration;
         private readonly ChatRoomService _chatRoomService;
 
-
         public chatRoomController(IConfiguration config, ChatRoomService chatRoomService)
         {
             _configuration = config;
             _chatRoomService = chatRoomService;
+           
 
 
         }
@@ -48,14 +43,18 @@ namespace net_finance_api.Controllers
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<ChatRoom>> Get(string id)
         {
-            var user = await _chatRoomService.GetAsync(id);
+            
+            var room = await _chatRoomService.GetAsync(id);
+         
 
-            if (user is null)
+            if (room is null)
             {
                 return NotFound();
             }
+            var _publicChatClient = new SocketIO("ws://localhost:44465/chat");
+            await _publicChatClient.ConnectAsync();
 
-            return user;
+            return room;
         }
 
         // PUT: api/chatRoom/5

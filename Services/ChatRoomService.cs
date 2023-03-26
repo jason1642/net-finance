@@ -1,6 +1,7 @@
-﻿using net_finance.Models;
+using net_finance.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using SocketIOClient;
 
 
 
@@ -24,7 +25,24 @@ public class ChatRoomService
 
         _ChatRoomCollection = mongoDatabase.GetCollection<ChatRoom>(
             netFinanceDatabaseSettings.Value.ChatRoomCollectionName);
+
+        var _publicChatClient = new SocketIO("http://localhost:44465/chat");
+
+_publicChatClient.On("New message", response =>
+{
+    // You can print the returned data first to decide what to do next.
+    // output: ["hi client"]
+    Console.WriteLine(response);
+
+    string text = response.GetValue<string>();
+
+    // The socket.io server code looks like this:
+    // socket.emit('hi', 'hi client');
+});
+
     }
+
+
 
     public async Task<List<ChatRoom>> GetAsync() =>
         await _ChatRoomCollection.Find(_ => true).ToListAsync();
@@ -43,7 +61,7 @@ public class ChatRoomService
     public async Task UpdateAsync(string id, ChatRoom updatedMessage) =>
         await _ChatRoomCollection.ReplaceOneAsync(x => x._id == id, updatedMessage);
 
-    public UpdateResult FilterUpdateChatRoom(FilterDefinition<ChatRoom> filter, UpdateDefinition<ChatRoom> update) =>
+    public UpdateResult FilterUpdateChatRoom (FilterDefinition<ChatRoom> filter, UpdateDefinition<ChatRoom> update) =>
         _ChatRoomCollection.UpdateOne(filter, update);
 
     public async Task RemoveAsync(string id) =>
