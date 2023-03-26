@@ -21,17 +21,42 @@ namespace net_finance_api.Controllers
     public class chatRoomController : ControllerBase
     {
         public IConfiguration _configuration;
+        public SocketIO _publicChatSocket;
+
+
+
+        
         private readonly ChatRoomService _chatRoomService;
 
-        public chatRoomController(IConfiguration config, ChatRoomService chatRoomService)
+        public chatRoomController(IConfiguration config, ChatRoomService chatRoomService, SocketIO _publicChatClient)
         {
             _configuration = config;
             _chatRoomService = chatRoomService;
-           
+            _publicChatSocket = new SocketIO("ws://localhost:7108/chat");
+
+_publicChatSocket.OnConnected += async (sender, e) =>
+{
+    // Emit a string
+    await _publicChatSocket.EmitAsync("New message", "from socket.io");
+
+    // Emit a string and an object
+    // await _publicChatClient.EmitAsync("register", "source", { Id = 123, Name = "bob" });
+};
 
 
+_publicChatSocket.On("New message", response =>
+{
+    // You can print the returned data first to decide what to do next.
+    // output: ["hi client"]
+    Console.WriteLine("RESPONSE!!!");
+
+    string text = response.GetValue<string>();
+
+    // The socket.io server code looks like this:
+    // socket.emit('hi', 'hi client');
+});
         }
-
+            
         // GET: api/chatRoom
         [HttpGet]
         public async Task<List<ChatRoom>> Get() =>
@@ -51,8 +76,7 @@ namespace net_finance_api.Controllers
             {
                 return NotFound();
             }
-            var _publicChatClient = new SocketIO("ws://localhost:44465/chat");
-            await _publicChatClient.ConnectAsync();
+            await _publicChatSocket.ConnectAsync();
 
             return room;
         }

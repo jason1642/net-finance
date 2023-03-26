@@ -26,23 +26,15 @@ public class ChatRoomService
         _ChatRoomCollection = mongoDatabase.GetCollection<ChatRoom>(
             netFinanceDatabaseSettings.Value.ChatRoomCollectionName);
 
-        var _publicChatClient = new SocketIO("https://localhost:44465/chat");
 
-_publicChatClient.On("New message", response =>
-{
-    // You can print the returned data first to decide what to do next.
-    // output: ["hi client"]
-    Console.WriteLine("RESPONSE!!!");
 
-    string text = response.GetValue<string>();
 
-    // The socket.io server code looks like this:
-    // socket.emit('hi', 'hi client');
-});
+
 
     }
 
 
+    // public SocketIO _publicChatClient = new SocketIO("https://localhost:44465/chat");
 
     public async Task<List<ChatRoom>> GetAsync() =>
         await _ChatRoomCollection.Find(_ => true).ToListAsync();

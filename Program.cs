@@ -3,7 +3,7 @@ using NetFinance.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
+using SocketIOClient;
 var builder = WebApplication.CreateBuilder(args);
 var policyName = "_myAllowSpecificOrigins";
 
