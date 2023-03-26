@@ -26,7 +26,7 @@ interface IPublicChatProps {
 }
 
 const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
-    const socket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('https://localhost:44465/chat')
+    const socket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('ws://localhost:44465/chat')
 
     const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
     const [publicChatRoomData, setPublicChatRoomData]= React.useState<Array<any>>()
@@ -41,6 +41,9 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
         })
     },[])
 
+    const onEmit = () => {
+        // socket.emit('New message') 
+    }
    useEffect(() => {
         function onConnect() {
             console.log('IS CONNECTED TO WEB SOCKET - PUBLIC CHAT')
@@ -77,6 +80,7 @@ useEffect(() => {
 </> 
 }
 {/* <div style={{flexGrow:1}}></div> */}
+<button onClick={onEmit}>Emit</button>
     <UserInput />
   </Container>;
 };

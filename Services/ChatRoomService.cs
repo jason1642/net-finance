@@ -26,13 +26,13 @@ public class ChatRoomService
         _ChatRoomCollection = mongoDatabase.GetCollection<ChatRoom>(
             netFinanceDatabaseSettings.Value.ChatRoomCollectionName);
 
-        var _publicChatClient = new SocketIO("http://localhost:44465/chat");
+        var _publicChatClient = new SocketIO("https://localhost:44465/chat");
 
 _publicChatClient.On("New message", response =>
 {
     // You can print the returned data first to decide what to do next.
     // output: ["hi client"]
-    Console.WriteLine(response);
+    Console.WriteLine("RESPONSE!!!");
 
     string text = response.GetValue<string>();
 
