@@ -21,18 +21,17 @@ namespace net_finance_api.Controllers
     public class chatRoomController : ControllerBase
     {
         public IConfiguration _configuration;
+   
+
         public SocketIO _publicChatSocket;
-
-
-
         
         private readonly ChatRoomService _chatRoomService;
 
-        public chatRoomController(IConfiguration config, ChatRoomService chatRoomService, SocketIO _publicChatClient)
+        public chatRoomController(SocketIO _publicChatClient, IConfiguration config, ChatRoomService chatRoomService)
         {
             _configuration = config;
             _chatRoomService = chatRoomService;
-            _publicChatSocket = new SocketIO("ws://localhost:7108/chat");
+            _publicChatSocket = new SocketIO("ws://localhost:44465/chat");
 
 _publicChatSocket.OnConnected += async (sender, e) =>
 {

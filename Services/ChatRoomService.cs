@@ -34,7 +34,7 @@ public class ChatRoomService
     }
 
 
-    // public SocketIO _publicChatClient = new SocketIO("https://localhost:44465/chat");
+    public SocketIO _publicChatClient = new SocketIO("https://localhost:44465/chat");
 
     public async Task<List<ChatRoom>> GetAsync() =>
         await _ChatRoomCollection.Find(_ => true).ToListAsync();
