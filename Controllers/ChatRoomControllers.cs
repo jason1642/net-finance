@@ -72,7 +72,8 @@ namespace net_finance_api.Controllers
         {
             
             var room = await _chatRoomService.GetAsync(id);
-         
+            Console.WriteLine(room?._id);
+
 
             if (room is null)
             {

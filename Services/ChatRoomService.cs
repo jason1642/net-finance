@@ -33,6 +33,7 @@ _publicChatSocket.OnConnected += async (sender, e) =>
                 {
                     // Emit a string
                     await _publicChatSocket.EmitAsync("New message", "from socket.io");
+                    Console.WriteLine("CONNECTED TO WEBSOCKET");
 
                     // Emit a string and an object
                     // await _publicChatClient.EmitAsync("register", "source", { Id = 123, Name = "bob" });
@@ -55,7 +56,7 @@ _publicChatSocket.OnConnected += async (sender, e) =>
     }
 
 
-    public SocketIO _publicChatSocket = new SocketIO("https://localhost:44465/chat");
+    public SocketIO _publicChatSocket = new SocketIO("https://localhost:7108");
     
 
     public async Task<List<ChatRoom>> GetAsync() =>

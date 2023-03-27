@@ -26,11 +26,30 @@ interface IPublicChatProps {
 }
 
 const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
-    const socket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('ws://localhost:44465/chat')
+    // const socket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('https://localhost:7108/chat', { transports: ["websocket"] } )
 
     const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
     const [publicChatRoomData, setPublicChatRoomData]= React.useState<Array<any>>()
-    const [isConnected, setIsConnected] = useState(socket.connected)
+    const [socket, setSocket] = useState<Socket<ServerToClientEvents, ClientToServerEvents>>()
+    const [isConnected, setIsConnected] = useState(socket?.connected) 
+
+
+    useEffect(() => {
+        // var HOST = window.location.origin.replace(/^http/, 'ws')
+        const newSocket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('https://localhost:7108', { transports: ["websocket"] } );
+        setSocket(newSocket);
+        console.log(newSocket)
+        return () => {
+             newSocket.close();
+        }
+         
+        
+      }, [])
+    
+      useEffect(() => {
+        console.log(socket)
+      }, [socket])
+
 
     // "undefined" means the URL will be computed from the `window.location` object
     // const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:44465'
@@ -56,14 +75,14 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     
    
     
-        socket.on('connect', onConnect);
-        socket.on('disconnect', onDisconnect);
+        socket?.on('connect', onConnect);
+        socket?.on('disconnect', onDisconnect);
      
     
         return () => {
-          socket.off('connect', onConnect);
+          socket?.off('connect', onConnect);
           
-          socket.off('disconnect', onDisconnect);
+          socket?.off('disconnect', onDisconnect);
         };
       }, []);
 
