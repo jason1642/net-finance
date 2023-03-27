@@ -29,12 +29,34 @@ public class ChatRoomService
 
 
 
+_publicChatSocket.OnConnected += async (sender, e) =>
+                {
+                    // Emit a string
+                    await _publicChatSocket.EmitAsync("New message", "from socket.io");
+
+                    // Emit a string and an object
+                    // await _publicChatClient.EmitAsync("register", "source", { Id = 123, Name = "bob" });
+                };
+
+
+                _publicChatSocket.On("New message", response =>
+                {
+                    // You can print the returned data first to decide what to do next.
+                    // output: ["hi client"]
+                    Console.WriteLine("RESPONSE!!!");
+
+                    string text = response.GetValue<string>();
+
+                    // The socket.io server code looks like this:
+                    // socket.emit('hi', 'hi client');
+                });
 
 
     }
 
 
-    public SocketIO _publicChatClient = new SocketIO("https://localhost:44465/chat");
+    public SocketIO _publicChatSocket = new SocketIO("https://localhost:44465/chat");
+    
 
     public async Task<List<ChatRoom>> GetAsync() =>
         await _ChatRoomCollection.Find(_ => true).ToListAsync();

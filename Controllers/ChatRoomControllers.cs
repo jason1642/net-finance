@@ -22,38 +22,41 @@ namespace net_finance_api.Controllers
     {
         public IConfiguration _configuration;
    
+        // public void PublicChatSocket() 
+        // {
+        //     var NewSocket = new SocketIO("ws://localhost:44465/chat");
+        //     _publicChatSocket.OnConnected += async (sender, e) =>
+        //         {
+        //             // Emit a string
+        //             await _publicChatSocket.EmitAsync("New message", "from socket.io");
 
-        public SocketIO _publicChatSocket;
+        //             // Emit a string and an object
+        //             // await _publicChatClient.EmitAsync("register", "source", { Id = 123, Name = "bob" });
+        //         };
+
+
+        //         _publicChatSocket.On("New message", response =>
+        //         {
+        //             // You can print the returned data first to decide what to do next.
+        //             // output: ["hi client"]
+        //             Console.WriteLine("RESPONSE!!!");
+
+        //             string text = response.GetValue<string>();
+
+        //             // The socket.io server code looks like this:
+        //             // socket.emit('hi', 'hi client');
+        //         });
+
+        // } 
+        // public SocketIO _publicChatSocket;
         
         private readonly ChatRoomService _chatRoomService;
 
-        public chatRoomController(SocketIO _publicChatClient, IConfiguration config, ChatRoomService chatRoomService)
+        public chatRoomController(IConfiguration config, ChatRoomService chatRoomService)
         {
             _configuration = config;
-            _chatRoomService = chatRoomService;
-            _publicChatSocket = new SocketIO("ws://localhost:44465/chat");
-
-_publicChatSocket.OnConnected += async (sender, e) =>
-{
-    // Emit a string
-    await _publicChatSocket.EmitAsync("New message", "from socket.io");
-
-    // Emit a string and an object
-    // await _publicChatClient.EmitAsync("register", "source", { Id = 123, Name = "bob" });
-};
-
-
-_publicChatSocket.On("New message", response =>
-{
-    // You can print the returned data first to decide what to do next.
-    // output: ["hi client"]
-    Console.WriteLine("RESPONSE!!!");
-
-    string text = response.GetValue<string>();
-
-    // The socket.io server code looks like this:
-    // socket.emit('hi', 'hi client');
-});
+            _chatRoomService = chatRoomService;  
+            // _publicChatSocket = PublicChatSocket;       
         }
             
         // GET: api/chatRoom
@@ -75,7 +78,7 @@ _publicChatSocket.On("New message", response =>
             {
                 return NotFound();
             }
-            await _publicChatSocket.ConnectAsync();
+            await _chatRoomService._publicChatSocket.ConnectAsync();
 
             return room;
         }
