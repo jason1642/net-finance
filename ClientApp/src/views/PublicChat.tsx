@@ -65,7 +65,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     }
    useEffect(() => {
         function onConnect() {
-            console.log('IS CONNECTED TO WEB SOCKET - PUBLIC CHAT')
+          console.log('IS CONNECTED TO WEB SOCKET - PUBLIC CHAT')
           setIsConnected(true);
         }
     
