@@ -9,14 +9,14 @@ using WebSocketSharp;
 namespace NetFinance.Services;
  public class PublicChatSocket : WebSocketBehavior
   {
-    protected override void OnMessage (MessageEventArgs e)
-    {
-      var msg = e.Data == "BALUS"
-                ? "Are you kidding?"
-                : "I'm not available now.";
+    // protected override void OnMessage (MessageEventArgs e)
+    // {
+    //   var msg = e.Data == "BALUS"
+    //             ? "Are you kidding?"
+    //             : "I'm not available now.";
 
-      Send (msg);
-    }
+    //   Send (msg);
+    // }
   }
 public class ChatRoomService
 {

@@ -71,24 +71,16 @@ namespace net_finance_api.Controllers
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<ChatRoom>> Get(string id)
         {
-            
             var room = await _chatRoomService.GetAsync(id);
             Console.WriteLine(room?._id);
-
-
             if (room is null)
-            {
-                return NotFound();
-            }
+            { return NotFound(); }
 
-                      var wssv = new WebSocketServer ("ws://localhost:5050");
-
-
-                  wssv.AddWebSocketService<PublicChatSocket> ("/chat");
-                wssv.Start ();
-                Console.ReadKey (true);
-                wssv.Stop ();
-
+            WebSocketServer wssv = new WebSocketServer("ws://127.0.0.1:7890");
+            wssv.Start();
+            Console.WriteLine("WS server started on ws://127.0.0.1:7890");
+            Console.ReadKey();
+            wssv.Stop(); 
             return room;
         }
 
