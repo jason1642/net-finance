@@ -7,6 +7,9 @@ using MongoDB.Bson;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 
+using System.Net.NetworkInformation;
+using System.Linq;
+using System.Net;
 
 
 
@@ -23,40 +26,26 @@ namespace net_finance_api.Controllers
     {
         public IConfiguration _configuration;
    
-        // public void PublicChatSocket() 
-        // {
-        //     var NewSocket = new SocketIO("ws://localhost:44465/chat");
-        //     _publicChatSocket.OnConnected += async (sender, e) =>
-        //         {
-        //             // Emit a string
-        //             await _publicChatSocket.EmitAsync("New message", "from socket.io");
 
-        //             // Emit a string and an object
-        //             // await _publicChatClient.EmitAsync("register", "source", { Id = 123, Name = "bob" });
-        //         };
-
-
-        //         _publicChatSocket.On("New message", response =>
-        //         {
-        //             // You can print the returned data first to decide what to do next.
-        //             // output: ["hi client"]
-        //             Console.WriteLine("RESPONSE!!!");
-
-        //             string text = response.GetValue<string>();
-
-        //             // The socket.io server code looks like this:
-        //             // socket.emit('hi', 'hi client');
-        //         });
-
-        // } 
-        // public SocketIO _publicChatSocket;
+        public WebSocketServer wssv;
         
         private readonly ChatRoomService _chatRoomService;
+    
 
         public chatRoomController(IConfiguration config, ChatRoomService chatRoomService)
         {
             _configuration = config;
             _chatRoomService = chatRoomService;  
+            int webSocketPort = 7890; // Change this to the port number of your WebSocket server
+
+            var activeListeners = IPGlobalProperties.GetIPGlobalProperties().GetActiveTcpListeners();
+            bool isWebSocketServerRunning = activeListeners.Any(l => l.Port == webSocketPort);
+            var webSocketListeners = activeListeners.Where(l => l.Port == webSocketPort);
+
+
+            
+           
+            
         }
             
         // GET: api/chatRoom
@@ -76,25 +65,39 @@ namespace net_finance_api.Controllers
             { 
                 return NotFound();
             };
-
-            var wssv = new WebSocketServer ("ws://127.0.0.1:7890");
+           
+           
+            try {
+                Console.WriteLine("WebSocket server is already running.");
+                wssv = new WebSocketServer ("ws://127.0.0.1:7890");
+                wssv.AddWebSocketService<Laputa> ("/Laputa");
+                wssv.Start ();
+              
+            }   
+           catch
+            {
+                new WebSocketServer ("ws://127.0.0.1:7890").Stop();
+                wssv = new WebSocketServer ("ws://127.0.0.1:7890");
+                wssv.Start ();
+                Console.WriteLine("No WebSocket servers are running.");
+                
+            }
+           
+           
             
-            if(wssv.IsListening == true) wssv.Stop();
-            wssv.AddWebSocketService<Laputa> ("/Laputa");
-            wssv.Start ();
+            if (wssv.IsListening) {
+                Console.WriteLine (wssv.IsListening);
 
-if (wssv.IsListening) {
-            Console.WriteLine (wssv.IsListening);
+                 Console.WriteLine ("Listening on port {0}, and providing WebSocket services:", wssv.Port);
 
-        Console.WriteLine ("Listening on port {0}, and providing WebSocket services:", wssv.Port);
-
-        foreach (var path in wssv.WebSocketServices.Paths)
-          Console.WriteLine ("- {0}", path);
-      }
-
-            Console.ReadKey ();
-            wssv.Stop ();
-            return room;
+                foreach (var path in wssv.WebSocketServices.Paths)
+                Console.WriteLine ("- {0}", path);
+            } else {
+               Console.WriteLine("Web Socket is not connected");
+            }
+                wssv.Stop();
+                Console.ReadKey ();
+                return room;
         }
 
         // PUT: api/chatRoom/5

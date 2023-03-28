@@ -36,11 +36,12 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
 
     useEffect(() => {
         // var HOST = window.location.origin.replace(/^http/, 'ws')
-        const newSocket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('127.0.0.1:7890/Laputa', { transports: ["websocket"] } );
+        const newSocket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('127.0.0.1:7890', { transports: ["websocket"] } );
         setSocket(newSocket);
         console.log(newSocket)
         return () => {
              newSocket.close();
+             socket?.close();
         }
          
         
@@ -58,6 +59,8 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
             console.log(res.data)
             setPublicChatRoomData(res.data)
         })
+
+        
     },[])
 
     const onEmit = () => {
