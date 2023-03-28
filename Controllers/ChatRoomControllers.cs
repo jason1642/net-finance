@@ -6,6 +6,7 @@ using MongoDB.Bson;
 // using SocketIOClient;
 using WebSocketSharp;
 using WebSocketSharp.Server;
+using System.Security.Cryptography.X509Certificates;
 
 using System.Net.NetworkInformation;
 using System.Linq;
@@ -69,20 +70,23 @@ namespace net_finance_api.Controllers
            
             try {
                 wssv = new WebSocketServer (8080, true);
-                
+              wssv.SslConfiguration.ServerCertificate = new X509Certificate2 (
+                                            "/Users/jasoncruz/Documents/projects/net-finance/:USERPROFILE.aspnethttpsaspnetapp.pfx", "crypticpassword"
+                                          );
                 wssv.AddWebSocketService<Laputa> ("/Laputa");
                 Console.WriteLine("WebSocket server is already running.");
 
                 wssv.Start ();
               
             }   
-           catch
+           catch (FileNotFoundException e)
             {
+                Console.WriteLine(e);
                 // new WebSocketServer ("ws://127.0.0.1:7890").Stop();
                 // wssv = new WebSocketServer ("ws://127.0.0.1:7890");
                 // wssv.AddWebSocketService<Laputa> ("/Laputa");
                 // wssv.Start ();
-                Console.WriteLine("A web socket server is already running");
+                Console.WriteLine("A web socket server is already running or could not connect.");
                 
             }
 
