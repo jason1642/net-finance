@@ -68,9 +68,11 @@ namespace net_finance_api.Controllers
            
            
             try {
-                Console.WriteLine("WebSocket server is already running.");
-                wssv = new WebSocketServer ("ws://127.0.0.1:7890");
+                wssv = new WebSocketServer (8080, true);
+                
                 wssv.AddWebSocketService<Laputa> ("/Laputa");
+                Console.WriteLine("WebSocket server is already running.");
+
                 wssv.Start ();
               
             }   
