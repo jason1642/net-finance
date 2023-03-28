@@ -36,7 +36,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
 
     useEffect(() => {
         // var HOST = window.location.origin.replace(/^http/, 'ws')
-        const newSocket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('127.0.0.1:7890', { transports: ["websocket"] } );
+        const newSocket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('http://127.0.0.1:7890', { transports: ["websocket"] } );
         setSocket(newSocket);
         console.log(newSocket)
         return () => {
@@ -55,12 +55,19 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     // "undefined" means the URL will be computed from the `window.location` object
     // const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:44465'
     useEffect(()=>{
+        let newSocket: Socket<ServerToClientEvents, ClientToServerEvents>;
         getRoomMessages('641ddeb20052e8bc2b1edd6a').then(res=>{
             console.log(res.data)
             setPublicChatRoomData(res.data)
+            newSocket = io('127.0.0.1:7890', { transports: ["websocket"] } );
+        setSocket(newSocket);
+        console.log(newSocket)
         })
 
-        
+        return () => {
+            newSocket?.close();
+            socket?.close();
+       }
     },[])
 
     const onEmit = () => {

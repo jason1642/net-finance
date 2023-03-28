@@ -76,17 +76,18 @@ namespace net_finance_api.Controllers
             }   
            catch
             {
-                new WebSocketServer ("ws://127.0.0.1:7890").Stop();
-                wssv = new WebSocketServer ("ws://127.0.0.1:7890");
-                wssv.Start ();
-                Console.WriteLine("No WebSocket servers are running.");
+                // new WebSocketServer ("ws://127.0.0.1:7890").Stop();
+                // wssv = new WebSocketServer ("ws://127.0.0.1:7890");
+                // wssv.AddWebSocketService<Laputa> ("/Laputa");
+                // wssv.Start ();
+                Console.WriteLine("A web socket server is already running");
                 
             }
-           
+
            
             
             if (wssv.IsListening) {
-                Console.WriteLine (wssv.IsListening);
+                Console.WriteLine (wssv.Address);
 
                  Console.WriteLine ("Listening on port {0}, and providing WebSocket services:", wssv.Port);
 
@@ -95,7 +96,7 @@ namespace net_finance_api.Controllers
             } else {
                Console.WriteLine("Web Socket is not connected");
             }
-                wssv.Stop();
+                wssv?.Stop();
                 Console.ReadKey ();
                 return room;
         }
