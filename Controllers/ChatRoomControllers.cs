@@ -3,7 +3,7 @@ using NetFinance.Services;
 using net_finance.Models;
 using MongoDB.Driver;
 using MongoDB.Bson;
-using SocketIOClient;
+// using SocketIOClient;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 
@@ -57,7 +57,6 @@ namespace net_finance_api.Controllers
         {
             _configuration = config;
             _chatRoomService = chatRoomService;  
-            // _publicChatSocket = PublicChatSocket;       
         }
             
         // GET: api/chatRoom
@@ -74,13 +73,27 @@ namespace net_finance_api.Controllers
             var room = await _chatRoomService.GetAsync(id);
             Console.WriteLine(room?._id);
             if (room is null)
-            { return NotFound(); }
+            { 
+                return NotFound();
+            };
 
-            WebSocketServer wssv = new WebSocketServer("ws://127.0.0.1:7890");
-            wssv.Start();
-            Console.WriteLine("WS server started on ws://127.0.0.1:7890");
-            Console.ReadKey();
-            wssv.Stop(); 
+            var wssv = new WebSocketServer ("ws://127.0.0.1:7890");
+            
+            if(wssv.IsListening == true) wssv.Stop();
+            wssv.AddWebSocketService<Laputa> ("/Laputa");
+            wssv.Start ();
+
+if (wssv.IsListening) {
+            Console.WriteLine (wssv.IsListening);
+
+        Console.WriteLine ("Listening on port {0}, and providing WebSocket services:", wssv.Port);
+
+        foreach (var path in wssv.WebSocketServices.Paths)
+          Console.WriteLine ("- {0}", path);
+      }
+
+            Console.ReadKey ();
+            wssv.Stop ();
             return room;
         }
 

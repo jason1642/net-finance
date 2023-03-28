@@ -7,8 +7,8 @@ using WebSocketSharp;
 
 
 namespace NetFinance.Services;
- public class PublicChatSocket : WebSocketBehavior
-  {
+//  public class PublicChatSocket : WebSocketBehavior
+//   {
     // protected override void OnMessage (MessageEventArgs e)
     // {
     //   var msg = e.Data == "BALUS"
@@ -17,7 +17,16 @@ namespace NetFinance.Services;
 
     //   Send (msg);
     // }
+//   } 
+   public class Laputa : WebSocketBehavior
+  {
+    protected override void OnMessage (MessageEventArgs e)
+    {
+      Console.WriteLine("Received message from Echo client: " + e.Data);
+            Send(e.Data);
+    }
   }
+
 public class ChatRoomService
 {
     private readonly IMongoCollection<ChatRoom> _ChatRoomCollection;
