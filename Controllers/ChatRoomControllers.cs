@@ -4,7 +4,8 @@ using net_finance.Models;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using SocketIOClient;
-
+using WebSocketSharp;
+using WebSocketSharp.Server;
 
 
 
@@ -80,30 +81,13 @@ namespace net_finance_api.Controllers
                 return NotFound();
             }
 
-_chatRoomService._publicChatSocket.OnConnected += async (sender, e) =>
-                {
-                    // Emit a string
-                    await _chatRoomService._publicChatSocket.EmitAsync("New message", "from socket.io");
-                    Console.WriteLine("CONNECTED TO WEBSOCKET");
-
-                    // Emit a string and an object
-                    // await _publicChatClient.EmitAsync("register", "source", { Id = 123, Name = "bob" });
-                };
+                      var wssv = new WebSocketServer ("ws://localhost:5050");
 
 
-               _chatRoomService._publicChatSocket.On("New message", response =>
-                {
-                    // You can print the returned data first to decide what to do next.
-                    // output: ["hi client"]
-                    Console.WriteLine("RESPONSE!!!");
-
-                    string text = response.GetValue<string>();
-
-                    // The socket.io server code looks like this:
-                    // socket.emit('hi', 'hi client');
-                });
-
-            await _chatRoomService._publicChatSocket.ConnectAsync();
+                  wssv.AddWebSocketService<PublicChatSocket> ("/chat");
+                wssv.Start ();
+                Console.ReadKey (true);
+                wssv.Stop ();
 
             return room;
         }

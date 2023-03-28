@@ -1,12 +1,23 @@
 using net_finance.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using SocketIOClient;
+using WebSocketSharp.Server;
+using WebSocketSharp;
 
 
 
 namespace NetFinance.Services;
+ public class PublicChatSocket : WebSocketBehavior
+  {
+    protected override void OnMessage (MessageEventArgs e)
+    {
+      var msg = e.Data == "BALUS"
+                ? "Are you kidding?"
+                : "I'm not available now.";
 
+      Send (msg);
+    }
+  }
 public class ChatRoomService
 {
     private readonly IMongoCollection<ChatRoom> _ChatRoomCollection;
@@ -34,7 +45,7 @@ public class ChatRoomService
     }
 
 
-    public SocketIO _publicChatSocket = new SocketIO("https://localhost:7108");
+    // public SocketIO _publicChatSocket = new SocketIO("localhost:7108");
     
 
     public async Task<List<ChatRoom>> GetAsync() =>

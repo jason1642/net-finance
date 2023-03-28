@@ -36,7 +36,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
 
     useEffect(() => {
         // var HOST = window.location.origin.replace(/^http/, 'ws')
-        const newSocket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('https://localhost:7108', { transports: ["websocket"] } );
+        const newSocket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('ws://localhost:5050/chat', { transports: ["websocket"] } );
         setSocket(newSocket);
         console.log(newSocket)
         return () => {
@@ -61,7 +61,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     },[])
 
     const onEmit = () => {
-        // socket.emit('New message') 
+        // socket?.emit('New message') 
     }
    useEffect(() => {
         function onConnect() {
