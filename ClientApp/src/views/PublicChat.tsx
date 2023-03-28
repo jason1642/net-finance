@@ -33,7 +33,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     const [publicChatRoomData, setPublicChatRoomData]= React.useState<Array<any>>()
     // const [socket, setSocket] = useState<Socket<ServerToClientEvents, ClientToServerEvents>>()
     // const [isConnected, setIsConnected] = useState(socket?.connected) 
-    const { sendMessage, lastMessage, readyState } = useWebSocket('wss://0.0.0.0:8080');
+    const { sendMessage, lastMessage, readyState } = useWebSocket('wss://0.0.0.0:8080/');
     
     const connectionStatus = {
         [ReadyState.CONNECTING]: 'Connecting',
