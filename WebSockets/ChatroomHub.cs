@@ -33,7 +33,7 @@ namespace net_finance.Hub
             }
             catch (Exception exp)
             {
-                //log 
+                Console.WriteLine(exp);
             }
               Console.WriteLine(webSocket.State);
         }
@@ -62,9 +62,10 @@ namespace net_finance.Hub
                     }
                 });
             }
-            catch (Exception)
+            catch (Exception exp)
             {
-                // log exp
+                Console.WriteLine(exp);
+
             }
         }
     }

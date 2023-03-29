@@ -26,7 +26,7 @@ interface IPublicChatProps {
 
 const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     // const socket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('https://localhost:7108/chat', { transports: ["websocket"] } )
-    const { messageList, wsState, connectWs } = useContext(WebSocketContext);
+    const { messageList, wsState, connectWs, closeWs } = useContext(WebSocketContext);
 
     const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
     const [publicChatRoomData, setPublicChatRoomData]= React.useState<Array<any>>()
@@ -61,11 +61,14 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
         getRoomMessages('641ddeb20052e8bc2b1edd6a').then(res=>{
             console.log(res.data)
             setPublicChatRoomData(res.data)
-            connectWs()
+            
 
         })
+        connectWs()
 
-
+        return ()=> {
+            closeWs();
+        }
     },[])
 
     const onEmit = () => {

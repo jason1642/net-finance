@@ -16,7 +16,7 @@ function WebSocketProvider({ children }) {
   const connectWs = () => {
     setWsState(BaseConfig.webSocketState.CONNECTING);
 
-    wsRef.current = new WebSocket(BaseConfig.wsUrl);
+    wsRef.current = new WebSocket(BaseConfig.wssUrl);
 
     wsRef.current.onopen = () => {
       console.log('socket open');

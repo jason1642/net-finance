@@ -4,8 +4,7 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:63910",
-      "sslPort": 44363,
-      "useSSL": true
+      "sslPort": 44363
     },
     "useSSL": true
   },
@@ -18,8 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy",
         "DOMAIN": "localhost"
-      },
-      "useSSL": true
+      }
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -28,8 +26,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy",
         "DOMAIN": "localhost"
-      },
-      "useSSL": true
+      }
     }
   }
 }
