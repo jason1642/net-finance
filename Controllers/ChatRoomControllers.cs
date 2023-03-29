@@ -35,7 +35,7 @@ namespace net_finance_api.Controllers
         public IConfiguration _configuration;
    
 
-        public WebSocketServer wssv;
+        // public WebSocketServer wssv;
         
         private readonly ChatRoomService _chatRoomService;
     

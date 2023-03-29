@@ -7,6 +7,7 @@ import HomeSearchBar from "../components/search-bar/HomeSearchBar";
 import Account from "../views/Account";
 import { userApi } from "../redux/features/userApi";
 import PublicChat from "../views/PublicChat";
+import { WebSocketProvider } from '../context/PublicChatWebSocket';
 
 
 const MainRoutes = () => {
@@ -29,7 +30,7 @@ const MainRoutes = () => {
         },
         {
             path: '/chat',
-            element: userData ? <PublicChat /> : <Navigate to="/" /> 
+            element: userData ? <WebSocketProvider><PublicChat /> </WebSocketProvider>: <Navigate to="/" /> 
         },
         {
             path: '/quote/:symbol',

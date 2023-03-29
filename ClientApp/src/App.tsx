@@ -7,7 +7,6 @@ import {  useVerifyUserQuery } from './redux/features/userApi';
 // import { userApi } from './redux/features/userApi';
 import axios from 'axios'
 
-
 const App = () =>{
   const {data, isLoading } = useVerifyUserQuery()
 

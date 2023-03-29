@@ -23,7 +23,7 @@ namespace net_finance.Hub
                 if (webSocket == null) return;
                 // _webSocketList this list is used asynchronously so when we want to use it we need to use lock
                 lock (_webSocketList) _webSocketList.Add(webSocket);
-
+              
                 // if socket open send initial message
                 if (webSocket.State == WebSocketState.Open)
                 {
@@ -35,6 +35,7 @@ namespace net_finance.Hub
             {
                 //log 
             }
+              Console.WriteLine(webSocket.State);
         }
 
         // remove a socket from list
