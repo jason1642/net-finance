@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import { getRoomMessages } from '../api-requests/chat-room-requests';
 import ChatDisplay from '../components/chat-room/ChatDisplay';
@@ -8,7 +8,7 @@ import { userApi } from "../redux/features/userApi";
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 
 import { SocketData, ClientToServerEvents, ServerToClientEvents, InterServerEvents } from '../types/socket-io-types';
-import { connect } from 'http2';
+
 
 const Container = styled.div`
   display:flex;
@@ -33,15 +33,21 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     const [publicChatRoomData, setPublicChatRoomData]= React.useState<Array<any>>()
     // const [socket, setSocket] = useState<Socket<ServerToClientEvents, ClientToServerEvents>>()
     // const [isConnected, setIsConnected] = useState(socket?.connected) 
-    const { sendMessage, lastMessage, readyState } = useWebSocket('wss://localhost:44465/');
-    
-    const connectionStatus = {
-        [ReadyState.CONNECTING]: 'Connecting',
-        [ReadyState.OPEN]: 'Open',
-        [ReadyState.CLOSING]: 'Closing',
-        [ReadyState.CLOSED]: 'Closed',
-        [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
-      }[readyState];
+    const socket = useMemo(()=>new WebSocket('wss://localhost:8080'), [])
+    socket.addEventListener('open', () => {
+        console.log('Connected to WebSocket server');
+      });
+    // const connectToSocket = async ()=> {
+    //     const { sendMessage, lastMessage, readyState } = useWebSocket('wss://0.0.0.0:8080/Laputa');
+    // }
+
+    // const connectionStatus = {
+    //     [ReadyState.CONNECTING]: 'Connecting',
+    //     [ReadyState.OPEN]: 'Open',
+    //     [ReadyState.CLOSING]: 'Closing',
+    //     [ReadyState.CLOSED]: 'Closed',
+    //     [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
+    //   }[readyState];
 
     useEffect(() => {
         // var HOST = window.location.origin.replace(/^http/, 'ws')
@@ -53,14 +59,16 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
         //      socket?.close();
         // }
          
-        
+        return ()=>{ 
+            socket?.close()
+        }
       }, [])
     
       useEffect(() => {
-        console.log(readyState)
-        console.log(connectionStatus)
+        console.log(socket)
+        // console.log(connectionStatus)
 
-      }, [readyState])
+      }, [socket])
 
 
     // "undefined" means the URL will be computed from the `window.location` object

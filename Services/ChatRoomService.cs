@@ -20,10 +20,10 @@ namespace NetFinance.Services;
 //   } 
    public class Laputa : WebSocketBehavior
   {
-    protected override void OnMessage (MessageEventArgs e)
+    protected override void OnOpen ()
     {
-      Console.WriteLine("Received message from Echo client: " + e.Data);
-            Send(e.Data);
+      Console.WriteLine("Sending default message for on open state: On Open");
+            // Send();
     }
   }
 
