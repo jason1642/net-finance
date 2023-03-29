@@ -69,13 +69,13 @@ namespace net_finance_api.Controllers
            
            
             try {
-                wssv = new WebSocketServer (8080, true);
+                wssv = new WebSocketServer ("wss://127.0.0.1:44465/");
                 wssv.SslConfiguration.ServerCertificate = new X509Certificate2 (
                     "/Users/jasoncruz/Documents/projects/net-finance/:USERPROFILE.aspnethttpsaspnetapp.pfx", "crypticpassword"
                     );
                 wssv.AddWebSocketService<Laputa> ("/Laputa", s => s.IgnoreExtensions = true);
                 Console.WriteLine("WebSocket server is now running.");
-
+                
                 wssv.Start ();
               
             }   

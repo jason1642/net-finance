@@ -25,7 +25,7 @@ const Container = styled.div`
 `;
 interface IPublicChatProps {
 }
-const WS_URL = 'wss://0.0.0.0:8080';
+const WS_URL = 'wss://127.0.0.1:44465/Laputa';
 
 const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     // const socket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('https://localhost:7108/chat', { transports: ["websocket"] } )
@@ -55,6 +55,9 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
             console.log('WebSocket connection Closed.');
 
         },
+        onMessage(messageEvent) {
+            console.log(messageEvent)
+        },
         share: true,
       shouldReconnect: () => false,
       });
@@ -83,15 +86,14 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
 
     
         return ()=>{ 
-            socket?.close()
+            // socket?.close()
         }
       }, [])
     
       useEffect(() => {
-        console.log(lastMessage, readyState )
-        // console.log(connectionStatus)
+        console.log(connectionStatus )
 
-      }, [sendMessage, lastMessage, readyState ])
+      }, [sendMessage, lastMessage, readyState, connectionStatus ])
 
 
     // "undefined" means the URL will be computed from the `window.location` object
@@ -118,7 +120,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     },[])
 
     const onEmit = () => {
-        // socket?.emit('New message') 
+        sendMessage('Here is my message from the client') 
     }
 //    useEffect(() => {
 //         function onConnect() {
