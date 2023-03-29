@@ -11,9 +11,16 @@ using System.Security.Cryptography.X509Certificates;
 using System.Net.NetworkInformation;
 using System.Linq;
 using System.Net;
-
-
-
+using Microsoft.AspNetCore.SignalR;
+using net_finance.Hub;
+using Newtonsoft.Json;
+   public class SampleData
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public bool Status { get; set; }
+            public string Message { get; set; }
+        }
 namespace net_finance_api.Controllers
 {
     //[Route("api/[controller]")]
@@ -32,19 +39,18 @@ namespace net_finance_api.Controllers
         
         private readonly ChatRoomService _chatRoomService;
     
-
-        public chatRoomController(IConfiguration config, ChatRoomService chatRoomService)
+        public WebSocketHub _webSocketHub;
+        public chatRoomController(IConfiguration config, ChatRoomService chatRoomService, WebSocketHub webSocketHub)
         {
             _configuration = config;
             _chatRoomService = chatRoomService;  
-            int webSocketPort = 7890; // Change this to the port number of your WebSocket server
+            // int webSocketPort = 7890; // Change this to the port number of your WebSocket server
 
-            var activeListeners = IPGlobalProperties.GetIPGlobalProperties().GetActiveTcpListeners();
-            bool isWebSocketServerRunning = activeListeners.Any(l => l.Port == webSocketPort);
-            var webSocketListeners = activeListeners.Where(l => l.Port == webSocketPort);
+            // var activeListeners = IPGlobalProperties.GetIPGlobalProperties().GetActiveTcpListeners();
+            // bool isWebSocketServerRunning = activeListeners.Any(l => l.Port == webSocketPort);
+            // var webSocketListeners = activeListeners.Where(l => l.Port == webSocketPort);
 
-
-            
+            _webSocketHub = webSocketHub;
            
             
         }
@@ -69,14 +75,14 @@ namespace net_finance_api.Controllers
            
            
             try {
-                wssv = new WebSocketServer ("wss://127.0.0.1:44465/");
-                wssv.SslConfiguration.ServerCertificate = new X509Certificate2 (
-                    "/Users/jasoncruz/Documents/projects/net-finance/:USERPROFILE.aspnethttpsaspnetapp.pfx", "crypticpassword"
-                    );
-                wssv.AddWebSocketService<Laputa> ("/Laputa", s => s.IgnoreExtensions = true);
-                Console.WriteLine("WebSocket server is now running.");
+                // wssv = new WebSocketServer ("wss://localhost:7108");
+                // wssv.SslConfiguration.ServerCertificate = new X509Certificate2 (
+                //     "/Users/jasoncruz/Documents/projects/net-finance/:USERPROFILE.aspnethttpsaspnetapp.pfx", "crypticpassword"
+                //     );
+                // wssv.AddWebSocketService<Laputa> ("/Laputa", s => s.IgnoreExtensions = true);
+                // Console.WriteLine("WebSocket server is now running.");
                 
-                wssv.Start ();
+                // wssv.Start ();
               
             }   
            catch
@@ -91,19 +97,30 @@ namespace net_finance_api.Controllers
 
            
             
-            if (wssv.IsListening) {
-                Console.WriteLine (wssv.Address);
-                // Console.WriteLine (wssv.ToString());
+            // if (wssv.IsListening) {
+            //     Console.WriteLine (wssv.Address);
+            //     // Console.WriteLine (wssv.ToString());
 
-                 Console.WriteLine ("Listening on port {0}, and providing WebSocket services:", wssv.Port);
+            //      Console.WriteLine ("Listening on port {0}, and providing WebSocket services:", wssv.Port);
 
-                foreach (var path in wssv.WebSocketServices.Paths)
-                Console.WriteLine ("- {0}", path);
-            } 
-            wssv?.Stop();
+            //     foreach (var path in wssv.WebSocketServices.Paths)
+            //     Console.WriteLine ("- {0}", path);
+            // } 
+            // wssv?.Stop();
             // Console.ReadKey ();
+            _ = _webSocketHub.SendAll(JsonConvert.SerializeObject( new SampleData()
+            {
+                Id = 5,
+                Name = "Anon",
+                Status = true,
+                Message = "A user has connected",
+            }));
             Console.WriteLine("Testing before return line");
-
+            // int webSocketPort = 44465; // Change this to the port number of your WebSocket server
+            // var activeListeners = IPGlobalProperties.GetIPGlobalProperties().GetActiveTcpListeners();
+            // bool isWebSocketServerRunning = activeListeners.Any(l => l.Port == webSocketPort);
+            // var webSocketListeners = activeListeners.Where(l => l.Port == webSocketPort);
+            // Console.WriteLine(isWebSocketServerRunning);
             return Ok(room);
         }
 

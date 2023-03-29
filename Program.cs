@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using SocketIOClient;
-
+using net_finance.Hub;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +25,8 @@ builder.Services.AddSingleton<StockQuotesService>();
 builder.Services.AddSingleton<CompanyProfileService>();
 builder.Services.AddSingleton<ChatRoomService>();
 
+builder.Services.AddSingleton(typeof(WebSocketHub), new WebSocketHub());
+
 
 
 builder.Services.AddCors(options =>
@@ -33,7 +35,7 @@ builder.Services.AddCors(options =>
         builder =>
         {
             builder
-                .WithOrigins("https://net-finance.azurewebsites.net", "https://localhost:5187", "https://brave-stone-0d5d9f810.2.azurestaticapps.net", "netfinance.azurewebsites.net", "https://localhost:7108", "https://localhost:44465", "https://main.d1pbrktrl7a0d8.amplifyapp.com", "https://localhost:7025")
+                .WithOrigins("https://net-finance.azurewebsites.net", "https://localhost:5187", "https://brave-stone-0d5d9f810.2.azurestaticapps.net", "netfinance.azurewebsites.net", "https://localhost:7108", "wss://localhost:7108", "https://localhost:44465", "https://main.d1pbrktrl7a0d8.amplifyapp.com", "https://localhost:7025")
                 //.AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
@@ -113,9 +115,14 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseCors(policyName);
 
-app.UseWebSockets();
+// app.UseWebSockets();
 
 
+app.UseWebSockets(new WebSocketOptions
+{
+    KeepAliveInterval = TimeSpan.FromSeconds(120), // you cna set ping-pong time period in here
+    ReceiveBufferSize = 4 * 1024 // you can specify buffer size here (default is 4kb)
+});
 
 
 
