@@ -74,14 +74,13 @@ namespace net_finance_api.Controllers
                     "/Users/jasoncruz/Documents/projects/net-finance/:USERPROFILE.aspnethttpsaspnetapp.pfx", "crypticpassword"
                     );
                 wssv.AddWebSocketService<Laputa> ("/Laputa", s => s.IgnoreExtensions = true);
-                Console.WriteLine("WebSocket server is already running.");
+                Console.WriteLine("WebSocket server is now running.");
 
                 wssv.Start ();
               
             }   
-           catch (FileNotFoundException e)
+           catch
             {
-                Console.WriteLine(e);
                 // new WebSocketServer ("ws://127.0.0.1:7890").Stop();
                 // wssv = new WebSocketServer ("ws://127.0.0.1:7890");
                 // wssv.AddWebSocketService<Laputa> ("/Laputa");
@@ -94,17 +93,18 @@ namespace net_finance_api.Controllers
             
             if (wssv.IsListening) {
                 Console.WriteLine (wssv.Address);
+                // Console.WriteLine (wssv.ToString());
 
                  Console.WriteLine ("Listening on port {0}, and providing WebSocket services:", wssv.Port);
 
                 foreach (var path in wssv.WebSocketServices.Paths)
                 Console.WriteLine ("- {0}", path);
-            } else {
-               Console.WriteLine("Web Socket is not connected");
-            }
-                wssv?.Stop();
-                Console.ReadKey ();
-                return room;
+            } 
+            wssv?.Stop();
+            // Console.ReadKey ();
+            Console.WriteLine("Testing before return line");
+
+            return Ok(room);
         }
 
         // PUT: api/chatRoom/5

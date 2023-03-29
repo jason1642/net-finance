@@ -14,6 +14,6 @@ export const getRoomMessages = async(roomId:string)=>
         console.log(res)
         return res
     }, err=> {
-        console.log(err)
+        console.error(err)
         return err
     })

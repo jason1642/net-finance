@@ -55,8 +55,8 @@ const Filler = styled.div`
 
 
 const ChatDisplay: React.FunctionComponent<IChatDisplayProps> = ({chatRoomData:{messages}, userData}) => {
-  console.log(messages)
-  console.log(userData && userData._id)
+  // console.log(messages)
+  // console.log(userData && userData._id)
   const bottomElementRef = useRef<HTMLDivElement>(null)
 
 
@@ -77,7 +77,7 @@ const ChatDisplay: React.FunctionComponent<IChatDisplayProps> = ({chatRoomData:{
   return <Container>
     <Title>Displaying up to 100 previous messages</Title>
     {
-        userData && messages.map((item:any)=> <Row isFromCurrentUser={item.sender_id === userData._id}>
+        userData && messages.map((item:any)=> <Row key={item.created_at + item.message} isFromCurrentUser={item.sender_id === userData._id}>
             <ChatBubble dateCreated={item.created_at} isFromCurrentUser={item.sender_id === userData._id} message={item.message}/>
             <Filler />
         </Row>)

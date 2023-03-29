@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, } from 'react';
 import styled from 'styled-components';
 import { getRoomMessages } from '../api-requests/chat-room-requests';
 import ChatDisplay from '../components/chat-room/ChatDisplay';
 import ChatHeader from '../components/chat-room/Header';
 import UserInput from '../components/chat-room/UserInput';
 import { userApi } from "../redux/features/userApi";
-import useWebSocket, { ReadyState } from 'react-use-websocket';
+import useWebSocket, {ReadyState} from 'react-use-websocket';
 
-import { SocketData, ClientToServerEvents, ServerToClientEvents, InterServerEvents } from '../types/socket-io-types';
+// import { SocketData, ClientToServerEvents, ServerToClientEvents, InterServerEvents } from '../types/socket-io-types';
 
 
 const Container = styled.div`
@@ -25,6 +25,7 @@ const Container = styled.div`
 `;
 interface IPublicChatProps {
 }
+const WS_URL = 'wss://0.0.0.0:8080';
 
 const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     // const socket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('https://localhost:7108/chat', { transports: ["websocket"] } )
@@ -32,23 +33,39 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
     const [publicChatRoomData, setPublicChatRoomData]= React.useState<Array<any>>()
     // const [socket, setSocket] = useState<Socket<ServerToClientEvents, ClientToServerEvents>>()
+    const [socket, setSocket] = useState<any>()
+    
     // const [isConnected, setIsConnected] = useState(socket?.connected) 
-    const socket = useMemo(()=>new WebSocket('wss://localhost:8080'), [])
-    socket.addEventListener('open', () => {
-        console.log('Connected to WebSocket server');
-      });
+    // const socket = useMemo(()=> {
+    //    const result = new WebSocket('wss://0.0.0.0:8080/Laputa')
+    //     result.addEventListener('open', () => {
+    //     console.log('Connected to WebSocket server');
+    //   });
+    //    return result
+    // }, [])
+   
     // const connectToSocket = async ()=> {
     //     const { sendMessage, lastMessage, readyState } = useWebSocket('wss://0.0.0.0:8080/Laputa');
     // }
+ const { sendMessage, lastMessage, readyState } = useWebSocket(WS_URL, {
+        onOpen: () => {
+          console.log('WebSocket connection established.');
+        },
+        onClose: ()=> {
+            console.log('WebSocket connection Closed.');
 
-    // const connectionStatus = {
-    //     [ReadyState.CONNECTING]: 'Connecting',
-    //     [ReadyState.OPEN]: 'Open',
-    //     [ReadyState.CLOSING]: 'Closing',
-    //     [ReadyState.CLOSED]: 'Closed',
-    //     [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
-    //   }[readyState];
-
+        },
+        share: true,
+      shouldReconnect: () => false,
+      });
+    const connectionStatus = {
+        [ReadyState.CONNECTING]: 'Connecting',
+        [ReadyState.OPEN]: 'Open',
+        [ReadyState.CLOSING]: 'Closing',
+        [ReadyState.CLOSED]: 'Closed',
+        [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
+      }[readyState];
+   
     useEffect(() => {
         // var HOST = window.location.origin.replace(/^http/, 'ws')
         // const newSocket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('http://127.0.0.1:7890', { transports: ["websocket"] } );
@@ -58,17 +75,23 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
              
         //      socket?.close();
         // }
-         
+    //     const result = new WebSocket('wss://0.0.0.0:8080/Laputa')
+    //     result.addEventListener('open', () => {
+    //     console.log('Connected to WebSocket server');
+    //   });
+    //   setSocket(result)
+
+    
         return ()=>{ 
             socket?.close()
         }
       }, [])
     
       useEffect(() => {
-        console.log(socket)
+        console.log(lastMessage, readyState )
         // console.log(connectionStatus)
 
-      }, [socket])
+      }, [sendMessage, lastMessage, readyState ])
 
 
     // "undefined" means the URL will be computed from the `window.location` object
@@ -78,7 +101,14 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
         getRoomMessages('641ddeb20052e8bc2b1edd6a').then(res=>{
             console.log(res.data)
             setPublicChatRoomData(res.data)
-           
+            // const result = new WebSocket('wss://127.0.0.1:7108/Laputa')
+            // result.addEventListener('open', () => {
+            // console.log('Connected to WebSocket server');
+            // });
+            // // result?.onopen = ()=> {}
+            // setSocket(result)
+        
+
         })
 
     //     return () => {

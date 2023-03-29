@@ -23,7 +23,7 @@ namespace NetFinance.Services;
     protected override void OnOpen ()
     {
       Console.WriteLine("Sending default message for on open state: On Open");
-            // Send();
+            Send("This message was sent on open");
     }
   }
 

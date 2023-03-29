@@ -113,7 +113,7 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseCors(policyName);
 
-// app.UseWebSockets();
+app.UseWebSockets();
 
 
 
@@ -122,6 +122,7 @@ app.UseCors(policyName);
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
 
 app.UseAuthentication();
 app.UseAuthorization();
