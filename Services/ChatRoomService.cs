@@ -18,14 +18,14 @@ namespace NetFinance.Services;
     //   Send (msg);
     // }
 //   } 
-//    public class Laputa : WebSocketBehavior
-//   {
-//     protected override void OnMessage(MessageEventArgs e) 
-//     {
-//       Console.WriteLine("Sending default message for on open state: On Open", e);
-//             // Send("This message was sent on open");
-//     }
-//   }
+   public class Laputa : WebSocketBehavior
+  {
+    protected override void OnMessage(MessageEventArgs e) 
+    {
+      Console.WriteLine("Sending default message for on open state: On Open", e);
+            // Send("This message was sent on open");
+    }
+  }
 
 public class ChatRoomService
 {

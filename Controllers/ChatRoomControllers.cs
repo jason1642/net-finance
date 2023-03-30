@@ -35,7 +35,7 @@ namespace net_finance_api.Controllers
         public IConfiguration _configuration;
    
 
-        // public WebSocketServer wssv;
+        public WebSocketServer wssv;
         
         private readonly ChatRoomService _chatRoomService;
     
@@ -75,14 +75,14 @@ namespace net_finance_api.Controllers
            
            
             try {
-                // wssv = new WebSocketServer ("wss://localhost:7108");
-                // wssv.SslConfiguration.ServerCertificate = new X509Certificate2 (
-                //     "/Users/jasoncruz/Documents/projects/net-finance/:USERPROFILE.aspnethttpsaspnetapp.pfx", "crypticpassword"
-                //     );
-                // wssv.AddWebSocketService<Laputa> ("/Laputa", s => s.IgnoreExtensions = true);
-                // Console.WriteLine("WebSocket server is now running.");
+                wssv = new WebSocketServer ("wss://localhost:44465/ws");
+                wssv.SslConfiguration.ServerCertificate = new X509Certificate2 (
+                    "/Users/jasoncruz/Documents/projects/net-finance/:USERPROFILE.aspnethttpsaspnetapp.pfx", "crypticpassword"
+                    );
+                wssv.AddWebSocketService<Laputa> ("/Laputa", s => s.IgnoreExtensions = true);
+                Console.WriteLine("WebSocket server is now running.");
                 
-                // wssv.Start ();
+                wssv.Start ();
               
             }   
            catch
@@ -106,7 +106,7 @@ namespace net_finance_api.Controllers
             //     foreach (var path in wssv.WebSocketServices.Paths)
             //     Console.WriteLine ("- {0}", path);
             // } 
-            // wssv?.Stop();
+            wssv?.Stop();
             // Console.ReadKey ();
             _ = _webSocketHub.SendAll(JsonConvert.SerializeObject( new SampleData()
             {

@@ -5,7 +5,6 @@ import ChatDisplay from '../components/chat-room/ChatDisplay';
 import ChatHeader from '../components/chat-room/Header';
 import UserInput from '../components/chat-room/UserInput';
 import { userApi } from "../redux/features/userApi";
-import useWebSocket, {ReadyState} from 'react-use-websocket';
 import {WebSocketContext} from '../context/PublicChatWebSocket'
 const Container = styled.div`
   display:flex;
@@ -22,10 +21,9 @@ const Container = styled.div`
 `;
 interface IPublicChatProps {
 }
-// const WS_URL = 'wss://localhost:7108/';
+const WS_URL = 'wss://localhost:44465/ws';
 
 const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
-    // const socket: Socket<ServerToClientEvents, ClientToServerEvents>  = io('https://localhost:7108/chat', { transports: ["websocket"] } )
     const { messageList, wsState, connectWs, closeWs } = useContext(WebSocketContext);
 
     const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
@@ -38,21 +36,24 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
         console.log('this is the message list', messageList, )
         console.log('This is the web socket state', wsState)
     }, [messageList, wsState]);
-    //   useEffect(() => {
-    //     const ws = new WebSocket(WS_URL)
-    //     ws.onopen = () => {
-    //         console.log('Connected to WebSocket server');
-    //       };
-    //       ws.onerror = () => {
-    //         console.log('ON ERROR EVENt');
-    //       };
-    //     setSocket(ws)
-    //     console.log(ws)
+      useEffect(() => {
+        const ws = new WebSocket(WS_URL)
+        ws.onopen = () => {
+            console.log('Connected to WebSocket server');
+          };
+          ws.onerror = () => {
+            console.log('ON ERROR EVENt');
+          };
+        setSocket(ws)
+        console.log(ws)
+        return ()=> {
+            socket?.close()
+        }
 
-    //   }, [])
-    //   useEffect(() => {
-    //     console.log(socket)
-    //   }, [socket]);   
+      }, [])
+      useEffect(() => {
+        console.log(socket)
+      }, [socket]);   
 
     // "undefined" means the URL will be computed from the `window.location` object
     // const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:44465'
