@@ -20,6 +20,8 @@ function WebSocketProvider({ children }) {
     wsRef.current.onopen = () => {
       console.log('socket open');
       setWsState(BaseConfig.webSocketState.OPEN);
+
+      wsRef.current.send('')
     };
 
     wsRef.current.onmessage = e => {
@@ -28,11 +30,15 @@ function WebSocketProvider({ children }) {
       setMessageList(JSON.parse(e.data));
     };
 
+    // wsRef.current.addEventListener()
+
     wsRef.current.onclose = () => {
       console.log('socket closed by server');
       setWsState(BaseConfig.webSocketState.CLOSED);
+      
     };
   };
+
 
   const closeWs = () => {
     wsRef.current.close();

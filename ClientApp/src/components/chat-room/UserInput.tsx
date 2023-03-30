@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Input } from 'antd';
+import {useForm} from 'react-hook-form'
 
-const { TextArea } = Input;
 
 
 interface IUserInputProps {
@@ -11,7 +11,6 @@ interface IUserInputProps {
 const Container = styled.div`
   display:flex;
   width: 100%;      
-  /* border: 1px solid white; */
   color: white;       
   border-width: 0;
   border-radius: 12px;     
@@ -22,7 +21,7 @@ const Container = styled.div`
   margin-top: .8rem;
 `;
 
-const TextBox = styled(TextArea)`
+const TextBox = styled(Input.TextArea)`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   width: 85%;
   font-size: 1em;
@@ -31,23 +30,28 @@ const TextBox = styled(TextArea)`
   background-color: #e3e3e3;
   &::-webkit-scrollbar {
       display: none;
-      
     }
     ::-webkit-scrollbar-thumb {
-   
-     
     }
 
 `
 
 const UserInput: React.FunctionComponent<IUserInputProps> = (props) => {
+  const {register, handleSubmit, watch, formState: {errors} } = useForm()
+
+  const onSubmit = ()=> {
+    console.log('On Submit Message Input')
+  }
+
+
+
   return <Container>
    <TextBox
       id="outlined-multiline-flexible"
       placeholder="Send a message"
       size='large'
       // minRows={1}
-      
+        
       autoSize={{minRows: 1, maxRows: 5}}
       />
   </Container>;
