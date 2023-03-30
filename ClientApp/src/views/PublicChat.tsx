@@ -6,6 +6,9 @@ import ChatHeader from '../components/chat-room/Header';
 import UserInput from '../components/chat-room/UserInput';
 import { userApi } from "../redux/features/userApi";
 import {WebSocketContext, WebSocketConsumer} from '../context/PublicChatWebSocket'
+import { ChatroomTypes } from '../types/chatroom-types';
+
+
 const Container = styled.div`
   display:flex;
   flex-direction: column;
@@ -26,8 +29,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     const { messageList, wsState, connectWs, closeWs, send } = useContext(WebSocketContext);
 
     const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
-    const [publicChatRoomData, setPublicChatRoomData]= React.useState<Array<any>>()
-    
+    const [publicChatRoomData, setPublicChatRoomData]= React.useState<ChatroomTypes>()
 
 
     useEffect(() => {
@@ -62,14 +64,15 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
 
   return <Container>
     {
-      publicChatRoomData &&
+      publicChatRoomData && userData &&
        <><ChatHeader  chatRoomData={publicChatRoomData}/>
     <ChatDisplay userData={userData} chatRoomData={publicChatRoomData}/>
+        <UserInput userId={userData?._id} roomId={publicChatRoomData?._id}/>
+
 </> 
 }
 {/* <div style={{flexGrow:1}}></div> */}
 {/* <button onClick={onEmit}>Emit</button> */}
-    <UserInput />
   </Container>;
 };
 

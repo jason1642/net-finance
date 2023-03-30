@@ -3,8 +3,12 @@ import styled from 'styled-components';
 import {useForm, Controller} from 'react-hook-form'
 import { Button } from '@mui/material';
 import { Input } from 'antd';
+import { sendChatRoomMessage } from '../../api-requests/chat-room-requests';
+
 
 interface IUserInputProps {
+  userId: string;
+  roomId: string;
 }
 
 const Container = styled.form`
@@ -41,15 +45,17 @@ const SubmitButton = styled(Button)`
   
 `;
 
-const UserInput: React.FunctionComponent<IUserInputProps> = (props) => {
+const UserInput: React.FunctionComponent<IUserInputProps> = ({userId, roomId}) => {
   const {register, handleSubmit, getValues, watch, control, formState: {errors} } = useForm({
     defaultValues: {
       messageInput: ''
     }
   })
-
+  // const [disableButton, setDisableButton] 
   const onSubmit = (data: any)=> {
+
     console.log(data)
+    // sendChatRoomMessage()
   }
 
   const onErrors = () => {
@@ -58,7 +64,9 @@ const UserInput: React.FunctionComponent<IUserInputProps> = (props) => {
 
   React.useEffect(() => {
     const subscription = watch((value, { name, type }) => console.log(value, name, type));
-    return () => subscription.unsubscribe();
+    return () => {
+      subscription.unsubscribe()
+    }
   }, [watch]);
 
   return (<Container onSubmit={handleSubmit(onSubmit, onErrors)}>
@@ -75,6 +83,7 @@ const UserInput: React.FunctionComponent<IUserInputProps> = (props) => {
           value={value}
           onChange={onChange} // send value to hook form
           size='large'
+          onPressEnter={()=>null}
           autoSize={{minRows: 1, maxRows: 5}}
             />
         }
