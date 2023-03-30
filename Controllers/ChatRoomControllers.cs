@@ -73,7 +73,7 @@ namespace net_finance_api.Controllers
                 return NotFound();
             };
            
-            _ = _webSocketHub.SendAll(JsonConvert.SerializeObject( new SampleData()
+            await _webSocketHub.SendAll(JsonConvert.SerializeObject( new SampleData()
             {
                 Id = 5,
                 Name = "Anon",

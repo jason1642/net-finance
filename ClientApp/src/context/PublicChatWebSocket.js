@@ -25,7 +25,7 @@ function WebSocketProvider({ children }) {
 
     wsRef.current.onmessage = e => {
       console.log('message');
-      console.log(e);
+      console.log(JSON.parse(e.data));
       setMessageList(JSON.parse(e.data));
     };
 
