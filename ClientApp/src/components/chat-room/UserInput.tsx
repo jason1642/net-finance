@@ -91,6 +91,7 @@ const UserInput: React.FunctionComponent<IUserInputProps> = ({userId, roomId}) =
       <SubmitButton
        size='large'
        variant='contained'
+       type='submit'
        disabled={watch('messageInput').length === 0 ? true : false}
        >Send</SubmitButton>
   </Container>)

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Message } from 'react-hook-form'
 
 const api = axios.create({
     baseURL: process.env.NODE_ENV === 'production' ?
@@ -26,7 +27,7 @@ interface MessageDataTypes {
     message: string;
     room_id: string;
 }
-export const sendChatRoomMessage = async(data: any) => 
+export const sendChatRoomMessage = async(data: MessageDataTypes) => 
     await api.post('/message', data).then(res=>{
         console.log(res)
         return res

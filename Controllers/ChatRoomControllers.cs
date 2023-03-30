@@ -127,10 +127,13 @@ namespace net_finance_api.Controllers
                 room_id = room._id,
 
             };
+
             var filter = Builders<ChatRoom>.Filter.Eq("_id", ObjectId.Parse(room._id));
             var update = Builders<ChatRoom>.Update.Push(x => x.messages, newMessage);
 
             _chatRoomService.FilterUpdateChatRoom(filter, update);
+
+            await _webSocketHub.SendAll(JsonConvert.SerializeObject(newMessage));
 
             return CreatedAtAction(nameof(Get), newMessage);
         }
@@ -152,6 +155,11 @@ namespace net_finance_api.Controllers
             newRoom.messages = new SingleMessage[0];
             newRoom.room_name = roomInput.room_name;
             await _chatRoomService.CreateAsync(newRoom);
+
+           
+
+
+
             return CreatedAtAction(nameof(Get), newRoom);
         }
 
