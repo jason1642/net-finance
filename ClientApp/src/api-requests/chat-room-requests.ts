@@ -17,3 +17,21 @@ export const getRoomMessages = async(roomId:string)=>
         console.error(err)
         return err
     })
+
+
+
+
+interface MessageDataTypes { 
+    sender_id: string;
+    message: string;
+    room_id: string;
+}
+export const sendChatRoomMessage = async(data: any) => 
+    await api.post('/message', data).then(res=>{
+        console.log(res)
+        return res
+    }, err=> {
+        console.error(err)
+        return err
+    })
+ 

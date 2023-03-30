@@ -1,9 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Input } from 'antd';
-import {useForm} from 'react-hook-form'
+import {useForm, Controller} from 'react-hook-form'
 import { Button } from '@mui/material';
-
+import { Input } from 'antd';
 
 interface IUserInputProps {
 }
@@ -43,32 +42,49 @@ const SubmitButton = styled(Button)`
 `;
 
 const UserInput: React.FunctionComponent<IUserInputProps> = (props) => {
-  const {register, handleSubmit, watch, formState: {errors} } = useForm()
+  const {register, handleSubmit, getValues, watch, control, formState: {errors} } = useForm({
+    defaultValues: {
+      messageInput: ''
+    }
+  })
 
-  const onSubmit = ()=> {
-    console.log('On Submit Message Input')
+  const onSubmit = (data: any)=> {
+    console.log(data)
   }
 
   const onErrors = () => {
     console.log('React hook form on errors')
   }
 
+  React.useEffect(() => {
+    const subscription = watch((value, { name, type }) => console.log(value, name, type));
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
-
-  return <Container onSubmit={handleSubmit(onSubmit, onErrors)}>
-   <TextBox
-      id="outlined-multiline-flexible"
-      placeholder="Send a message"
-      size='large'
-      // minRows={1}
-      {...register('messageInput')}
-      autoSize={{minRows: 1, maxRows: 5}}
+  return (<Container onSubmit={handleSubmit(onSubmit, onErrors)}>
+    <Controller
+      control={control}
+      name="messageInput"
+      render={({
+        field: { onChange, onBlur, value, name, ref },
+        fieldState: { invalid, isTouched, isDirty, error },
+      })=>
+        <TextBox
+          id="outlined-multiline-flexible"
+          placeholder="Send a message"
+          value={value}
+          onChange={onChange} // send value to hook form
+          size='large'
+          autoSize={{minRows: 1, maxRows: 5}}
+            />
+        }
       />
       <SubmitButton
        size='large'
        variant='contained'
+       disabled={watch('messageInput').length === 0 ? true : false}
        >Send</SubmitButton>
-  </Container>;
+  </Container>)
 };
 
 export default UserInput;
