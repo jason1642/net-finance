@@ -17,7 +17,6 @@ function WebSocketProvider({ children }) {
     setWsState(BaseConfig.webSocketState.CONNECTING);
 
     wsRef.current = new WebSocket(BaseConfig.wssUrl);
-
     wsRef.current.onopen = () => {
       console.log('socket open');
       setWsState(BaseConfig.webSocketState.OPEN);

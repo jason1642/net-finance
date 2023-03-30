@@ -5,7 +5,7 @@ import ChatDisplay from '../components/chat-room/ChatDisplay';
 import ChatHeader from '../components/chat-room/Header';
 import UserInput from '../components/chat-room/UserInput';
 import { userApi } from "../redux/features/userApi";
-import {WebSocketContext} from '../context/PublicChatWebSocket'
+import {WebSocketContext, WebSocketConsumer} from '../context/PublicChatWebSocket'
 const Container = styled.div`
   display:flex;
   flex-direction: column;
@@ -47,7 +47,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
 
         })
         connectWs()
-
+        // WebSocketConsumer()
         return ()=> {
             closeWs();
         }

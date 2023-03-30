@@ -35,7 +35,7 @@ namespace net_finance.Hub
             {
                 Console.WriteLine(exp);
             }
-              Console.WriteLine(webSocket.State);
+              Console.WriteLine("this is the websocket line", webSocket);
         }
 
         // remove a socket from list

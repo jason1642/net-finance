@@ -3,7 +3,6 @@ using NetFinance.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using SocketIOClient;
 using net_finance.Hub;
 using System.Net.WebSockets;
 
@@ -116,6 +115,24 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseCors(policyName);
 
+
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action=Index}/{id?}");
+
+app.MapFallbackToFile("index.html");
+
+
+
+
   // we have to add this. If you do not context.WebSockets.IsWebSocketRequest is always false
             app.UseWebSockets(new WebSocketOptions
             {
@@ -125,7 +142,7 @@ app.UseCors(policyName);
 
    #region WebSocket
             // We need WebSocketHub for socket operations so we get it with GetService
-            WebSocketHub _webSocketHub = (WebSocketHub)app.Services.GetService(typeof(WebSocketHub));
+            WebSocketHub _webSocketHub = (WebSocketHub)app.Services.GetService<WebSocketHub>();
 
             // If a request does not match any of the endpoints it will drop here 
             app.Use(async (context, next) =>
@@ -136,7 +153,7 @@ app.UseCors(policyName);
                     // You can check header and request in here. For example
                     // if(context.Response.Headers...)
                     // if(context.Request.Query...)
-                    Console.WriteLine(context.WebSockets.IsWebSocketRequest);
+                    Console.WriteLine("Socket connect status:" + context.WebSockets.IsWebSocketRequest);
                     // We just check IsWebSocketRequest
                     if (context.WebSockets.IsWebSocketRequest)
                     {
@@ -174,17 +191,6 @@ app.UseCors(policyName);
 
             #endregion
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseRouting();
 
-
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
-
-app.MapFallbackToFile("index.html");
 
 app.Run();
