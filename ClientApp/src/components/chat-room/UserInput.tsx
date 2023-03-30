@@ -2,22 +2,23 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Input } from 'antd';
 import {useForm} from 'react-hook-form'
-
+import { Button } from '@mui/material';
 
 
 interface IUserInputProps {
 }
 
-const Container = styled.div`
+const Container = styled.form`
   display:flex;
-  width: 100%;      
+  width: 80%;      
   color: white;       
   border-width: 0;
   border-radius: 12px;     
   /* justify-content: flex-end; */
   /* background-color: grey; */
   align-items: center;
-  justify-content: center;
+  margin: 0 auto;
+  justify-content: space-around;
   margin-top: .8rem;
 `;
 
@@ -36,6 +37,11 @@ const TextBox = styled(Input.TextArea)`
 
 `
 
+const SubmitButton = styled(Button)`
+  display: flex;
+  
+`;
+
 const UserInput: React.FunctionComponent<IUserInputProps> = (props) => {
   const {register, handleSubmit, watch, formState: {errors} } = useForm()
 
@@ -43,17 +49,25 @@ const UserInput: React.FunctionComponent<IUserInputProps> = (props) => {
     console.log('On Submit Message Input')
   }
 
+  const onErrors = () => {
+    console.log('React hook form on errors')
+  }
 
 
-  return <Container>
+
+  return <Container onSubmit={handleSubmit(onSubmit, onErrors)}>
    <TextBox
       id="outlined-multiline-flexible"
       placeholder="Send a message"
       size='large'
       // minRows={1}
-        
+      {...register('messageInput')}
       autoSize={{minRows: 1, maxRows: 5}}
       />
+      <SubmitButton
+       size='large'
+       variant='contained'
+       >Send</SubmitButton>
   </Container>;
 };
 

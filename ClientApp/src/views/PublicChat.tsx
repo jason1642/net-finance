@@ -68,7 +68,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
 </> 
 }
 {/* <div style={{flexGrow:1}}></div> */}
-<button onClick={onEmit}>Emit</button>
+{/* <button onClick={onEmit}>Emit</button> */}
     <UserInput />
   </Container>;
 };
