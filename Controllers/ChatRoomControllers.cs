@@ -3,11 +3,11 @@ using NetFinance.Services;
 using net_finance.Models;
 using MongoDB.Driver;
 using MongoDB.Bson;
-// using SocketIOClient;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 using System.Security.Cryptography.X509Certificates;
-
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 using System.Net.NetworkInformation;
 using System.Linq;
 using System.Net;
@@ -67,7 +67,7 @@ namespace net_finance_api.Controllers
             { 
                 return NotFound();
             };
-           
+
             await _webSocketHub.SendAll(JsonConvert.SerializeObject( new SampleData()
             {
                 Id = 5,
@@ -110,13 +110,16 @@ namespace net_finance_api.Controllers
         // POST: api/chatRoom/message
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("message")]
+        // [Authorize]
         public async Task<IActionResult> Post([FromBody] SingleMessage messageInput)
         {
             //Check if user & room exists
             Console.WriteLine(messageInput.room_id);
             ChatRoom? room = await _chatRoomService.GetAsync(messageInput.room_id);
             if (room == null) return BadRequest(); 
-
+            System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+            Console.WriteLine(currentUser);
+    
             SingleMessage newMessage = new SingleMessage
             {
                 _id = ObjectId.GenerateNewId(),
