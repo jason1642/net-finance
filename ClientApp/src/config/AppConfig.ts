@@ -1,6 +1,6 @@
 export const BaseConfig = {
     apiUrl: 'https://localhost:7108',
-    wssUrl: 'wss://127.0.0.1:44465/ws',
+    wssUrl: 'wss://localhost:7108/ws',
     // socket has four state
     webSocketState: {
       CONNECTING: 0,

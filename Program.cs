@@ -25,7 +25,7 @@ builder.Services.AddSingleton<StockQuotesService>();
 builder.Services.AddSingleton<CompanyProfileService>();
 builder.Services.AddSingleton<ChatRoomService>();
 
-builder.Services.AddSingleton(typeof(WebSocketHub), new WebSocketHub());
+builder.Services.AddSingleton<WebSocketHub>();
 
 
 
@@ -115,7 +115,12 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseCors(policyName);
 
-
+  // we have to add this. If you do not context.WebSockets.IsWebSocketRequest is always false
+    app.UseWebSockets(new WebSocketOptions
+    {
+        KeepAliveInterval = TimeSpan.FromSeconds(120), // you cna set ping-pong time period in here
+        ReceiveBufferSize = 4 * 1024 // you can specify buffer size here (default is 4kb)
+    });
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -133,12 +138,7 @@ app.MapFallbackToFile("index.html");
 
 
 
-  // we have to add this. If you do not context.WebSockets.IsWebSocketRequest is always false
-            app.UseWebSockets(new WebSocketOptions
-            {
-                KeepAliveInterval = TimeSpan.FromSeconds(120), // you cna set ping-pong time period in here
-                ReceiveBufferSize = 4 * 1024 // you can specify buffer size here (default is 4kb)
-            });
+
 
    #region WebSocket
             // We need WebSocketHub for socket operations so we get it with GetService

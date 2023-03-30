@@ -44,12 +44,7 @@ namespace net_finance_api.Controllers
         {
             _configuration = config;
             _chatRoomService = chatRoomService;  
-            // int webSocketPort = 7890; // Change this to the port number of your WebSocket server
-
-            // var activeListeners = IPGlobalProperties.GetIPGlobalProperties().GetActiveTcpListeners();
-            // bool isWebSocketServerRunning = activeListeners.Any(l => l.Port == webSocketPort);
-            // var webSocketListeners = activeListeners.Where(l => l.Port == webSocketPort);
-
+           
             _webSocketHub = webSocketHub;
            
             
