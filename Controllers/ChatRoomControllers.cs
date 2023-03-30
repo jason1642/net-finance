@@ -35,7 +35,7 @@ namespace net_finance_api.Controllers
         public IConfiguration _configuration;
    
 
-        public WebSocketServer wssv;
+        // public WebSocketServer wssv;
         
         private readonly ChatRoomService _chatRoomService;
     
@@ -73,41 +73,6 @@ namespace net_finance_api.Controllers
                 return NotFound();
             };
            
-           
-            try {
-                wssv = new WebSocketServer ("wss://localhost:44465/ws");
-                wssv.SslConfiguration.ServerCertificate = new X509Certificate2 (
-                    "/Users/jasoncruz/Documents/projects/net-finance/:USERPROFILE.aspnethttpsaspnetapp.pfx", "crypticpassword"
-                    );
-                wssv.AddWebSocketService<Laputa> ("/Laputa", s => s.IgnoreExtensions = true);
-                Console.WriteLine("WebSocket server is now running.");
-                
-                wssv.Start ();
-              
-            }   
-           catch
-            {
-                // new WebSocketServer ("ws://127.0.0.1:7890").Stop();
-                // wssv = new WebSocketServer ("ws://127.0.0.1:7890");
-                // wssv.AddWebSocketService<Laputa> ("/Laputa");
-                // wssv.Start ();
-                Console.WriteLine("A web socket server is already running or could not connect.");
-                
-            }
-
-           
-            
-            // if (wssv.IsListening) {
-            //     Console.WriteLine (wssv.Address);
-            //     // Console.WriteLine (wssv.ToString());
-
-            //      Console.WriteLine ("Listening on port {0}, and providing WebSocket services:", wssv.Port);
-
-            //     foreach (var path in wssv.WebSocketServices.Paths)
-            //     Console.WriteLine ("- {0}", path);
-            // } 
-            wssv?.Stop();
-            // Console.ReadKey ();
             _ = _webSocketHub.SendAll(JsonConvert.SerializeObject( new SampleData()
             {
                 Id = 5,

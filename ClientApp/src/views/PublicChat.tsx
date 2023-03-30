@@ -21,14 +21,12 @@ const Container = styled.div`
 `;
 interface IPublicChatProps {
 }
-const WS_URL = 'wss://localhost:44465/ws';
 
 const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     const { messageList, wsState, connectWs, closeWs } = useContext(WebSocketContext);
 
     const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
     const [publicChatRoomData, setPublicChatRoomData]= React.useState<Array<any>>()
-    const [socket, setSocket] = useState<any>()
     
 
 
@@ -36,24 +34,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
         console.log('this is the message list', messageList, )
         console.log('This is the web socket state', wsState)
     }, [messageList, wsState]);
-      useEffect(() => {
-        const ws = new WebSocket(WS_URL)
-        ws.onopen = () => {
-            console.log('Connected to WebSocket server');
-          };
-          ws.onerror = () => {
-            console.log('ON ERROR EVENt');
-          };
-        setSocket(ws)
-        console.log(ws)
-        return ()=> {
-            socket?.close()
-        }
-
-      }, [])
-      useEffect(() => {
-        console.log(socket)
-      }, [socket]);   
+ 
 
     // "undefined" means the URL will be computed from the `window.location` object
     // const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:44465'
@@ -73,7 +54,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     },[])
 
     const onEmit = () => {
-        socket.send('Hello, server!');
+        // socket.send('Hello, server!');
     }
 
 
