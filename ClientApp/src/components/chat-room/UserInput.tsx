@@ -53,9 +53,15 @@ const UserInput: React.FunctionComponent<IUserInputProps> = ({userId, roomId}) =
   })
   // const [disableButton, setDisableButton] 
   const onSubmit = (data: any)=> {
+    const {messageInput} = data
+    console.log(messageInput)
 
-    console.log(data)
-    // sendChatRoomMessage()
+
+    messageInput.length > 0 && sendChatRoomMessage({
+      sender_id: userId,
+      room_id: roomId,
+      message: messageInput
+    })
   }
 
   const onErrors = () => {
