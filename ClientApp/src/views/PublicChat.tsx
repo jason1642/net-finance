@@ -26,7 +26,7 @@ interface IPublicChatProps {
 }
 
 const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
-    const { messageList, wsState, connectWs, closeWs, send } = useContext(WebSocketContext);
+    const { messageList, wsState, connectWs, closeWs } = useContext(WebSocketContext);
 
     const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
     const [publicChatRoomData, setPublicChatRoomData]= React.useState<ChatroomTypes>()

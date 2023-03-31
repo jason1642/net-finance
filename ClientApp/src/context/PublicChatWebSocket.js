@@ -8,7 +8,7 @@ const WebSocketConsumer = WebSocketContext.Consumer;
 
 function WebSocketProvider({ children }) {
   const [wsState, setWsState] = useState(BaseConfig.webSocketState.NOTCONNECTED);
-  const [messageList, setMessageList] = useState([]);
+  const [newMessagesList, setNewMessagesList] = useState([]);
 
   const wsRef = useRef();
 
@@ -21,13 +21,13 @@ function WebSocketProvider({ children }) {
       console.log('socket open');
       setWsState(BaseConfig.webSocketState.OPEN);
 
-      wsRef.current.send('')
+      // wsRef.current.send('')
     };
 
     wsRef.current.onmessage = e => {
       console.log('message');
       console.log(JSON.parse(e.data));
-      setMessageList(JSON.parse(e.data));
+      setNewMessagesList(prev=>[...prev,JSON.parse(e.data)]);
     };
 
     // wsRef.current.addEventListener()
@@ -47,7 +47,7 @@ function WebSocketProvider({ children }) {
   };
 
   return (
-    <WebSocketContext.Provider value={{ connectWs, closeWs, wsState, messageList }}>
+    <WebSocketContext.Provider value={{ connectWs, closeWs, wsState, newMessagesList }}>
       {children}
     </WebSocketContext.Provider>
   );
