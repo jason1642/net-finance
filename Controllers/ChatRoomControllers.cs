@@ -122,7 +122,7 @@ namespace net_finance_api.Controllers
     
             SingleMessage newMessage = new SingleMessage
             {
-                _id = ObjectId.GenerateNewId(),
+                _id = ObjectId.GenerateNewId().ToString(),
                 created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 sender_id = messageInput.sender_id,

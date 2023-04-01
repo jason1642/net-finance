@@ -27,13 +27,14 @@ function WebSocketProvider({ children }) {
     wsRef.current.onmessage = e => {
             console.log(JSON.parse(e.data));
 
-      console.log('recieving message: ', JSON.parse(e.data).message);
       
       
       switch(JSON.parse(e.data).type){
         case 'public chat message': 
-          setNewMessagesList(prev=>[...prev, JSON.parse(e.data)])
-          break;
+            console.log('recieving message: ', JSON.parse(e.data).message);
+
+            setNewMessagesList(prev=>[...prev, JSON.parse(e.data)])
+            break;
         // case ''
         default: 
           break;

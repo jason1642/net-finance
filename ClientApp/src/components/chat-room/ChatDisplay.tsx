@@ -71,13 +71,14 @@ const ChatDisplay: React.FunctionComponent<IChatDisplayProps> = ({chatRoomData:{
 
   useEffect(() => {
     scrollToBottom()
+    console.log(messages)
   }, [messages]);
 
 
   return <Container>
     <Title>Displaying up to 100 previous messages</Title>
     {
-        userData && messages.map((item:any)=> <Row key={item.created_at + item.message} isFromCurrentUser={item.sender_id === userData._id}>
+        userData && messages.map((item:any)=> <Row key={item._id} isFromCurrentUser={item.sender_id === userData._id}>
             <ChatBubble dateCreated={item.created_at} isFromCurrentUser={item.sender_id === userData._id} message={item.message}/>
             <Filler />
         </Row>)

@@ -17,7 +17,7 @@ public class SingleMessage
 
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public ObjectId? _id { get; set; }
+    public string? _id { get; set; }
     
 
     [BsonElement("room_id")]
