@@ -22,20 +22,24 @@ const Container = styled.div`
   padding: 1rem;
   max-height: 85vh;
 `;
-interface IPublicChatProps {
+interface IPublicChatProps { 
 }
 
 const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
-    const { messageList, wsState, connectWs, closeWs } = useContext(WebSocketContext);
+    const { newMessagesList, wsState, connectWs, closeWs } = useContext(WebSocketContext);
 
     const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
     const [publicChatRoomData, setPublicChatRoomData]= React.useState<ChatroomTypes>()
 
 
     useEffect(() => {
-        console.log('this is the message list', messageList, )
+        console.log('this is the message list', newMessagesList, )
         console.log('This is the web socket state', wsState)
-    }, [messageList, wsState]);
+        newMessagesList.length > 0 && publicChatRoomData && setPublicChatRoomData((prevState: any) => ({
+           ...prevState,
+           messages: [...prevState.messages, ...newMessagesList]
+        }))
+    }, [newMessagesList, wsState]);
  
 
     // "undefined" means the URL will be computed from the `window.location` object

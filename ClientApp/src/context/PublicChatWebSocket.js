@@ -25,10 +25,10 @@ function WebSocketProvider({ children }) {
     };
 
     wsRef.current.onmessage = e => {
-      console.log('message');
+      console.log('recieving message: ');
       console.log(JSON.parse(e.data));
       setNewMessagesList(prev=>[...prev,JSON.parse(e.data)]);
-    };
+    }; 
 
     // wsRef.current.addEventListener()
 
@@ -50,7 +50,7 @@ function WebSocketProvider({ children }) {
     <WebSocketContext.Provider value={{ connectWs, closeWs, wsState, newMessagesList }}>
       {children}
     </WebSocketContext.Provider>
-  );
+  ); 
 }
 
 WebSocketProvider.propTypes = {
