@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components';
+import { SingleMessageTypes } from '../../types/chatroom-types';
 import { UserAccountTypes } from '../../types/user-account';
 import ChatBubble from './ChatBubble';
 
 
 interface IChatDisplayProps {
-    chatRoomData: any;
+  allMessages: Array<SingleMessageTypes>;
     userData: UserAccountTypes | undefined;
 }
 
@@ -54,7 +55,7 @@ const Filler = styled.div`
 `;
 
 
-const ChatDisplay: React.FunctionComponent<IChatDisplayProps> = ({chatRoomData:{messages}, userData}) => {
+const ChatDisplay: React.FunctionComponent<IChatDisplayProps> = ({allMessages, userData}) => {
   // console.log(messages)
   // console.log(userData && userData._id)
   const bottomElementRef = useRef<HTMLDivElement>(null)
@@ -71,14 +72,14 @@ const ChatDisplay: React.FunctionComponent<IChatDisplayProps> = ({chatRoomData:{
 
   useEffect(() => {
     scrollToBottom()
-    console.log(messages)
-  }, [messages]);
+    console.log(allMessages)
+  }, [allMessages]);
 
 
   return <Container>
     <Title>Displaying up to 100 previous messages</Title>
     {
-        userData && messages.map((item:any)=> <Row key={item._id} isFromCurrentUser={item.sender_id === userData._id}>
+        userData && allMessages.map((item:any)=> <Row key={item._id} isFromCurrentUser={item.sender_id === userData._id}>
             <ChatBubble dateCreated={item.created_at} isFromCurrentUser={item.sender_id === userData._id} message={item.message}/>
             <Filler />
         </Row>)

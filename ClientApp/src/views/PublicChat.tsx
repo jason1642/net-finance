@@ -6,7 +6,7 @@ import ChatHeader from '../components/chat-room/Header';
 import UserInput from '../components/chat-room/UserInput';
 import { userApi } from "../redux/features/userApi";
 import {WebSocketContext, WebSocketConsumer} from '../context/PublicChatWebSocket'
-import { ChatroomTypes } from '../types/chatroom-types';
+import { ChatroomTypes, SingleMessageTypes } from '../types/chatroom-types';
 
 
 const Container = styled.div`
@@ -29,16 +29,13 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     const { newMessagesList, wsState, connectWs, closeWs } = useContext(WebSocketContext);
 
     const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
-    const [publicChatRoomData, setPublicChatRoomData]= React.useState<ChatroomTypes>()
-
+    const [publicChatroomData, setPublicChatroomData] = React.useState<ChatroomTypes>()
+    const allMessages = React.useMemo<Array<SingleMessageTypes>>(()=>[...(publicChatroomData?.messages || []), ...newMessagesList],[newMessagesList, publicChatroomData])
 
     useEffect(() => {
         console.log('this is the message list', newMessagesList, )
         console.log('This is the web socket state', wsState)
-        newMessagesList.length > 0 && publicChatRoomData && setPublicChatRoomData((prevState: any) => ({
-           ...prevState,
-           messages: [...prevState.messages, ...newMessagesList]
-        }))
+        
     }, [newMessagesList, wsState]);
  
 
@@ -46,12 +43,12 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     // const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:44465'
     useEffect(()=>{
         // let newSocket: Socket<ServerToClientEvents, ClientToServerEvents>;
-        getRoomMessages('641ddeb20052e8bc2b1edd6a').then(res=>{
+       getRoomMessages('641ddeb20052e8bc2b1edd6a').then(res=>{
             console.log(res.data)
-            setPublicChatRoomData(res.data)
-            
-
-        })
+            setPublicChatroomData(res.data)
+        }).catch(err=>{
+            console.log(err)
+        })    
         connectWs()
         // WebSocketConsumer()
         return ()=> {
@@ -68,10 +65,10 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
 
   return <Container>
     {
-      publicChatRoomData && userData &&
-       <><ChatHeader  chatRoomData={publicChatRoomData}/>
-    <ChatDisplay userData={userData} chatRoomData={publicChatRoomData}/>
-        <UserInput userId={userData?._id} roomId={publicChatRoomData?._id}/>
+      publicChatroomData && userData &&
+       <><ChatHeader  chatRoomData={publicChatroomData}/>
+    <ChatDisplay  userData={userData} allMessages={allMessages}/>
+        <UserInput userId={userData?._id} roomId={publicChatroomData?._id}/>
 
 </> 
 }
