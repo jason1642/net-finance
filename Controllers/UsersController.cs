@@ -156,7 +156,7 @@ namespace net_finance_api.Controllers
 
             return Ok(user);
         }
-         
+    
 
         [HttpPost("logout")]
         public IActionResult Logout()

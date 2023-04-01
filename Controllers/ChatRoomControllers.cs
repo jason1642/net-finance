@@ -68,13 +68,13 @@ namespace net_finance_api.Controllers
                 return NotFound();
             };
 
-            await _webSocketHub.SendAll(JsonConvert.SerializeObject( new SampleData()
-            {
-                Id = 5,
-                Name = "Anon",
-                Status = true,
-                Message = "A user has connected",
-            }));
+            // await _webSocketHub.SendAll(JsonConvert.SerializeObject( new SampleData()
+            // {
+            //     Id = 5,
+            //     Name = "Anon",
+            //     Status = true,
+            //     Message = "A user has connected",
+            // }));
             Console.WriteLine("Testing before return line");
             // int webSocketPort = 44465; // Change this to the port number of your WebSocket server
             // var activeListeners = IPGlobalProperties.GetIPGlobalProperties().GetActiveTcpListeners();
