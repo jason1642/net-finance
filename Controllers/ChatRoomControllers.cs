@@ -120,7 +120,7 @@ namespace net_finance_api.Controllers
             System.Security.Claims.ClaimsPrincipal currentUser = this.User;
             Console.WriteLine(currentUser);
     
-            var newMessage = new SingleMessage
+            SingleMessage newMessage = new SingleMessage
             {
                 _id = ObjectId.GenerateNewId(),
                 created_at = DateTime.Now,
@@ -129,14 +129,24 @@ namespace net_finance_api.Controllers
                 message = messageInput.message,
                 room_id = room._id
             };
-            
-            newMessage.quanity = "wqewq";
+
+
             var filter = Builders<ChatRoom>.Filter.Eq("_id", ObjectId.Parse(room._id));
             var update = Builders<ChatRoom>.Update.Push(x => x.messages, newMessage);
 
-            _chatRoomService.FilterUpdateChatRoom(filter, update);
+            await _chatRoomService.FilterUpdateChatRoom(filter, update);
 
-            await _webSocketHub.SendAll(JsonConvert.SerializeObject(newMessage));
+            await _webSocketHub.SendAll(JsonConvert.SerializeObject(new {
+                newMessage._id, 
+                newMessage.created_at, 
+                newMessage.updated_at,
+                newMessage.sender_id, 
+                newMessage.message, 
+                newMessage.room_id, 
+                type = "public chat message"
+                
+                }));
+                
 
             return CreatedAtAction(nameof(Get), newMessage);
         }

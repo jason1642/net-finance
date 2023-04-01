@@ -42,6 +42,9 @@ public class SingleMessage
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     [BsonElement("updated_at")]
     public DateTime updated_at { get; set; }
+
+
+
 }
 
 
