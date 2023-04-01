@@ -4,8 +4,7 @@ import Header from './components/header/Header'
 import './App.css';
 import MainRoutes from './routes/main-routes';
 import {  useVerifyUserQuery } from './redux/features/userApi';
-// import { userApi } from './redux/features/userApi';
-import axios from 'axios'
+
 
 const App = () =>{
   const {data, isLoading } = useVerifyUserQuery()
@@ -13,7 +12,6 @@ const App = () =>{
   React.useEffect(()=>{
 
    
-    console.log(data)
 
     // api.get('').then(res=> {
     //   const{ask, bid, symbol, regularMarketChange, regularMarketChangePercent, regularMarketDayHigh, 
@@ -45,20 +43,18 @@ const App = () =>{
     // })
 
 
-
+ 
 
   },[
  
-    data
-  ]) 
-
  
-
+  ]) 
 
   return (  
     <div className="App">
        <Header />
        {/* <main> */}
+
        {!isLoading? 
           <MainRoutes />
           : 

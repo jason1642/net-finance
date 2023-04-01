@@ -120,17 +120,17 @@ namespace net_finance_api.Controllers
             System.Security.Claims.ClaimsPrincipal currentUser = this.User;
             Console.WriteLine(currentUser);
     
-            SingleMessage newMessage = new SingleMessage
+            var newMessage = new SingleMessage
             {
                 _id = ObjectId.GenerateNewId(),
                 created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 sender_id = messageInput.sender_id,
                 message = messageInput.message,
-                room_id = room._id,
-
+                room_id = room._id
             };
-
+            
+            newMessage.quanity = "wqewq";
             var filter = Builders<ChatRoom>.Filter.Eq("_id", ObjectId.Parse(room._id));
             var update = Builders<ChatRoom>.Update.Push(x => x.messages, newMessage);
 

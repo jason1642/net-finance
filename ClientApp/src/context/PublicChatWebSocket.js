@@ -27,7 +27,7 @@ function WebSocketProvider({ children }) {
     wsRef.current.onmessage = e => {
       console.log('recieving message: ');
       console.log(JSON.parse(e.data));
-      setNewMessagesList(prev=>[...prev,JSON.parse(e.data)]);
+      setNewMessagesList(prev=>[...prev, JSON.parse(e.data)]);
     }; 
 
     // wsRef.current.addEventListener()
