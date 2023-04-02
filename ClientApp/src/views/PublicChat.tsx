@@ -5,7 +5,7 @@ import ChatDisplay from '../components/chat-room/ChatDisplay';
 import ChatHeader from '../components/chat-room/Header';
 import UserInput from '../components/chat-room/UserInput';
 import { userApi } from "../redux/features/userApi";
-import {WebSocketContext, WebSocketConsumer} from '../context/PublicChatWebSocket'
+import {WebSocketContext} from '../context/PublicChatWebSocket'
 import { ChatroomTypes, SingleMessageTypes } from '../types/chatroom-types';
 
 
@@ -15,12 +15,11 @@ const Container = styled.div`
   flex: 1 1 auto;
   width: 80%;
   margin: .5rem auto;
-  /* border: 1px solid grey; */
   border-radius: 15px;
   justify-content: space-between;
-  
   padding: 1rem;
   max-height: 85vh;
+  max-width: 1200px;
 `;
 interface IPublicChatProps { 
 }
@@ -29,7 +28,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     const { newMessagesList, wsState, connectWs, closeWs } = useContext(WebSocketContext);
 
     const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
-    const [publicChatroomData, setPublicChatroomData] = React.useState<ChatroomTypes>()
+    const [publicChatroomData, setPublicChatroomData] = useState<ChatroomTypes>()
     const allMessages = React.useMemo<Array<SingleMessageTypes>>(()=>[...(publicChatroomData?.messages || []), ...newMessagesList],[newMessagesList, publicChatroomData])
 
     useEffect(() => {
@@ -39,10 +38,8 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
     }, [newMessagesList, wsState]);
  
 
-    // "undefined" means the URL will be computed from the `window.location` object
-    // const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:44465'
+
     useEffect(()=>{
-        // let newSocket: Socket<ServerToClientEvents, ClientToServerEvents>;
        getRoomMessages('641ddeb20052e8bc2b1edd6a').then(res=>{
             console.log(res.data)
             setPublicChatroomData(res.data)
@@ -50,17 +47,10 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
             console.log(err)
         })    
         connectWs()
-        // WebSocketConsumer()
         return ()=> {
             closeWs();
         }
     },[])
-
-    const onEmit = () => {
-        // socket.send('Hello, server!');
-    }
-
-
 
 
   return <Container>
@@ -72,8 +62,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
 
 </> 
 }
-{/* <div style={{flexGrow:1}}></div> */}
-{/* <button onClick={onEmit}>Emit</button> */}
+
   </Container>;
 };
 
