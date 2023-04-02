@@ -6,9 +6,11 @@ import styled from 'styled-components'
     padding: 1.5rem 3rem;
     font-size: 14px;
     justify-content: space-between; 
+    max-width: 1300px;
+    margin: 0 auto;
   `;
   const Links = styled.a`
-
+    margin: 0px 8px;
   `;
 
 interface ComponentProps {
