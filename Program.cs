@@ -35,7 +35,7 @@ builder.Services.AddCors(options =>
         builder =>
         {
             builder
-                .WithOrigins("https://net-finance.azurewebsites.net", "https://localhost:5187", "https://brave-stone-0d5d9f810.2.azurestaticapps.net", "netfinance.azurewebsites.net", "https://localhost:7108", "wss://localhost:7108", "https://localhost:44465", "https://main.d1pbrktrl7a0d8.amplifyapp.com", "https://localhost:7025")
+                .WithOrigins("https://net-finance.azurewebsites.net", "https://localhost:5187", "https://brave-stone-0d5d9f810.2.azurestaticapps.net", "netfinance.azurewebsites.net", "https://localhost:7108", "wss://localhost:7108", "https://localhost:44465", "https://main.d2o3ilb4ej3w1a.amplifyapp.com/", "https://localhost:7025")
                 //.AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
