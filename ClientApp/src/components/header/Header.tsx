@@ -61,9 +61,9 @@ const Header: React.FunctionComponent<ComponentProps>  = () => {
         </LogoLink>
       {/* {windowWidth <= 768 ? 'X' : <LinkBatch />} */}
       {/* <Menu> */}
-      <StyledLink to=''>HUBS</StyledLink>
-      <StyledLink to=''>CHAT</StyledLink>
-      <StyledLink to=''>COMPARE</StyledLink>
+      {/* <StyledLink to=''>HUBS</StyledLink> */}
+      
+      {/* <StyledLink to=''>COMPARE</StyledLink> */}
       {
       <NavButtons 
            userData={userData}

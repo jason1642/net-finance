@@ -17,7 +17,7 @@ const LinkBatch: React.FunctionComponent<ComponentProps>  = ({userData, isLoadin
   return (
     <>
       <StyledLink to=''>HOME</StyledLink>
-      <StyledLink to=''>PORTFOLIO</StyledLink>
+      <StyledLink to={userData && !isLoading ? '/account' : '/login'}>PORTFOLIO</StyledLink>
       {/* <StyledLink to=''>HUBS</StyledLink> */}
       <StyledLink to='chat'>CHAT</StyledLink>
       {/* <StyledLink to=''>COMPARE</StyledLink> */}
