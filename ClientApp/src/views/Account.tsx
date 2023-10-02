@@ -6,6 +6,7 @@ import PortfolioStatistics from '../components/account/main-sections/PortFolioSt
 import DonutGraphPortfolioOverview from '../components/account/side-panel/DonutGraphPortfolioOverview';
 // import SectorDonutGraph from '../components/account/side-panel/SectorDonutGraph';
 import { userApi } from "../redux/features/userApi";
+import HeatMap from '../components/account/side-panel/HeatMap';
 
 
 interface IAccountProps {
@@ -88,6 +89,8 @@ const Account: React.FunctionComponent<IAccountProps> = (props) => {
 
             {/* <SectorDonutGraph />   */}
             <DonutGraphPortfolioOverview series={[44, 55, 41, 17]} title={'Sector Allocation'}/>
+
+            <HeatMap />
             <DonutGraphPortfolioOverview series={[23, 10, 4, 3]} title={'Asset class allocation'}/>
 
         </SideContainer>

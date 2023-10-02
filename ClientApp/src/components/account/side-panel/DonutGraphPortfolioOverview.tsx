@@ -19,7 +19,6 @@ const Container = styled.div`
   border-bottom: 1px solid #9b9b9b33;
   padding-bottom: 32px;
   align-items: center;
-  /* padding: 10px; */
 `;
 
 const PanelTitle = styled.h2`
@@ -28,8 +27,7 @@ const PanelTitle = styled.h2`
   text-align: left;
   /* margin: 0 auto; */
   padding: 0 1.5rem;
-  /* width: 100%; */
-  /* padding-left: 5rem; */
+
 `;
 
 
