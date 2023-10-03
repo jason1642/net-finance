@@ -25,12 +25,17 @@ export interface UserAccountTypes  {
     symbol: string;
     updated_at: Date;
    }>;
-   portfolio: Array<{
+   portfolio:{
     current_account_value: number;
-    daily_account_value_history: Array<any>;
+    daily_account_value_history: Array<{
+        end_of_day_value: number;
+        date: string;
+        previous_business_day_value: number;
+        previous_business_day_date: string;
+    }>;
     positions: Array<any>;
 
-   }>;   
+   };   
 }
 
 

@@ -4,6 +4,12 @@ import { ApexOptions } from "apexcharts";
 import Chart from 'react-apexcharts'
 
 interface IHeatMapProps {
+    accountValueHistoryData: Array<{
+        end_of_day_value: number;
+        date: string;
+        previous_business_day_value: number;
+        previous_business_day_date: string;
+    }>;
 }
 
 const seriesData = [ 
@@ -67,7 +73,11 @@ xaxis:{
  }
 
 
-const HeatMap: React.FunctionComponent<IHeatMapProps> = (props) => {
+const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryData}) => {
+
+    React.useEffect(()=>{ 
+       console.log(accountValueHistoryData) 
+    },[])
   return (
     <Container>
        {/* <div>

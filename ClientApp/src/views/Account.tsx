@@ -89,8 +89,10 @@ const Account: React.FunctionComponent<IAccountProps> = (props) => {
 
             {/* <SectorDonutGraph />   */}
             <DonutGraphPortfolioOverview series={[44, 55, 41, 17]} title={'Sector Allocation'}/>
-
-            <HeatMap />
+            {
+  userData && 
+            <HeatMap accountValueHistoryData={userData.portfolio.daily_account_value_history} />
+          }
             <DonutGraphPortfolioOverview series={[23, 10, 4, 3]} title={'Asset class allocation'}/>
 
         </SideContainer>
