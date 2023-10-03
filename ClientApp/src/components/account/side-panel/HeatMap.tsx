@@ -30,6 +30,9 @@ const options: ApexOptions = {
 //  dataLabels: {
 //     enabled: false,
 //  },
+xaxis:{
+    // type: ''
+},
   plotOptions: {
     
     heatmap: {
