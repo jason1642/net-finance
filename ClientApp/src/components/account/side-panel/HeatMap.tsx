@@ -39,9 +39,14 @@ const options: ApexOptions = {
 xaxis:{
     // type: ''
 },
+yaxis:{
+    reversed: true,
+},
+
   plotOptions: {
-    
+
     heatmap: {
+        
         radius: 0,
         enableShades: false,
         // useFillColorAsStroke: true,
@@ -49,8 +54,8 @@ xaxis:{
         colorScale: {
            ranges: [
             {
-                from: -30,
-                to: -0.01,
+                from: -300,
+                to: -0.00001,
                 color: '#ff2727',
                 name: 'Loss',
               },
@@ -61,8 +66,8 @@ xaxis:{
                 name: 'No Change',
               },
               {
-                from: 0.01,
-                to: 100,
+                from: 0.00001,
+                to: 400,
                 color: '#04de00',
                 name: 'Gain',
               }
@@ -72,11 +77,12 @@ xaxis:{
   }
  }
 
-
-const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryData}) => {
+// Use accountValueHistoryData to display heatmap of gain and loss days. Will be comparing the value of the end of that trading date with 
+// the value of the end value of the previous trading day that is provided. Need to convert the different into a percentage
+const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryData: dataArray}) => {
 
     React.useEffect(()=>{ 
-       console.log(accountValueHistoryData) 
+       console.log(dataArray) 
     },[])
   return (
     <Container>
@@ -94,32 +100,16 @@ const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryDat
        
        series={[
         {
-            name: "09/18-09/22",
-            data: [{
-              x: 'W1',
-              y: 22
-            }, {
-              x: 'W2',
-              y: 29
-            }, {
-              x: 'W3',
-              y: 13
-            }, {
-              x: 'W4',
-              y: -30
-            }, {
-                x: 'W4',
-                y: 43
-              }, {
-                x: 'W4',
-                y: 43
-              }, {
-                x: 'W4',
-                y: 43
-              }]
+            name: `${dataArray[0].date.slice(0,5)} - ${dataArray[6].date.slice(0,5)}`,
+            data: dataArray.slice(0,6).map(ele=>{
+                return ({
+                    x:'1',
+                    y:'2'
+                })
+            })
           },
           {
-            name: "Series 2",
+            name: `${dataArray[7].date.slice(0,5)} - ${dataArray[13].date.slice(0,5)}`,
             data: [{
               x: 'W1',
               y: -1
