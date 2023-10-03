@@ -274,7 +274,31 @@ namespace net_finance_api.Controllers
             return Ok(user);
         }
 
+ // Post: api/Users/CreateAccountValueHistoryItem
+        [HttpPost("CreateAccountValueHistoryItem")]
+        public async Task<IActionResult> createAccountValueHistoryItem([FromBody] DailyAccountValueHistory historyItemData) 
+        {
+            if (!(Request.Cookies.TryGetValue("X-Username", out var username) && Request.Cookies.TryGetValue("X-Refresh-Token", out var refreshToken)))
+                return BadRequest();
+            Users? user = await _usersService.verifyToken(username, refreshToken);
+            if (user == null) return BadRequest();
 
+      
+            var filter = Builders<Users>.Filter.Eq("_id", ObjectId.Parse(user._id));
+
+              var update = Builders<Users>.Update.Push(x => x.portfolio.daily_account_value_history, new DailyAccountValueHistory
+            {
+                end_of_day_value = historyItemData.end_of_day_value,
+                date = historyItemData.date,
+                previous_business_day_value = historyItemData.previous_business_day_value,
+                previous_business_day_date = historyItemData.previous_business_day_date
+            });
+
+            _usersService.FilterUpdateUser(filter, update);
+            Console.WriteLine(user);
+            
+            return Ok(user);
+        }
         //private bool UsersExists(long id)
         //{
         //    return (_usersService.Users?.Any(e => e.Id == id)).GetValueOrDefault();

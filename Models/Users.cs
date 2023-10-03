@@ -41,9 +41,9 @@ public class Positions
 
 public class DailyAccountValueHistory
 {
-    
+
     [BsonElement("end_of_day_value")]
-    public int current_value { get; set; }
+    public int end_of_day_value { get; set; }
 
     [BsonElement("date")]
     public string? date { get; set; }
@@ -70,8 +70,8 @@ public class Portfolio
     [BsonElement("current_account_value")]
     public int current_account_value { get; set; }
 
-    [BsonElement("account_value_history")]
-    public DailyAccountValueHistory[]? daily_account_value_history { get; set; }
+    [BsonElement("daily_account_value_history")]
+    public DailyAccountValueHistory[] daily_account_value_history { get; set; }
 
     [BsonElement("positions")]
     public Positions[] positions { get; set;}
@@ -120,19 +120,12 @@ public class OrderHistory
     [BsonElement("status")]
     public string? status { get; set;}
 
-
-
 }
 
 
 public class Users
 {
    
-    // public Users ()
-    // {
-        
-        
-    // }
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? _id { get; set; }
