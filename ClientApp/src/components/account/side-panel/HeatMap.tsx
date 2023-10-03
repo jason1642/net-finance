@@ -6,6 +6,15 @@ import Chart from 'react-apexcharts'
 interface IHeatMapProps {
 }
 
+const seriesData = [ 
+    {
+        name: "09/05/2023",
+        x: 'w1',
+        y: 32
+    }
+]
+
+
 const Container = styled.div`
   display:flex;
   width: 100%;
@@ -69,9 +78,10 @@ const HeatMap: React.FunctionComponent<IHeatMapProps> = (props) => {
        options={{
            ...options
        }}
+       
        series={[
         {
-            name: "Series 1",
+            name: "09/18-09/22",
             data: [{
               x: 'W1',
               y: 22
@@ -123,7 +133,7 @@ const HeatMap: React.FunctionComponent<IHeatMapProps> = (props) => {
           ]}
           type={'heatmap'}
         //   width={750}
-        //   height={340}
+          height={150}
           style={{borderWidth: 0}}
       />
     </Container>
