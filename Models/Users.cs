@@ -34,13 +34,19 @@ public class Positions
 
 }
 
-  
+//   daily account value history
+// This is used to track various things, for example tracking which days your portfolio gained or lost value
+// previous_business_day_value is used to compare the current items value and date to calculate a change percentage between those two days
+// End of day value is used instead of value because it is either the current day and the latest item to be created or a previous trading day that has been completed.
 
 public class DailyAccountValueHistory
 {
-
-    [BsonElement("current_value")]
+    
+    [BsonElement("end_of_day_value")]
     public int current_value { get; set; }
+
+    [BsonElement("date")]
+    public string? date { get; set; }
 
     [BsonElement("previous_business_day_value")]
     public int previous_business_day_value { get; set; }
