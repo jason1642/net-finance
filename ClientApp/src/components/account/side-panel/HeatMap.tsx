@@ -18,13 +18,7 @@ interface IHeatMapProps {
     }>;
 }
 
-const seriesData = [ 
-    {
-        name: "09/05/2023",
-        x: 'w1',
-        y: 32
-    }
-]
+
 
 
 const Container = styled.div`
@@ -43,16 +37,39 @@ const options: ApexOptions = {
 //     enabled: false,
 //  },
 xaxis:{
-    // type: ''
+    labels: {
+        show: false
+    },
+     axisTicks: {
+        show: false,
+     },
+     axisBorder: {
+        show: false,
+     },
+   
 },
 yaxis:{
     reversed: true,
+    axisBorder: {
+        show: false,
+
+    },
+    axisTicks: {
+        show: false,
+    },
+    labels: {
+        show: true,
+        style: {
+            fontSize: '.7em'
+        }
+    }
+  
 },
 
   plotOptions: {
 
     heatmap: {
-        
+    
         radius: 0,
         enableShades: false,
         // useFillColorAsStroke: true,
@@ -118,35 +135,22 @@ const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryDat
             })
           },
           {
-            name: `${dataArray[7].date.slice(0,5)} - ${dataArray[13].date.slice(0,5)}`,
-            data: [{
-              x: 'W1',
-              y: -1
-            }, {
-              x: 'W2',
-              y: 1
-            }, {
-              x: 'W3',
-              y: 0
-            }, {
-              x: 'W4',
-              y: 43
-            }, {
-                x: 'W4',
-                y: 43
-              }, {
-                x: 'W4',
-                y: 43
-              }, {
-                x: 'W4',
-                y: 0
-              }]
+            name: `${dataArray[7].date.slice(0,5)}-${dataArray[13].date.slice(0,5)}`,
+            data: dataArray.slice(7,13).map(ele=>{
+                return ({
+                    x:'2',
+                    // Change percentage formula: 
+                    // [(new number - old number) / old number ] * 100%
+                    y: calculateChangePercentage(ele.previous_business_day_value, ele.end_of_day_value),
+                      
+                })
+            })
           }
           ]}
           type={'heatmap'}
-        //   width={750}
-          height={150}
-          style={{borderWidth: 0}}
+          width={'100%'}
+          height={128}
+        //   style={{borderWidth: 0}}
       />
     </Container>
   );
