@@ -3,6 +3,12 @@ import styled from 'styled-components';
 import { ApexOptions } from "apexcharts";
 import Chart from 'react-apexcharts'
 
+
+const calculateChangePercentage = (oldNumber:number, newNumber: number)=> {
+    return (((newNumber - oldNumber) / oldNumber) * 100).toFixed(1)
+}
+
+
 interface IHeatMapProps {
     accountValueHistoryData: Array<{
         end_of_day_value: number;
@@ -100,11 +106,14 @@ const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryDat
        
        series={[
         {
-            name: `${dataArray[0].date.slice(0,5)} - ${dataArray[6].date.slice(0,5)}`,
+            name: `${dataArray[0].date.slice(0,5)}-${dataArray[6].date.slice(0,5)}`,
             data: dataArray.slice(0,6).map(ele=>{
                 return ({
                     x:'1',
-                    y:'2'
+                    // Change percentage formula: 
+                    // [(new number - old number) / old number ] * 100%
+                    y: calculateChangePercentage(ele.previous_business_day_value, ele.end_of_day_value),
+                      
                 })
             })
           },
