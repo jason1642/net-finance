@@ -49,7 +49,20 @@ const options: ApexOptions = {
     },
     tooltip: {
         followCursor: false,
-        theme: 'dark'
+        theme: 'dark',
+        y: {
+            title:{
+                formatter:  ()=>''
+            },
+            formatter: (value, {w, seriesIndex, dataPointIndex, series})=>{
+                const meta = w.config.series[seriesIndex].data[dataPointIndex].meta
+                // console.log(value, w.config.series[seriesIndex].data[dataPointIndex].meta)
+                return <p>
+                    <span>{meta.date}: </span>
+                    {` $${meta.end_of_day_value.toFixed(2)}`}
+                </p>
+            }
+        }
     },
 
     yaxis: {
@@ -135,6 +148,7 @@ const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryDat
             data: dataArray.slice(0,6).map(ele=>{
                 return ({
                     x:ele.date,
+                    meta: ele,
                     // Change percentage formula: 
                     // [(new number - old number) / old number ] * 100%
                     y: calculateChangePercentage(ele.previous_business_day_value, ele.end_of_day_value), 
@@ -146,6 +160,7 @@ const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryDat
             data: dataArray.slice(7,13).map(ele=>{
                 return ({
                     x:ele.date,
+                    meta: ele,
                     // Change percentage formula: 
                     // [(new number - old number) / old number ] * 100%
                     y: calculateChangePercentage(ele.previous_business_day_value, ele.end_of_day_value),
