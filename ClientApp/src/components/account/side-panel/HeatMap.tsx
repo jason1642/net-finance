@@ -3,11 +3,9 @@ import styled from 'styled-components';
 import { ApexOptions } from "apexcharts";
 import Chart from 'react-apexcharts'
 
-
 const calculateChangePercentage = (oldNumber:number, newNumber: number)=> {
     return (((newNumber - oldNumber) / oldNumber) * 100).toFixed(1)
 }
-
 
 interface IHeatMapProps {
     accountValueHistoryData: Array<{
@@ -18,87 +16,101 @@ interface IHeatMapProps {
     }>;
 }
 
-
-
-
 const Container = styled.div`
   display:flex;
   width: 100%;
 `;
 
 const options: ApexOptions = {
-  chart: {
-    background: 'white',
-    toolbar: {
-        show: false
-    }
-  },
-//  dataLabels: {
-//     enabled: false,
-//  },
-xaxis:{
-    labels: {
-        show: false
+    grid: {
+        show: false,
     },
-     axisTicks: {
-        show: false,
-     },
-     axisBorder: {
-        show: false,
-     },
-   
-},
-yaxis:{
-    reversed: true,
-    axisBorder: {
-        show: false,
+    chart: {
+        toolbar: {
+            show: false
+        }
+    },
+    dataLabels: {
+        enabled: true,
+    },
+    xaxis: {
+        labels: {
+            show: false
+        },
+        axisTicks: {
+            show: false,
+        },
+        axisBorder: {
+            show: false,
+        },
+        tooltip: {
+            enabled: false
+        }
+    },
+    tooltip: {
+        followCursor: false,
+        theme: 'dark'
+    },
 
+    yaxis: {
+        
+        reversed: true,
+        axisBorder: {
+            show: false,
+        },
+        axisTicks: {
+            show: false,
+        },
+        labels: {
+            show: true,
+            maxWidth: 60,
+            style: {
+                fontSize: '.7em',
+                colors: ['white']
+            }
+        }     
     },
-    axisTicks: {
-        show: false,
+    legend: {
+        position: 'top',
+        labels: {
+            colors: 'white',
+        },
     },
-    labels: {
-        show: true,
-        style: {
-            fontSize: '.7em'
+   stroke:{
+    show: true,
+    width: 1,
+    colors: ['#ffffffb8']
+   },
+    plotOptions: {
+        heatmap: {
+            radius: 0,
+            enableShades: false,
+            // useFillColorAsStroke: true,            
+            colorScale: {
+                ranges: [
+                    {
+                        from: -300,
+                        to: -0.00001,
+                        color: '#f6560b',
+                        name: 'Loss',
+                    },
+                    {
+                        from: 0,
+                        to: 0,
+                        color: '#5e5e5e',
+                        name: 'No Change',
+                    },
+                    {
+                        from: 0.00001,
+                        to: 400,
+                        color: '#00c60a',
+                        name: 'Gain',
+                    }
+                ]
+            }
         }
     }
-  
-},
-
-  plotOptions: {
-
-    heatmap: {
-    
-        radius: 0,
-        enableShades: false,
-        // useFillColorAsStroke: true,
-        // shadeIntensity: 0,
-        colorScale: {
-           ranges: [
-            {
-                from: -300,
-                to: -0.00001,
-                color: '#ff2727',
-                name: 'Loss',
-              },
-              {
-                from: 0,
-                to: 0,
-                color: '#5e5e5e',
-                name: 'No Change',
-              },
-              {
-                from: 0.00001,
-                to: 400,
-                color: '#04de00',
-                name: 'Gain',
-              }
-           ] 
-        }
-    }
-  }
- }
+}
 
 // Use accountValueHistoryData to display heatmap of gain and loss days. Will be comparing the value of the end of that trading date with 
 // the value of the end value of the previous trading day that is provided. Need to convert the different into a percentage
@@ -116,21 +128,16 @@ const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryDat
         </div> */}
 
 <Chart
-       
-       options={{
-           ...options
-       }}
-       
+       options={{...options}}
        series={[
         {
             name: `${dataArray[0].date.slice(0,5)}-${dataArray[6].date.slice(0,5)}`,
             data: dataArray.slice(0,6).map(ele=>{
                 return ({
-                    x:'1',
+                    x:ele.date,
                     // Change percentage formula: 
                     // [(new number - old number) / old number ] * 100%
-                    y: calculateChangePercentage(ele.previous_business_day_value, ele.end_of_day_value),
-                      
+                    y: calculateChangePercentage(ele.previous_business_day_value, ele.end_of_day_value), 
                 })
             })
           },
@@ -138,11 +145,10 @@ const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryDat
             name: `${dataArray[7].date.slice(0,5)}-${dataArray[13].date.slice(0,5)}`,
             data: dataArray.slice(7,13).map(ele=>{
                 return ({
-                    x:'2',
+                    x:ele.date,
                     // Change percentage formula: 
                     // [(new number - old number) / old number ] * 100%
                     y: calculateChangePercentage(ele.previous_business_day_value, ele.end_of_day_value),
-                      
                 })
             })
           }
@@ -150,7 +156,6 @@ const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryDat
           type={'heatmap'}
           width={'100%'}
           height={128}
-        //   style={{borderWidth: 0}}
       />
     </Container>
   );
