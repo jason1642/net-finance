@@ -42,6 +42,7 @@ const ValueChangeToday = styled.div`
 
 const options: ApexOptions = {
     chart: {
+        type: 'line',
      id: 'stockLineGraph',
      animations: {
          enabled: true,
@@ -161,13 +162,13 @@ const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = ({sy
 
 
 
-    React.useEffect(()=>{
+    // React.useEffect(()=>{
         // fetchDailyStockDataSeries(symbol).then(res=>{
         //     setStockDailyData(res.data)
         //     setStockDates(Object.keys(res.data['Time Series (Daily)']).slice(0, 12).reverse())
         //     console.log(stockDailyData, stockDates)
         // })
-    },[])
+    // },[])
 
 
     
@@ -181,11 +182,10 @@ const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = ({sy
                 +5.17 (2.32%) 
                 <span style={{color: 'grey'}}>TODAY</span>
             </ValueChangeToday>
-            <div style={{fontSize: '.4em'}}>Past 4 months</div>
+            <div style={{fontSize: '.4em'}}>Past 4 months:</div>
         </Header>
   {
         stockDailyData && stockDates && <Chart
-       
         options={{
             ...options,
             xaxis: {
@@ -195,17 +195,16 @@ const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = ({sy
            }
         }}
         series={[
-            
             {
-                name: 'Open Price',
-                data: stockDates.map((item: string)=>Number(stockDailyData['Time Series (Daily)'][item]['1. open']).toFixed(2))
+                name: 'Open Value',
+                data: stockDates.map((item: string)=>(stockDailyData['Time Series (Daily)'][item]['1. open'] * 5).toFixed(2))
             },
             {
-                name: 'Close Price',
-                data: stockDates.map((item: string)=>stockDailyData['Time Series (Daily)'][item]['4. close'])
+                name: 'Close Value',
+                data: stockDates.map((item: string)=>(stockDailyData['Time Series (Daily)'][item]['4. close'] * 5).toFixed(2))
             }
            ]}
-           type={'line'}
+         
            width={750}
            height={340}
            style={{borderWidth: 0}}
