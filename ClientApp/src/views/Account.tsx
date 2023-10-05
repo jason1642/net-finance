@@ -18,7 +18,10 @@ const Container = styled.div`
   flex-direction: column;
   color: white;
   padding: 0 1rem;
+  margin: 0 auto;
   margin-bottom: 3rem;
+  max-width: 1400px;
+  
 `;
 const Title = styled.div`
   display: flex;
@@ -40,8 +43,10 @@ const SideContainer = styled.div`
   flex-direction: column;
   flex-grow: 3;
   border: 1px solid #9b9b9b33;
-  border-top: 0px solid black;
+  border-top: 0;
   z-index: 2;
+  border-right: 0;
+  border-bottom: 0;
   /* border: 1px solid green; */
 `;
 

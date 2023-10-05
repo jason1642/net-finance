@@ -18,7 +18,11 @@ interface IHeatMapProps {
 
 const Container = styled.div`
   display:flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  min-height: 215px;
+  border-top: 1px solid #9b9b9b33;
 `;
 
 const options: ApexOptions = {
@@ -32,6 +36,13 @@ const options: ApexOptions = {
     },
     dataLabels: {
         enabled: true,
+        formatter: (val)=> {
+            return `${val}%`
+        },
+        style:{
+            fontSize: '11px',
+            fontWeight: '500'
+        },
     },
     xaxis: {
         labels: {
@@ -46,21 +57,25 @@ const options: ApexOptions = {
         tooltip: {
             enabled: false
         }
-    }, 
+    },
     tooltip: {
         followCursor: false,
         theme: 'dark',
+        // fillSeriesColor: true,
+        style:{
+            fontSize: '13px'
+        },
         y: {
             title:{
-                formatter:  ()=>''
+                formatter: (seriesName) => {
+                    // console.log(seriesName)
+                    return ''
+                }
             },
             formatter: (value, {w, seriesIndex, dataPointIndex, series})=>{
                 const meta = w.config.series[seriesIndex].data[dataPointIndex].meta
                 // console.log(value, w.config.series[seriesIndex].data[dataPointIndex].meta)
-                return <p>
-                    <span>{meta.date}: </span>
-                    {` $${meta.end_of_day_value.toFixed(2)}`}
-                </p>
+                return`${meta.date.slice(0,5)} - $${meta.end_of_day_value.toFixed(2)}`
             }
         }
     },
@@ -76,7 +91,7 @@ const options: ApexOptions = {
         },
         labels: {
             show: true,
-            maxWidth: 60,
+            maxWidth: 63,
             style: {
                 fontSize: '.7em',
                 colors: ['white']
@@ -92,7 +107,7 @@ const options: ApexOptions = {
    stroke:{
     show: true,
     width: 1,
-    colors: ['#ffffffb8']
+    colors: ['#32323ead']
    },
     plotOptions: {
         heatmap: {
@@ -144,8 +159,8 @@ const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryDat
        options={{...options}}
        series={[
         {
-            name: `${dataArray[0].date.slice(0,5)}-${dataArray[6].date.slice(0,5)}`,
-            data: dataArray.slice(0,6).map(ele=>{
+            name: `${dataArray[0].date.slice(0,5)}-${dataArray[4].date.slice(0,5)}`,
+            data: dataArray.slice(0,5).map(ele=>{
                 return ({
                     x:ele.date,
                     meta: ele,
@@ -156,8 +171,20 @@ const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryDat
             })
           },
           {
-            name: `${dataArray[7].date.slice(0,5)}-${dataArray[13].date.slice(0,5)}`,
-            data: dataArray.slice(7,13).map(ele=>{
+            name: `${dataArray[5].date.slice(0,5)}-${dataArray[10].date.slice(0,5)}`,
+            data: dataArray.slice(5,10).map(ele=>{
+                return ({
+                    x:ele.date,
+                    meta: ele,
+                    // Change percentage formula: 
+                    // [(new number - old number) / old number ] * 100%
+                    y: calculateChangePercentage(ele.previous_business_day_value, ele.end_of_day_value),
+                })
+            })
+          },
+          {
+            name: `${dataArray[10].date.slice(0,5)}-${dataArray[14].date.slice(0,5)}`,
+            data: dataArray.slice(10,15).map(ele=>{
                 return ({
                     x:ele.date,
                     meta: ele,
@@ -170,7 +197,7 @@ const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryDat
           ]}
           type={'heatmap'}
           width={'100%'}
-          height={128}
+          height={194}
       />
     </Container>
   );

@@ -16,7 +16,12 @@ const Container = styled.div`
   width: 100%;
   flex-direction: column;
   justify-content: center;
-  border-bottom: 1px solid #9b9b9b33;
+  border-bottom: 0;
+  border-top: 1px solid #9b9b9b33;
+  &:nth-child(1) {
+    border-top: 0;
+
+    }
   padding-bottom: 32px;
   align-items: center;
 `;
@@ -29,12 +34,7 @@ const PanelTitle = styled.h2`
   padding: 0 1.5rem;
 
 `;
-
-
-
-
-
-
+ 
 
 const options: ApexOptions = {
     chart: {
