@@ -1,13 +1,47 @@
 import { Button } from '@mui/material';
 import React from 'react';
-import {StyledLink} from './Header'
 import { removeTokensLogout } from '../../api-requests/user-requests';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
+import styled from 'styled-components'
 
 interface ComponentProps {
   userData: any;
   isLoading: boolean;
 }
+
+ const StyledLink = styled(Link)`
+color: white;
+display: block;
+font-size: 12px;
+font-weight: 500;
+text-decoration: none;
+padding: 6px 0px;
+font-family: Helvetica, Arial, sans-serif;
+&:hover {
+border-bottom: 1px solid #52e3c2;
+margin-top: 1px;
+}
+`;
+
+
+const RightSideWrapper = styled.div`
+  display: flex;
+  padding: 0 10px;
+  gap: .9em;
+`;
+const RightSideStyledLink = styled(Link)`
+color: white;
+display: block;
+font-size: .85em;
+font-weight: 500;
+text-decoration: none;
+padding: 6px 0px;
+border-bottom: 1px solid transparent;
+font-family: Helvetica, Arial, sans-serif;
+&:hover {
+border-bottom: 1px solid #52e3c2;
+}
+`;
 
 const LinkBatch: React.FunctionComponent<ComponentProps>  = ({userData, isLoading,}) => {
   const navigate = useNavigate()
@@ -23,8 +57,12 @@ const LinkBatch: React.FunctionComponent<ComponentProps>  = ({userData, isLoadin
       {/* <StyledLink to=''>COMPARE</StyledLink> */}
       {/* <StyledLink to=''>SCREENER</StyledLink> */}
       <div style={{ flexGrow: .7, display: 'flex' }}></div>
-      <StyledLink to=''>HELP</StyledLink>
-      {userData && !isLoading && <StyledLink to='account'>Account</StyledLink>}
+     
+      <RightSideWrapper>
+          <RightSideStyledLink to=''>Help</RightSideStyledLink>
+      {userData && !isLoading && <RightSideStyledLink to='account'>Account</RightSideStyledLink>}
+      </RightSideWrapper>
+    
 
       {
 

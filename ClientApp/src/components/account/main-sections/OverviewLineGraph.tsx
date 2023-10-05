@@ -23,10 +23,23 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
-  display: flex;    
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  font-size: 2em;
+`;
+const PortfolioValueNumber = styled.div`
+  display: flex;
+  margin-top: .5em;
+  font-size: 1.25em;
+`;
+
+const ValueChangeToday = styled.div`
+  color: #21ce9a;
+  font-size: .45em;
 
 `;
+
 const options: ApexOptions = {
     chart: {
      id: 'stockLineGraph',
@@ -163,7 +176,12 @@ const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = ({sy
   return (
     <Container>
         <Header>
-            1M return: 0.23% vs. S&P500: $0.28
+            <PortfolioValueNumber>$1,196.15</PortfolioValueNumber>
+            <ValueChangeToday>
+                +5.17 (2.32%) 
+                <span style={{color: 'grey'}}>TODAY</span>
+            </ValueChangeToday>
+            <div style={{fontSize: '.4em'}}>Past 4 months</div>
         </Header>
   {
         stockDailyData && stockDates && <Chart

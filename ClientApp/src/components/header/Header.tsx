@@ -9,7 +9,7 @@ const Container = styled.header`
     justify-content: space-between;
     align-items: center;
     height: 31px;
-    padding: 20px 1.5rem 1rem 2rem;
+    padding: 13px 1.5rem 1rem 2rem;
     background-color: #32323e;
   `;
 
@@ -18,19 +18,7 @@ const Container = styled.header`
   //   width: auto;
   // `;
 
-  export const StyledLink = styled(Link)`
-    color: white;
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    text-decoration: none;
-    padding: 6px 0px;
-    font-family: Helvetica, Arial, sans-serif;
-    &:hover {
-    border-bottom: 1px solid #52e3c2;
-    margin-top: 1px;
-    }
-    `;
+ 
 interface ComponentProps {
 
 }

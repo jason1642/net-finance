@@ -18,12 +18,22 @@ interface IHeatMapProps {
 
 const Container = styled.div`
   display:flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   min-height: 215px;
   border-top: 1px solid #9b9b9b33;
 `;
+
+const ModuleTitle = styled.h2`
+  display:flex;
+  font-weight: 300;
+  text-align: left;
+  margin-bottom: .33em;
+  padding: 0 1.5rem;
+
+`
 
 const options: ApexOptions = {
     grid: {
@@ -154,6 +164,10 @@ const HeatMap: React.FunctionComponent<IHeatMapProps> = ({accountValueHistoryDat
         information: Percent change, number change, color red square if it went down, green if up, grey if neutral. You can hover or click on the legend labels to highlight the days the correspond to that label. This 
         heatmap will show the last x amount of weeks.
         </div> */}
+
+        <ModuleTitle>
+            Portfolio Value History
+        </ModuleTitle>
 
 <Chart
        options={{...options}}
