@@ -46,7 +46,7 @@ const options: ApexOptions = {
         tooltip: {
             enabled: false
         }
-    },
+    }, 
     tooltip: {
         followCursor: false,
         theme: 'dark',
