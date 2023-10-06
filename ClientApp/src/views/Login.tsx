@@ -116,12 +116,12 @@ const Login: React.FunctionComponent<ILoginProps> = () => {
         <Input
             {...register('username')}
             placeholder={'Username or email'}
-            
+            defaultValue={'anon'}
         />
         <Input
             {...register('password')}
             type='password'
-         
+            defaultValue={'password'}
             placeholder={'Password'}
         />
 
