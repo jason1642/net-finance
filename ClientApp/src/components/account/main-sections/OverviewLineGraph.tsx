@@ -195,7 +195,7 @@ const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = ({sy
            }
         }}
         series={[
-            {
+            { 
                 name: 'Open Value',
                 data: stockDates.map((item: string)=>(stockDailyData['Time Series (Daily)'][item]['1. open'] * 5).toFixed(2))
             },
