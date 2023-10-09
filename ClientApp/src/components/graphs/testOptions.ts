@@ -6,7 +6,7 @@ interface StockOptionsTypes {
   }
 }
 
-
+ 
 export const stockTimeData: StockOptionsTypes = {
   "Meta Data": {
     "1. Information": "Daily Time Series with Splits and Dividend Events",
