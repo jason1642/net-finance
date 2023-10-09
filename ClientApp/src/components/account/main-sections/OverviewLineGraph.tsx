@@ -42,7 +42,6 @@ const ValueChangeToday = styled.div`
 
 const options: ApexOptions = {
     chart: {
-        type: 'line',
      id: 'stockLineGraph',
      animations: {
          enabled: true,
@@ -153,7 +152,7 @@ markers: {
 }
  
  }
-const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = ({symbol}) => {
+const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = ({}) => {
 
     // const [stockDailyData, setStockDailyData] = React.useState<any>(stockTimeData)
     const stockDailyData = stockTimeData
@@ -184,32 +183,32 @@ const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = ({sy
             </ValueChangeToday>
             <div style={{fontSize: '.4em'}}>Past 4 months:</div>
         </Header>
-  {
-        stockDailyData && stockDates && <Chart
-        options={{
-            ...options,
-            xaxis: {
-                labels: {show: false},
-                axisBorder: {show: false},
-            categories: stockDates.map((item: string)=>item.split('-').slice(1).join('/'))
-           }
-        }}
-        series={[
-            { 
-                name: 'Open Value',
-                data: stockDates.map((item: string)=>(stockDailyData['Time Series (Daily)'][item]['1. open'] * 5).toFixed(2))
-            },
-            {
-                name: 'Close Value',
-                data: stockDates.map((item: string)=>(stockDailyData['Time Series (Daily)'][item]['4. close'] * 5).toFixed(2))
-            }
-           ]}
-         
-           width={750}
-           height={340}
-           style={{borderWidth: 0}}
-       />
-}
+          {
+              stockDailyData && stockDates &&
+              <Chart
+                  options={{
+                      ...options,
+                      xaxis: {
+                          labels: { show: false },
+                          axisBorder: { show: false },
+                          categories: stockDates.map((item: string) => item.split('-').slice(1).join('/'))
+                      }
+                  }}
+                  series={[
+                      {
+                          name: 'Open Value',
+                          data: stockDates.map((item: string) => +(stockDailyData['Time Series (Daily)'][item]['1. open'] * 5).toFixed(2))
+                      },
+                      {
+                          name: 'Close Value',
+                          data: stockDates.map((item: string) => +(stockDailyData['Time Series (Daily)'][item]['4. close'] * 5).toFixed(2))
+                      }
+                  ]}
+                  width={750}
+                  height={340}
+                //   style={{ borderWidth: 0 }}
+              />
+          }
     </Container>
   );
 };
