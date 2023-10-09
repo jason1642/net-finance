@@ -8,11 +8,12 @@ import {Tooltip }from 'react-tooltip';
     display: flex;
     align-items: center;
     border-radius: 20px;
-    padding: 1em;
-    padding-left: 3rem;
+    padding: .9em;
+    padding-left: 2.8em;
     background-color: #393945; 
-    margin-bottom: 1.2rem;
-    margin-top: 14px;
+    margin: 14px 0 1.2rem 1rem;
+    width: calc(100% - (3.7em + 2rem));
+    align-self: flex-start;
     &:hover{
       background-color:#40424f;
     }

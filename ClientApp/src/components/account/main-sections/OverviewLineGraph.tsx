@@ -37,6 +37,7 @@ const PortfolioValueNumber = styled.div`
 const ValueChangeToday = styled.div`
   color: #21ce9a;
   font-size: .45em;
+  margin: 2px 0 2px 0;
 
 `;
 
@@ -179,7 +180,7 @@ const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = ({})
             <PortfolioValueNumber>$1,196.15</PortfolioValueNumber>
             <ValueChangeToday>
                 +5.17 (2.32%) 
-                <span style={{color: 'grey'}}>TODAY</span>
+                <span style={{color: '#919191'}}>TODAY</span>
             </ValueChangeToday>
             <div style={{fontSize: '.4em'}}>Past 4 months:</div>
         </Header>

@@ -6,20 +6,27 @@ import Feed from '../components/home-page/RightColumn/Feed';
 import LinkPortfolioNotification from '../components/home-page/RightColumn/LinkPortfolioNotification';
 import { userApi } from '../redux/features/userApi';
 import PortfolioInfo from '../components/home-page/RightColumn/PortfolioInfo';
-
+import HomeSearchBar from '../components/search-bar/HomeSearchBar';
 const Container = styled.div`
       display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
+    align-self: center;
     margin-bottom: 1rem;
     margin-top: 29px;
     height: auto;
+    max-width: 1500px;
     /* gap: 15px; */
     @media (max-width: 768px) {
       flex-direction: column;
   }
 `;
-
+const Wrapper = styled.div`
+  display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-self: center;
+`;
 const LeftColumnContainer = styled.div`
 display: flex;
 flex-direction: column;
@@ -49,9 +56,9 @@ const HomePage: React.FunctionComponent<ComponentProps> = () => {
 
   return (
     <Container>
-
-
-          <LeftColumnContainer>
+<HomeSearchBar/>
+    <Wrapper>
+           <LeftColumnContainer>
       <MarketOverview />
       <HomeMyStocksContainer />
     </LeftColumnContainer>
@@ -67,6 +74,8 @@ const HomePage: React.FunctionComponent<ComponentProps> = () => {
       }
       <Feed />
       </RightColumnContainer>
+    </Wrapper>
+     
     </Container>
   );
 }

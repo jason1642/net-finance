@@ -39,7 +39,7 @@ const MainRoutes = () => {
         {
             path: '/',
             // Important: If user is not logged in, redirect to Login page
-            element: <><HomeSearchBar/><HomePage /></>
+            element: <><HomePage /></>
         },
         {
             path: '*',

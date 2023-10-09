@@ -45,7 +45,7 @@ const Header: React.FunctionComponent<ComponentProps>  = () => {
     <Container>
       <LogoLink to='/'>
         {/* <SiteLogo src={siteLogo} alt='Site logo' /> */}
-          .Net Finance |
+          .Net Finance
         </LogoLink>
       {/* {windowWidth <= 768 ? 'X' : <LinkBatch />} */}
       {/* <Menu> */}
