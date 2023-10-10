@@ -21,6 +21,8 @@ const StockDetailPage: React.FunctionComponent<ComponentProps> = () => {
   const Container = styled.div`
     display: flex;
     width: 100%;
+    align-self: center;
+    max-width: 1500px;
     justify-content: space-between;
     @media (max-width: 768px) {
     flex-direction: column;

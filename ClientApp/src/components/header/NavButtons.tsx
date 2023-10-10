@@ -3,25 +3,13 @@ import React from 'react';
 import { removeTokensLogout } from '../../api-requests/user-requests';
 import { useNavigate, Link} from 'react-router-dom';
 import styled from 'styled-components'
-
+import { StyledLink } from './Header';
 interface ComponentProps {
   userData: any;
   isLoading: boolean;
 }
 
- const StyledLink = styled(Link)`
-color: white;
-display: block;
-font-size: 12px;
-font-weight: 500;
-text-decoration: none;
-padding: 6px 0px;
-font-family: Helvetica, Arial, sans-serif;
-&:hover {
-border-bottom: 1px solid #52e3c2;
-margin-top: 1px;
-}
-`;
+ 
 
 
 const RightSideWrapper = styled.div`
@@ -31,11 +19,12 @@ const RightSideWrapper = styled.div`
 `;
 const RightSideStyledLink = styled(Link)`
 color: white;
-display: block;
-font-size: .85em;
+display: flex;
+font-size: .9em;
 font-weight: 500;
 text-decoration: none;
 padding: 6px 0px;
+align-items: center;
 border-bottom: 1px solid transparent;
 font-family: Helvetica, Arial, sans-serif;
 &:hover {
@@ -50,10 +39,8 @@ const LinkBatch: React.FunctionComponent<ComponentProps>  = ({userData, isLoadin
 
   return (
     <>
-      <StyledLink to=''>HOME</StyledLink>
-      <StyledLink to={userData && !isLoading ? '/account' : '/login'}>PORTFOLIO</StyledLink>
-      {/* <StyledLink to=''>HUBS</StyledLink> */}
-      <StyledLink to='chat'>CHAT</StyledLink>
+   
+ 
       {/* <StyledLink to=''>COMPARE</StyledLink> */}
       {/* <StyledLink to=''>SCREENER</StyledLink> */}
       <div style={{ flexGrow: .7, display: 'flex' }}></div>
@@ -61,10 +48,9 @@ const LinkBatch: React.FunctionComponent<ComponentProps>  = ({userData, isLoadin
       <RightSideWrapper>
           <RightSideStyledLink to=''>Help</RightSideStyledLink>
       {userData && !isLoading && <RightSideStyledLink to='account'>Account</RightSideStyledLink>}
-      </RightSideWrapper>
-    
 
-      {
+
+ {
 
       userData && !isLoading ?   
         <Button
@@ -93,6 +79,11 @@ const LinkBatch: React.FunctionComponent<ComponentProps>  = ({userData, isLoadin
         to='login'>Login</StyledLink>
         
    }
+
+      </RightSideWrapper>
+    
+
+     
    
     </>
   );

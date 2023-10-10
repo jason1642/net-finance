@@ -34,7 +34,7 @@ const MainRoutes = () => {
         },
         {
             path: '/quote/:symbol',
-            element: <><HomeSearchBar /><StockDetailPage /></>
+            element: <><StockDetailPage /></>
         },
         {
             path: '/',
