@@ -43,7 +43,7 @@ const LinkBatch: React.FunctionComponent<ComponentProps>  = ({userData, isLoadin
  
       {/* <StyledLink to=''>COMPARE</StyledLink> */}
       {/* <StyledLink to=''>SCREENER</StyledLink> */}
-      <div style={{ flexGrow: .7, display: 'flex' }}></div>
+      {/* <div style={{ flexGrow: .7, display: 'flex' }}></div> */}
      
       <RightSideWrapper>
           <RightSideStyledLink to=''>Help</RightSideStyledLink>

@@ -15,7 +15,7 @@ const Container = styled.div`
     margin-bottom: 1rem;
     margin-top: 29px;
     height: auto;
-    max-width: 1500px;
+    max-width: 100vw;
     /* gap: 15px; */
     @media (max-width: 768px) {
       flex-direction: column;
@@ -23,6 +23,8 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   display: flex;
+      max-width: 100vw;
+
     flex-direction: row;
     justify-content: space-around;
     align-self: center;

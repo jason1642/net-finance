@@ -6,22 +6,27 @@ import { userApi} from '../../redux/features/userApi'
 
 const Container = styled.header`
     display: flex;
-    justify-content: space-between;
     align-items: center;
     height: 31px;
-    padding: 13px 1.5rem 1rem 2rem; 
+    padding: 13px 0rem 1rem 0rem; 
     width: 100%;
-    max-width: 1550px;
+    justify-content: center;
+    max-width: 100vw;
+
     align-self: center;
     background-color: #32323e;
   `;
 
-  // const SiteLogo = styled.img`
-  //   height: 100px;
-  //   width: auto;
-  // `;
-
- 
+ const Wrapper = styled.div`
+   display:flex;
+   justify-content: space-between;
+   width: calc(100% - (3.7em + 2rem));
+   max-width: 1400px;
+   align-self: center;
+   @media (max-width: 1470px) {
+    width: 100%;
+}
+ `;
 interface ComponentProps {
 
 }
@@ -68,7 +73,9 @@ const Header: React.FunctionComponent<ComponentProps>  = () => {
 
   return (
     <Container>
-    
+    <Wrapper>
+
+  
         <LeftSideWrapper>
         <LogoLink to='/'>
         {/* <SiteLogo src={siteLogo} alt='Site logo' /> */}
@@ -92,6 +99,8 @@ const Header: React.FunctionComponent<ComponentProps>  = () => {
        />
       }
       {/* </Menu> */}
+
+  </Wrapper>
     </Container>
   );
 }
