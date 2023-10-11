@@ -21,6 +21,7 @@ const Container = styled.div`
   margin: 0 auto;
   margin-bottom: 3rem;
   max-width: 1400px;
+
   
 `;
 const Title = styled.div`
@@ -48,11 +49,49 @@ const SideContainer = styled.div`
   border-right: 0;
   border-bottom: 0;
   /* border: 1px solid green; */
+  @media (max-width: 1110px) {
+  flex-direction: row;
+  /* width: 85%; */
+  
+  margin-top: 1rem;
+  > * {
+    border-top: 0;
+    border-right: 1px solid #9b9b9b33;
+    &:last-child {
+      border-right: 0;
+  }
+  }
+  
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 95%;
+  
+  > * {
+    width: 48%;
+    &:last-child {
+      border-right: 1px solid #9b9b9b33;
+  }
+    &:nth-child(2) {
+      border-right: 0;
+  }
+  }
+}
+
+
 `;
 
 const Wrapper = styled.div`
   display: flex;
   border-top: 1px solid #9b9b9b33;
+  @media (max-width: 1110px) {
+  /* flex-direction: column; */
+  border-top: 0;
+  flex-wrap: wrap;
+}
 `;
 // const PanelTitle = styled.h2`
 //   display:flex;

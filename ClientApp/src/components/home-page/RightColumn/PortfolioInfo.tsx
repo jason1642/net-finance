@@ -11,7 +11,7 @@ interface IPortfolioInfoProps {
 
 
 const Container = styled.div` display: flex;
-padding: 2rem 3rem;
+padding: 1.8rem 2.2rem;
 margin-bottom: 2rem;
 border-radius: 20px;
 background-color: #393945;

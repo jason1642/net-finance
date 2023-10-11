@@ -24,11 +24,16 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: flex;
       max-width: 100vw;
-
+  flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-around;
     align-self: center;
+    @media (max-width: 1280px) {
+      /* flex-direction: column; */
+  }
 `;
+
+
 const LeftColumnContainer = styled.div`
 display: flex;
 flex-direction: column;
@@ -37,6 +42,10 @@ width: calc(65% - 1rem);
 @media (max-width: 768px) {
   width: 100%;
 }
+@media (max-width: 1280px) {
+      /* flex-direction: column; */
+      width: 85%;
+  }
 `;
 
 
@@ -45,6 +54,10 @@ const RightColumnContainer = styled.div`
     /* height: 100%; */
 
     flex-direction: column;
+    @media (max-width: 1280px) {
+      /* flex-direction: column; */
+
+  }
 `;
 
 interface ComponentProps {
