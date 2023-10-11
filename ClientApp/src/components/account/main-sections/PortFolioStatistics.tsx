@@ -20,6 +20,8 @@ const Container = styled.div`
 const Title = styled.div`
   display: flex;
   font-size: 1.5em;
+  margin-left: 2.5rem;
+  padding: .67rem 0;
   @media (max-width: 600px) {
   /* flex-direction: column; */
     align-self: center;
@@ -31,7 +33,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   padding: 7px 0px;
-  /* justify-content: space-between; */
+  justify-content: space-around;
   align-self: center;
   @media (max-width: 600px) {
   /* flex-direction: column; */
