@@ -17,7 +17,7 @@ const Container = styled.div`
   margin-bottom: 2rem;
   padding-top: 10px;
   width: 100%;
-  max-width: 1000px;
+  /* max-width: 1000px; */
   @media (max-width: 485px) {
   /* flex-direction: column; */
   flex-direction: column;
@@ -27,16 +27,22 @@ const Container = styled.div`
 }
 `;
 const ChartWrapper = styled.div`
-  display:flex;
+  display: flex;
+  flex-direction: column;
   align-self: center;
-  width: 100%;
-  /* height: 400px; */
+  width: 85%;
+  height: 400px;
   /* max-width: 1000px; */
+  @media (max-width: 485px) {
+  /* flex-direction: column; */
+  height: auto;
+}
 `;
 const Header = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-left: 4rem;
   font-size: 2em;
 `;
 const PortfolioValueNumber = styled.div`
@@ -218,7 +224,7 @@ const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = ({})
                       }
                   ]}
                   width={"100%"}
-                //   height={"100%"}
+                  height={"100%"}
                 //   style={{ borderWidth: 0 }}
               />
           }
