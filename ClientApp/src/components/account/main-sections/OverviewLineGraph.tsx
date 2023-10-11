@@ -24,6 +24,7 @@ const Container = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   width: 100%;
+  display: none;
 }
 `;
 

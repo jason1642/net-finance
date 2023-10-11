@@ -15,6 +15,9 @@ const Container = styled.header`
 
     align-self: center;
     background-color: #32323e;
+    @media (max-width: 485px) {
+  /* position: fixed; */
+}
   `;
 
  const Wrapper = styled.div`
@@ -44,6 +47,9 @@ const LogoLink = styled(Link)`
   font-weight: 600;
   font-size: 1.9em;
   margin: 0 .6rem;
+  @media (max-width: 485px) {
+  display: none;
+}
 `;
 export const StyledLink = styled(Link)`
 color: white;

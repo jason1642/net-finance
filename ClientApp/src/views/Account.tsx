@@ -17,11 +17,12 @@ const Container = styled.div`
   flex: 1 1 auto;
   flex-direction: column;
   color: white;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
   margin: 0 auto;
+  width: 100%;
   margin-bottom: 3rem;
   max-width: 1400px;
-
+  overflow: hidden;
   
 `;
 const Title = styled.div`
@@ -35,7 +36,8 @@ const Title = styled.div`
 const MainContainer = styled.div`
   display:flex;
   flex-direction: column;
-  flex-grow: 6;
+  /* flex-grow: 6; */
+  
   /* border: white 1px solid; */
 `;
 

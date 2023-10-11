@@ -12,7 +12,9 @@ const Container = styled.div`
   border-bottom: 1px solid #9b9b9b33;
 
   flex-direction: column;
-  
+  @media (max-width: 485px) {
+  padding: 1rem;
+}
 `;
 
 const Title = styled.div`
@@ -30,12 +32,17 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   padding: 7px 0px;
   justify-content: space-between;
+
   @media (max-width: 600px) {
   /* flex-direction: column; */
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
   width: 100%;
+}
+
+@media (max-width: 485px) {
+  
 }
 `;
 
@@ -47,9 +54,13 @@ const Item = styled.div`
   padding-left: 0px;
   width: 42%;
   justify-content: space-between;
+ 
   @media (max-width: 600px) {
   /* flex-direction: column; */
   width: 80%;
+}
+@media (max-width: 485px) {
+  width: 100%;
 }
 `;
 const DottedLine = styled.div`
@@ -62,6 +73,9 @@ const DottedLine = styled.div`
 `;
 const Label = styled.span`
   color: #c0c0c0;
+  @media (max-width: 485px) {
+  font-size: .9em;
+}
 `;
 
 const ItemValue = styled.span`
