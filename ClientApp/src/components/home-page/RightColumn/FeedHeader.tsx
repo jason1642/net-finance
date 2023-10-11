@@ -7,6 +7,7 @@ import styled from 'styled-components'
     margin-bottom: 2px;
     border-radius: 20px 20px 0 0;
     background-color: #393945;
+    
   `;
 
   const RowOne = styled.div`
@@ -27,7 +28,9 @@ import styled from 'styled-components'
     border-radius: 30px;
     background-color: #32323e;
     width: auto;
-
+    @media (max-width: 485px) {
+      display: none;
+} 
     @media (max-width: 768px) {
       width: 50%;
       justify-content: space-between;

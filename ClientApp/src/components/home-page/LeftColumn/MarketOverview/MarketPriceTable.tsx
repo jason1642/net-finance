@@ -20,7 +20,7 @@ min-width: 90px;
 display: flex;
 flex-direction: column;
 
-flex: 1 1 0px;
+/* flex: 1 1 0px; */
 height: 25px;
 padding: 10px 16px;
 background-color : #40424f;
@@ -33,15 +33,23 @@ border-left: 3px solid yellow;
   background-color: #4d505f;
   cursor: pointer;
 }
+
+
 @media (max-width: 700px){
 
+}
+@media (max-width: 480px){
+  width: 45%                    
 }
 `;
 
 const MarketTileRow = styled.div`
 display: flex;
+width: 100%;
 justify-content: space-between;
 align-content: center;
+flex-wrap: wrap;
+
 `;
 
 const MarketTileIndexName = styled.div`
