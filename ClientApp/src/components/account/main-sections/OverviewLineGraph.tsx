@@ -16,10 +16,15 @@ const Container = styled.div`
   margin: 0 auto;
   margin-bottom: 2rem;
   padding-top: 10px;
-  /* width: 100%; */
-
-  * > {
-  }
+  width: 100%;
+  max-width: 1000px;
+  @media (max-width: 485px) {
+  /* flex-direction: column; */
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+}
 `;
 
 const Header = styled.div`
@@ -205,8 +210,8 @@ const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = ({})
                           data: stockDates.map((item: string) => +(stockDailyData['Time Series (Daily)'][item]['4. close'] * 5).toFixed(2))
                       }
                   ]}
-                  width={750}
-                  height={340}
+                  width={"100%"}
+                //   height={340}
                 //   style={{ borderWidth: 0 }}
               />
           }

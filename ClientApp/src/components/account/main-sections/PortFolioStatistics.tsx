@@ -12,12 +12,17 @@ const Container = styled.div`
   border-bottom: 1px solid #9b9b9b33;
 
   flex-direction: column;
+  
 `;
 
 const Title = styled.div`
   display: flex;
   font-size: 1.5em;
-
+  @media (max-width: 600px) {
+  /* flex-direction: column; */
+    align-self: center;
+    margin-bottom: 1rem;
+}
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -25,6 +30,13 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   padding: 7px 0px;
   justify-content: space-between;
+  @media (max-width: 600px) {
+  /* flex-direction: column; */
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+}
 `;
 
 
@@ -35,11 +47,21 @@ const Item = styled.div`
   padding-left: 0px;
   width: 42%;
   justify-content: space-between;
-
+  @media (max-width: 600px) {
+  /* flex-direction: column; */
+  width: 80%;
+}
 `;
-
+const DottedLine = styled.div`
+  display:flex;
+  height: 2px;
+  align-self: center;
+  margin: 0 .8em;
+  flex-grow: 2;
+  border-top: 2px dotted #9b9b9b8a;
+`;
 const Label = styled.span`
-  color: grey;
+  color: #c0c0c0;
 `;
 
 const ItemValue = styled.span`
@@ -83,6 +105,7 @@ const PortfolioStatistics: React.FunctionComponent<IPortfolioStatisticsProps> = 
             {statisticFieldOptions.map(item=>  
             <Item key={item.name}>
                 <Label>{item.name}</Label>
+                <DottedLine/>
                 <ItemValue>{item.value}</ItemValue>
                 </Item>)}
         </Wrapper>

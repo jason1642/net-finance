@@ -6,6 +6,8 @@ import styled from 'styled-components'
     padding: 1.5rem 3rem;
     font-size: 14px;
     justify-content: space-between; 
+    /* width: 100%; */
+    flex-wrap: wrap;
     max-width: 1300px;
     margin: 0 auto;
   `;

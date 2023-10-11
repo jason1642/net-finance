@@ -78,9 +78,25 @@ const SideContainer = styled.div`
     &:nth-child(2) {
       border-right: 0;
   }
+  &:nth-child(3) {
+    border-top: 1px solid #9b9b9b33;
+    }
   }
 }
-
+@media (max-width: 600px) {
+  flex-direction: column;  
+  flex-wrap: nowrap;
+  align-items: center;
+  > * {
+    width: 90%;
+    border-bottom: 1px solid #9b9b9b33;
+    border-right: 0;
+    &:nth-child(3) {
+      border-right: 0;
+      border-bottom: 0;
+    }
+  }
+}
 
 `;
 
