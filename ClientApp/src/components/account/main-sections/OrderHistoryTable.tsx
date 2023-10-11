@@ -20,7 +20,11 @@ const TableCell = styled(TableCellMUI)`
   color: white !important;
   border-bottom: 1px solid rgb(255 255 255 / 34%) !important;
 `;
-
+const Wrapper = styled.div`
+  display:flex;
+  width: 100%;
+  
+`;
 
   const Row: React.FunctionComponent<{order: OrderHistoryItemTypes}> = ({order: {symbol, action, created_at, price, status, quantity }}) =>{
    
@@ -97,6 +101,9 @@ interface IOrderHistoryTableProps {
 
 const OrderHistoryTable: React.FunctionComponent<IOrderHistoryTableProps> = ({userData}) => {
   return(
+    <Wrapper>
+
+
   <TableContainer sx={{width: '95%', alignSelf: 'center'}}>
     <h2>Order History</h2>
       <Table aria-label="collapsible table">
@@ -118,7 +125,7 @@ const OrderHistoryTable: React.FunctionComponent<IOrderHistoryTableProps> = ({us
         </TableBody>
       </Table>
     </TableContainer>
-
+    </Wrapper>
   );
 };
 

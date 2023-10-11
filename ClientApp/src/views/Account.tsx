@@ -19,10 +19,10 @@ const Container = styled.div`
   color: white;
   /* padding: 0 1rem; */
   margin: 0 auto;
-  width: 100%;
+  width: 100vw;
   margin-bottom: 3rem;
   max-width: 1400px;
-  overflow: hidden;
+  /* overflow: hidden; */
   
 `;
 const Title = styled.div`
@@ -37,7 +37,7 @@ const MainContainer = styled.div`
   display:flex;
   flex-direction: column;
   /* flex-grow: 6; */
-  
+  width: 100%;
   /* border: white 1px solid; */
 `;
 
@@ -133,7 +133,7 @@ const Account: React.FunctionComponent<IAccountProps> = (props) => {
 <Wrapper>
 
 
-        <MainContainer> 
+   <MainContainer> 
     {/* <DonutGraphPortfolioOverview /> */}
     <OverviewLineGraph symbol={"MSFT"}/>
 
@@ -144,6 +144,9 @@ const Account: React.FunctionComponent<IAccountProps> = (props) => {
     <OrderHistoryTable userData={userData}/>
 }
         </MainContainer>
+
+
+     
 
 
         <SideContainer> 

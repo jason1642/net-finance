@@ -8,10 +8,9 @@ interface IPortfolioStatisticsProps {
 const Container = styled.div`
   display: flex;
   /* padding: 2rem; */
-  border: 1px solid green !important;
   border-top: 1px solid #9b9b9b33;
   border-bottom: 1px solid #9b9b9b33;
-  
+  width: 100%;
   flex-direction: column;
   @media (max-width: 485px) {
   padding: 1rem 0;
@@ -33,7 +32,7 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   padding: 7px 0px;
   /* justify-content: space-between; */
-
+  align-self: center;
   @media (max-width: 600px) {
   /* flex-direction: column; */
   flex-direction: column;
@@ -43,7 +42,7 @@ const Wrapper = styled.div`
 }
 
 @media (max-width: 485px) {
-  width: 75%;
+  width: 60%;
 }
 `;
 
@@ -116,14 +115,14 @@ const PortfolioStatistics: React.FunctionComponent<IPortfolioStatisticsProps> = 
   return (
     <Container>
         <Title>Portfolio Statistics</Title>
-        {/* <Wrapper>
+        <Wrapper>
             {statisticFieldOptions.map(item=>  
             <Item key={item.name}>
                 <Label>{item.name}</Label>
                 <DottedLine/>
                 <ItemValue>{item.value}</ItemValue>
                 </Item>)}
-        </Wrapper> */}
+        </Wrapper>
 
 
 
