@@ -7,13 +7,14 @@ interface IPortfolioStatisticsProps {
 
 const Container = styled.div`
   display: flex;
-  padding: 2rem;
+  /* padding: 2rem; */
+  border: 1px solid green !important;
   border-top: 1px solid #9b9b9b33;
   border-bottom: 1px solid #9b9b9b33;
-
+  
   flex-direction: column;
   @media (max-width: 485px) {
-  padding: 1rem;
+  padding: 1rem 0;
 }
 `;
 
@@ -31,7 +32,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   padding: 7px 0px;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 
   @media (max-width: 600px) {
   /* flex-direction: column; */
@@ -42,7 +43,7 @@ const Wrapper = styled.div`
 }
 
 @media (max-width: 485px) {
-  
+  width: 75%;
 }
 `;
 
@@ -54,7 +55,7 @@ const Item = styled.div`
   padding-left: 0px;
   width: 42%;
   justify-content: space-between;
- 
+  align-items: center;
   @media (max-width: 600px) {
   /* flex-direction: column; */
   width: 80%;
@@ -68,18 +69,18 @@ const DottedLine = styled.div`
   height: 2px;
   align-self: center;
   margin: 0 .8em;
-  flex-grow: 2;
+  flex-grow: 1;
   border-top: 2px dotted #9b9b9b8a;
 `;
-const Label = styled.span`
+const Label = styled.div`
   color: #c0c0c0;
   @media (max-width: 485px) {
   font-size: .9em;
 }
 `;
 
-const ItemValue = styled.span`
-  
+const ItemValue = styled.div`
+  display: flex;
 `;
 
 const statisticFieldOptions = [
@@ -115,14 +116,14 @@ const PortfolioStatistics: React.FunctionComponent<IPortfolioStatisticsProps> = 
   return (
     <Container>
         <Title>Portfolio Statistics</Title>
-        <Wrapper>
+        {/* <Wrapper>
             {statisticFieldOptions.map(item=>  
             <Item key={item.name}>
                 <Label>{item.name}</Label>
                 <DottedLine/>
                 <ItemValue>{item.value}</ItemValue>
                 </Item>)}
-        </Wrapper>
+        </Wrapper> */}
 
 
 
