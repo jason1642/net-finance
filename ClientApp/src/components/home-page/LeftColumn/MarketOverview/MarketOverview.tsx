@@ -15,6 +15,9 @@ const Container = styled.div`
       background-color: #4d505f;
       background-color: #393945;
       margin-bottom: 6px;
+      @media (max-width: 485px) {
+        padding : 2rem 1rem;
+}
   `;
 
   const Title = styled.h1`
@@ -48,7 +51,7 @@ const MarketOverview: React.FunctionComponent<ComponentProps> = () => {
 
 
 
-
+   
      {marketOverviewData && <> <MarketPriceTable marketOverviewData={marketOverviewData} />  
 
 <DateRangeNav />

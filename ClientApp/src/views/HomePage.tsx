@@ -46,6 +46,9 @@ width: calc(65% - 1rem);
       /* flex-direction: column; */
       width: 85%;
   }
+  @media (max-width: 485px) {
+  width: 92%;
+}
 `;
 
 
