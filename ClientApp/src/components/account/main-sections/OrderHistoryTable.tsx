@@ -23,7 +23,16 @@ const TableCell = styled(TableCellMUI)`
 const Wrapper = styled.div`
   display:flex;
   width: 100%;
+  flex-direction: column;
   
+`;
+
+const Title = styled.div`
+  display:flex;
+  font-size: 1.5em;
+  padding: 1rem 0;
+  align-self: center;
+  margin-left: 1rem;
 `;
 
   const Row: React.FunctionComponent<{order: OrderHistoryItemTypes}> = ({order: {symbol, action, created_at, price, status, quantity }}) =>{
@@ -103,9 +112,9 @@ const OrderHistoryTable: React.FunctionComponent<IOrderHistoryTableProps> = ({us
   return(
     <Wrapper>
 
-
+    <Title>Order History</Title>
   <TableContainer sx={{width: '95%', alignSelf: 'center'}}>
-    <h2>Order History</h2>
+
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow sx={{'& > *': {color: 'white'}}}>

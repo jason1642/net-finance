@@ -26,7 +26,13 @@ const Container = styled.div`
   width: 100%;
 }
 `;
-
+const ChartWrapper = styled.div`
+  display:flex;
+  align-self: center;
+  width: 100%;
+  /* height: 400px; */
+  /* max-width: 1000px; */
+`;
 const Header = styled.div`
   display: flex;
   flex-direction: column;
@@ -189,7 +195,8 @@ const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = ({})
             </ValueChangeToday>
             <div style={{fontSize: '.4em'}}>Past 4 months:</div>
         </Header>
-          {
+        <ChartWrapper>
+             {
               stockDailyData && stockDates &&
               <Chart
                   options={{
@@ -211,10 +218,12 @@ const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = ({})
                       }
                   ]}
                   width={"100%"}
-                //   height={340}
+                //   height={"100%"}
                 //   style={{ borderWidth: 0 }}
               />
           }
+        </ChartWrapper>
+         
     </Container>
   );
 };

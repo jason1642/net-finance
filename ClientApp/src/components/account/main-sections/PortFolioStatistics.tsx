@@ -42,7 +42,7 @@ const Wrapper = styled.div`
 }
 
 @media (max-width: 485px) {
-  width: 60%;
+  width: 85%;
 }
 `;
 
