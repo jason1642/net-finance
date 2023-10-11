@@ -35,15 +35,22 @@ const ChartWrapper = styled.div`
   /* max-width: 1000px; */
   @media (max-width: 485px) {
   /* flex-direction: column; */
-  height: auto;
+  /* height: auto; */
+  height: 250px;
 }
 `;
 const Header = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  /* width: 100%; */
   margin-left: 4rem;
   font-size: 2em;
+  @media (max-width: 485px) {
+  /* flex-direction: column; */
+  margin-left: 3rem;
+  align-self: flex-start;
+  font-size: 1.4em;
+}
 `;
 const PortfolioValueNumber = styled.div`
   display: flex;
