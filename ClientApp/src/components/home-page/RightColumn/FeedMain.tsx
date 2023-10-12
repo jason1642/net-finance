@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import FeedSkeleton from './FeedSkeleton';
+
   const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -91,7 +93,9 @@ const FeedMain: React.FunctionComponent<ComponentProps> = ({businessNews}) => {
           </ListContent>
         </ListItem>
       )
-    : <>Place Holder - To prevent excess calls of news API</>}
+    : <FeedSkeleton>Place Holder - To prevent excess calls of news API</FeedSkeleton>
+    
+    }
     </Container>
 
   </>
