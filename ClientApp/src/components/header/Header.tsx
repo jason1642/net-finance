@@ -37,7 +37,7 @@ const LeftSideWrapper = styled.div`
   display: flex;
   padding: 0 10px;
   gap: .9em;
-  align-items: center;
+  /* align-items: center; */
   /* align-items: flex-end; */
 `;
 const LogoLink = styled(Link)`

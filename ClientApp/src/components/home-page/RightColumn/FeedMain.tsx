@@ -93,7 +93,13 @@ const FeedMain: React.FunctionComponent<ComponentProps> = ({businessNews}) => {
           </ListContent>
         </ListItem>
       )
-    : <FeedSkeleton>Place Holder - To prevent excess calls of news API</FeedSkeleton>
+    :<>
+    <FeedSkeleton />
+    <FeedSkeleton />
+    <FeedSkeleton />
+    <FeedSkeleton />
+    <FeedSkeleton />
+    </> 
     
     }
     </Container>
