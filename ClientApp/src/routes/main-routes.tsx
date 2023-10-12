@@ -2,7 +2,7 @@ import { useRoutes, Navigate} from "react-router-dom";
 import StockDetailPage from '../views/StockDetailPage'
 import HomePage from "../views/HomePage";
 import Login from "../views/Login";
-import SignUp from "../views/SignUp";
+import Register from "../views/Register";
 import HomeSearchBar from "../components/search-bar/HomeSearchBar";
 import Account from "../views/Account";
 import { userApi } from "../redux/features/userApi";
@@ -25,8 +25,8 @@ const MainRoutes = () => {
             element: userData ? <Navigate to="/" /> : <Login /> 
         },
         {
-            path: '/sign-up',
-            element: userData ? <Navigate to="/" /> : <SignUp /> 
+            path: '/register',
+            element: userData ? <Navigate to="/" /> : <Register /> 
         },
         {
             path: '/chat',

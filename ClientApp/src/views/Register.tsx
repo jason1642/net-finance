@@ -37,7 +37,7 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
     // When verifying email - either is valid string or if already exists, have loading animation
 
   return (
-    <Container style={{maxWidth: '330px'}}>
+    <Container>
         <Title style={{margin: '0 auto', width: 'auto', marginBottom: '25px'}}>Sign Up.</Title>
 
         {

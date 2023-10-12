@@ -53,14 +53,14 @@ const App = () =>{
   return (  
     <div className="App">
        <Header />
-       {/* <main> */}
+       <MainRoutes />
 
-       {!isLoading? 
+       {/* {!isLoading? 
           <MainRoutes />
           : 
           <div>IS LOADING</div>
-      }
-       {/* </main> */}
+      } */}
+  
     
 
       <Footer />

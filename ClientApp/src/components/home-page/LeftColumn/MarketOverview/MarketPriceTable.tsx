@@ -8,7 +8,7 @@ import type { MarketOverviewTupleTypes } from './MarketOverview';
 const Container = styled.div`
 display: flex;
 margin-right: -20px;
-justify-content: space-evenly;
+/* justify-content: space-evenly; */
 flex-wrap: wrap;
 gap: 5px;
 `;
@@ -19,7 +19,7 @@ const MarketTile = styled.div`
 min-width: 90px;
 display: flex;
 flex-direction: column;
-
+width: 20%;
 /* flex: 1 1 0px; */
 height: 25px;
 padding: 10px 16px;

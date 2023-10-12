@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.form`
   display: flex;
   color: white;
   flex: 1 1 auto;
   flex-direction: column;
-  max-width: 616px;
+  max-width: 330px;
   align-items: center;
   justify-content: center;
+  width: 100%;
   margin: 0 auto;
-  padding: 70px 0px;
+  /* padding: 70px 0px; */
 `;
 
 export const Title = styled.div`

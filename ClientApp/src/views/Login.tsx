@@ -128,6 +128,7 @@ const Login: React.FunctionComponent<ILoginProps> = () => {
 
     <ButtonWrapper>
     <GreenThemedButton type='submit' title='Log In'/>
+    <ForgotPasswordButton to='/register' >Register Here</ForgotPasswordButton>
     <ForgotPasswordButton to='/forgot-password' >Forgot Password?</ForgotPasswordButton>
     </ButtonWrapper>
 
