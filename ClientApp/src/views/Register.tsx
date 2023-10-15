@@ -32,13 +32,13 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
         last_name: '',
         username: '',
         password: '',
-    }})
+    }}) 
     const [isValidEmail, setIsValidEmail] = React.useState<boolean>(false)
     // When verifying email - either is valid string or if already exists, have loading animation
 
   return (
     <Container onSubmit={()=>{
-        
+
     }}>
         <Title style={{margin: '0 auto', width: 'auto', marginBottom: '25px'}}>Sign Up.</Title>
 
