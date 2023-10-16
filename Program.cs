@@ -6,7 +6,6 @@ using System.Text;
 using net_finance.Hub;
 using System.Net.WebSockets;
 
-
 var builder = WebApplication.CreateBuilder(args);
 var policyName = "_myAllowSpecificOrigins";
 
@@ -112,6 +111,12 @@ if (!app.Environment.IsDevelopment())
 {
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapGet("/debug/routes", (IEnumerable<EndpointDataSource> endpointSources) =>
+        string.Join("\n", endpointSources.SelectMany(source => source.Endpoints)));
 }
 app.UseCors(policyName);
 
