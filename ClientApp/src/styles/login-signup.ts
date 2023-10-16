@@ -39,3 +39,9 @@ export const Input = styled.input`
         outline: none;
     }
 `;
+
+
+export const EmailErrorMessage = styled.div`
+  display: flex;
+  
+`;
