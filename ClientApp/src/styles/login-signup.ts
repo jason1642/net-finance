@@ -43,5 +43,14 @@ export const Input = styled.input`
 
 export const EmailErrorMessage = styled.div`
   display: flex;
-  
+  color: #ffef00;
+  height: 1.5rem;
+
+  /* width: 100%; */
+  margin: 0 auto;
+`;
+
+export const PlaceholderErrorMessage = styled.div`
+  display:flex;
+  height: 1.5rem;
 `;

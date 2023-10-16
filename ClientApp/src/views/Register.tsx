@@ -1,10 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {useForm} from 'react-hook-form'
-import {Container, Title, Input as InputConstructor, EmailErrorMessage, } from '../styles/login-signup'
+import {Container, Title, Input as InputConstructor, EmailErrorMessage, PlaceholderErrorMessage,} from '../styles/login-signup'
 import GreenThemedButton from '../components/buttons/GreenThemedButton';
 import {registerUser} from '../api-requests/user-requests'
 import { checkIfEmailExists } from '../api-requests/user-requests';
+import * as EmailValidator from 'email-validator'
+
 
 interface ISignUpProps {
 }
@@ -22,7 +24,7 @@ const Form = styled.form`
 const Disclaimer = styled.div`
     color: #8f94ab;
     max-width: 300px;
-    padding-top: 32px;
+    padding-top: 1.5rem;
     font-size: 15px;
     text-align: center;
     font-weight: 300;
@@ -32,7 +34,7 @@ const Disclaimer = styled.div`
 // Then goes to another form, first and last name, username and password 
 
 const Input = styled(InputConstructor)`
-    margin-bottom: 16px;
+    margin-bottom: .5rem;
     width: 100%;
 `
 
@@ -40,7 +42,7 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
 
     // const navigate = useNavigate()
 
-    const { register, handleSubmit, getValues, formState: {errors} } = useForm({defaultValues: {
+    const { register, handleSubmit, trigger, getValues, formState: {errors} } = useForm({defaultValues: {
         email: '',
         firstName: '',
         lastName: '',
@@ -53,7 +55,7 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
         console.log(errors)
     },[errors])
 
-    const onFormSubmit = async (formData:any) => {
+    const onFormSubmit = async ( formData:any) => {
         await registerUser(formData).then(res=>{
             console.log(res)
         }, err => {
@@ -61,9 +63,15 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
         })
         console.log(formData)
     }
-    const handleCheckEmail = async () => {
+    const handleCheckEmail = async (event: any) => {
+        event.preventDefault();
+        if(EmailValidator.validate(getValues('email')) === false) {
+            trigger('email')
+            setIsValidEmail(false)
+            return;
+        }
         await checkIfEmailExists(getValues('email')).then(res=>{
-            console.log(getValues('email'), res)
+            // console.log(getValues('email'), res)
             res.data === false ? setIsValidEmail(true) : setIsValidEmail(false)
             
         }).catch(err=>{ 
@@ -81,7 +89,8 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
         <Wrapper>
         {
             isValidEmail === false ?
-             <Form onSubmit={handleCheckEmail}><Input 
+             <Form onSubmit={handleCheckEmail}>
+                <Input 
              {...register('email', {
                 required: 'Email is required',
                 pattern: {
@@ -92,10 +101,18 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
                 placeholder={'Email Address'}
                 />
 
-                {errors.email?.message && <EmailErrorMessage>EMAIL ERROR</EmailErrorMessage>}
+                {errors.email?.message ?
+                    <EmailErrorMessage>{errors.email.message}</EmailErrorMessage>
+                    : 
+                    <PlaceholderErrorMessage/>
+                    }
                 <GreenThemedButton
+                buttonProps={{style: {
+                    margin: "1.5rem auto 0"
+                }}}
                 //  buttonProps={{disable:true}} 
                 //  onClick={handleCheckEmail} 
+                type='submit'
                  title={'Continue'} 
                  />
                 <Disclaimer>By clicking “Continue”, you have read and agree to Net Finance's Terms of Use and Privacy Policy.</Disclaimer>
