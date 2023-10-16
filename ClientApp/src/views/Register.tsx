@@ -95,15 +95,18 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
                     backgroundColor: '#3f3f4a',
                    input: {
                     color: 'white',
+                    border: '1px solid #3f3f4a !important'
+
                    },
                    "& .MuiOutlinedInput-root": {
                     "&.Mui-focused fieldset": {
-                      border: 0
+                      border: 0,
+                      color: 'white'
                     },
-                    "&:hover fieldset": {
+                    "fieldset": {
                         borderWidth: 0,
-                        border: '1px solid #3f3f4a'
-
+                        // border: '0px solid #3f3f4a',
+                        color: 'white'
                       },
 
                   },
