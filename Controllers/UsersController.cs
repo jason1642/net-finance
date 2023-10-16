@@ -58,8 +58,8 @@ namespace net_finance_api.Controllers
             return user;
         }
 // GET: api/users/5
-        [HttpGet("check-email-exists/{email:length(34)}")]
-        public async Task<ActionResult<Users>> CheckEmailExists(string email)
+        [HttpGet("/check-email-exists/{**slug}")]
+        public async Task<ActionResult> CheckEmailExists(string email)
         {
             var emailExists = await _usersService.GetAsyncEmail(email);
 
