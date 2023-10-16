@@ -3,11 +3,18 @@ import styled from 'styled-components';
 import {useForm} from 'react-hook-form'
 import {Container, Title, Input as InputConstructor, } from '../styles/login-signup'
 import GreenThemedButton from '../components/buttons/GreenThemedButton';
+import { useAppDispatch } from '../redux/store';
+
+
 
 interface ISignUpProps {
 }
 
-
+const Form = styled.form`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+`;
 const Disclaimer = styled.div`
     color: #8f94ab;
     max-width: 300px;
@@ -26,38 +33,52 @@ const Input = styled(InputConstructor)`
 `
 
 const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
-    const {register} = useForm({defaultValues: {
+
+    const dispatch = useAppDispatch()
+    // const navigate = useNavigate()
+
+    const { register, handleSubmit,  } = useForm({defaultValues: {
         email: '',
-        first_name: '',
-        last_name: '',
+        firstName: '',
+        lastName: '',
         username: '',
         password: '',
     }}) 
-    const [isValidEmail, setIsValidEmail] = React.useState<boolean>(false)
+    const [isValidEmail, setIsValidEmail] = React.useState<boolean>(true)
     // When verifying email - either is valid string or if already exists, have loading animation
 
+
+    const onFormSubmit = async (formData:any) => {
+
+        console.log(formData)
+    }
+
+
+    const onErrors = (errors: any) => {
+        console.log(errors)
+    }
+
   return (
-    <Container onSubmit={()=>{
-
-    }}>
+    <Container >
         <Title style={{margin: '0 auto', width: 'auto', marginBottom: '25px'}}>Sign Up.</Title>
-
+        <Form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
         {
-            !isValidEmail ?
+            isValidEmail ?
              <><Input 
+             {...register('email')}
                 placeholder={'Email Address'}
                 />
-                <GreenThemedButton buttonProps={{disable: true}} onClick={()=>{setIsValidEmail(true)}} title={'CONTINUE'} />
+                <GreenThemedButton buttonProps={{disable:true}} onClick={()=>{setIsValidEmail(true)}} title={'CONTINUE'} />
                 <Disclaimer>By clicking “Continue”, you have read and agree to Net Finance's Terms of Use and Privacy Policy.</Disclaimer>
                 </>
              : 
              <>
                 <Input
-                    {...register('first_name')}
+                    {...register('firstName')}
                     placeholder={'First Name'}
                 />
                 <Input
-                    {...register('last_name')}
+                    {...register('lastName')}
                     placeholder={'Last Name'}
                 />
                 <Input
@@ -77,7 +98,7 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
              </>
         }
 
-
+</Form>
 
 
 

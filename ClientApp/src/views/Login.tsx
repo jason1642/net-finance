@@ -13,7 +13,7 @@ import { useNavigate} from 'react-router-dom';
 interface ILoginProps {
 }
 
-const Wrapper = styled.form`
+const Form = styled.form`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -112,7 +112,7 @@ const Login: React.FunctionComponent<ILoginProps> = () => {
 
 
 
-    <Wrapper onSubmit={handleSubmit(onFormSubmit, onErrors)}>
+    <Form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
         <Input
             {...register('username')}
             placeholder={'Username or email'}
@@ -132,7 +132,7 @@ const Login: React.FunctionComponent<ILoginProps> = () => {
     <ForgotPasswordButton to='/forgot-password' >Forgot Password?</ForgotPasswordButton>
     </ButtonWrapper>
 
-    </Wrapper>
+    </Form>
     
     </Container>
   );
