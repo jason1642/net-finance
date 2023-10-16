@@ -48,6 +48,11 @@ export const registerUser = async(formData:RegisterFormData)=>{
     })
 }
 
+export const checkIfEmailExists = async (email: string)=>
+    await api.get(`/check-email-exists/${email}`).then(res=>res,err=>err)
+
+
+
 export const removeTokensLogout = async () => 
     await api.post('/logout').then(res=>{
         console.log(res)

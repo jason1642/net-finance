@@ -4,12 +4,12 @@ import {useForm} from 'react-hook-form'
 import {Container, Title, Input as InputConstructor, } from '../styles/login-signup'
 import GreenThemedButton from '../components/buttons/GreenThemedButton';
 import {registerUser} from '../api-requests/user-requests'
-
+import { checkIfEmailExists } from '../api-requests/user-requests';
 
 interface ISignUpProps {
 }
 
-const Form = styled.form`
+const Form = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -35,14 +35,14 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
 
     // const navigate = useNavigate()
 
-    const { register, handleSubmit,  } = useForm({defaultValues: {
+    const { register, handleSubmit, getValues } = useForm({defaultValues: {
         email: '',
         firstName: '',
         lastName: '',
         username: '',
         password: '',
     }}) 
-    const [isValidEmail, setIsValidEmail] = React.useState<boolean>(true)
+    const [isValidEmail, setIsValidEmail] = React.useState<boolean>(false)
     // When verifying email - either is valid string or if already exists, have loading animation
 
 
@@ -54,10 +54,16 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
         })
         console.log(formData)
     }
-
-    const checkEmailExists = ()=>{ 
-
+    const handleCheckEmail = async () => {
+        await checkIfEmailExists(getValues('email')).then(res=>{
+            console.log(getValues('email'), res)
+            res.data === false ? setIsValidEmail(true) : setIsValidEmail(false)
+            
+        }).catch(err=>{ 
+            console.log(err)
+        })
     }
+   
     const onErrors = (errors: any) => {
         console.log(errors)
     }
@@ -65,14 +71,19 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
   return (
     <Container >
         <Title style={{margin: '0 auto', width: 'auto', marginBottom: '25px'}}>Sign Up.</Title>
-        <Form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
+        <Form>
         {
-            isValidEmail ?
+            isValidEmail === false ?
              <><Input 
              {...register('email')}
+             type='email'
                 placeholder={'Email Address'}
                 />
-                <GreenThemedButton buttonProps={{disable:true}} onClick={()=>{setIsValidEmail(true)}} title={'CONTINUE'} />
+                <GreenThemedButton
+                //  buttonProps={{disable:true}} 
+                 onClick={handleCheckEmail} 
+                 title={'CONTINUE'} 
+                 />
                 <Disclaimer>By clicking “Continue”, you have read and agree to Net Finance's Terms of Use and Privacy Policy.</Disclaimer>
                 </>
              : 
@@ -98,6 +109,7 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
         <GreenThemedButton
             buttonProps={{style: {width: '100%', fontWeight: '400', padding: '18px 22px'}}} 
             title='SIGN UP'
+            onClick={handleSubmit(onFormSubmit, onErrors)}
         />
              </>
         }
