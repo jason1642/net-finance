@@ -101,18 +101,20 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
                    "& .MuiOutlinedInput-root": {
                     "&.Mui-focused fieldset": {
                       border: 0,
-                      color: 'white'
                     },
                     "fieldset": {
                         borderWidth: 0,
                         // border: '0px solid #3f3f4a',
                         color: 'white'
-                      },
+                      }
 
                   },
                    label: {
                     color: 'white'
                    }
+                }}
+                InputLabelProps={{
+                    style: { color: '#fff' },
                 }}
                 label='Email'
                 required
