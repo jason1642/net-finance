@@ -34,7 +34,7 @@ const Disclaimer = styled.div`
 // Then goes to another form, first and last name, username and password 
 
 const Input = styled(InputConstructor)`
-    margin-bottom: .5rem;
+    margin-bottom: .4rem;
     width: 100%;
 `
 
@@ -91,6 +91,28 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
             isValidEmail === false ?
              <Form onSubmit={handleCheckEmail}>
                 <Input 
+                sx={{
+                    backgroundColor: '#3f3f4a',
+                   input: {
+                    color: 'white',
+                   },
+                   "& .MuiOutlinedInput-root": {
+                    "&.Mui-focused fieldset": {
+                      border: 0
+                    },
+                    "&:hover fieldset": {
+                        borderWidth: 0,
+                        border: '1px solid #3f3f4a'
+
+                      },
+
+                  },
+                   label: {
+                    color: 'white'
+                   }
+                }}
+                label='Email'
+                required
              {...register('email', {
                 required: 'Email is required',
                 pattern: {

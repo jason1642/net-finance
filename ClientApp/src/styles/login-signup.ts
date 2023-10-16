@@ -1,3 +1,4 @@
+import { TextField } from '@mui/material';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -22,7 +23,7 @@ export const Title = styled.div`
   width: 100%;
 `;
 
-export const Input = styled.input`
+export const Input = styled(TextField)`
   color: white;
   background-color: #3f3f4a;
   border: none;
@@ -44,7 +45,7 @@ export const Input = styled.input`
 export const EmailErrorMessage = styled.div`
   display: flex;
   color: #ffef00;
-  height: 1.5rem;
+  height: 1.2rem;
 
   /* width: 100%; */
   margin: 0 auto;
@@ -52,5 +53,5 @@ export const EmailErrorMessage = styled.div`
 
 export const PlaceholderErrorMessage = styled.div`
   display:flex;
-  height: 1.5rem;
+  height: 1.2rem;
 `;
