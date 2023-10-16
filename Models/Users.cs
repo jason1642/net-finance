@@ -171,6 +171,15 @@ public class Users
 
     public string? refresh_token { get; internal set; }
 
+[BsonDefaultValue("00000000")]
+    [BsonElement("email_verification_code")]
+    [JsonPropertyName("email_verification_code")]
+    public string? email_verification_code { get; internal set; }
+
+[BsonDefaultValue(false)]
+    [BsonElement("is_verified")]
+    [JsonPropertyName("is_verified")]
+    public bool? is_verified {get; set;}
 
     [BsonDefaultValue(0)]
     [BsonElement("cash")]
