@@ -59,20 +59,20 @@ export const userApi = createApi({
         })
       }),
       
-      registerUser: builder.query({
-        query: (userForm: RegisterUserSchema) => ({ 
-          url: '/register',
-          method: 'POST',
-          headers: { 
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          // Include the entire post object as the body of the request 
-          body: userForm,
-          credentials: "include"
+      // registerUser: builder.query({
+      //   query: (userForm: RegisterUserSchema) => ({ 
+      //     url: '/register',
+      //     method: 'POST',
+      //     headers: { 
+      //       'Accept': 'application/json',
+      //       'Content-Type': 'application/json'
+      //     },
+      //     // Include the entire post object as the body of the request 
+      //     body: userForm,
+      //     credentials: "include"
  
-        })
-      }),
+      //   })
+      // }),
 
 
 
@@ -83,5 +83,5 @@ export const userApi = createApi({
   // auto-generated based on the defined endpoints
 
 
-  export const { useLoginUserQuery, useRegisterUserQuery, useVerifyUserQuery, useGetAllUsersQuery, } = userApi
+  export const { useLoginUserQuery, useVerifyUserQuery, useGetAllUsersQuery, } = userApi
 

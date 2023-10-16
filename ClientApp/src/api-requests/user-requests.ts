@@ -27,6 +27,27 @@ const api = axios.create({
 
 
 
+
+
+
+interface RegisterFormData {
+    username: string;
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+}
+// Register user is in this file rather than the userApi.ts Redux file because it does not need to set the 
+// global state with anything.
+export const registerUser = async(formData:RegisterFormData)=>{
+    await api.post('/register', formData).then(res=>{
+
+    },err=>{
+        console.log(err)
+        return err
+    })
+}
+
 export const removeTokensLogout = async () => 
     await api.post('/logout').then(res=>{
         console.log(res)

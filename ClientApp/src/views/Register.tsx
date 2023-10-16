@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import {useForm} from 'react-hook-form'
 import {Container, Title, Input as InputConstructor, } from '../styles/login-signup'
 import GreenThemedButton from '../components/buttons/GreenThemedButton';
-import { useAppDispatch } from '../redux/store';
-
+import {registerUser} from '../api-requests/user-requests'
 
 
 interface ISignUpProps {
@@ -34,7 +33,6 @@ const Input = styled(InputConstructor)`
 
 const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
 
-    const dispatch = useAppDispatch()
     // const navigate = useNavigate()
 
     const { register, handleSubmit,  } = useForm({defaultValues: {
@@ -49,11 +47,17 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
 
 
     const onFormSubmit = async (formData:any) => {
-
+        await registerUser(formData).then(res=>{
+            console.log(res)
+        }, err => {
+            console.log(err)
+        })
         console.log(formData)
     }
 
+    const checkEmailExists = ()=>{ 
 
+    }
     const onErrors = (errors: any) => {
         console.log(errors)
     }
