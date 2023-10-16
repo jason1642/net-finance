@@ -30,6 +30,7 @@ export const Input = styled(TextField)`
   border-radius: 5px;
   font-size: 16px;
   padding: 18px 22px;
+  
 
    @media (min-width: 770px) {
     width: calc(43% - 8px);
@@ -54,4 +55,10 @@ export const EmailErrorMessage = styled.div`
 export const PlaceholderErrorMessage = styled.div`
   display:flex;
   height: 1.2rem;
+`;
+
+export const InputWrapper = styled.div`
+  display:flex;
+  flex-direction: column;
+  width: 100%;
 `;

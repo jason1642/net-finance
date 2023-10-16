@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {useForm} from 'react-hook-form'
-import {Container, Title, Input as InputConstructor, EmailErrorMessage, PlaceholderErrorMessage,} from '../styles/login-signup'
+import {Container, Title, Input as InputConstructor, EmailErrorMessage, InputWrapper, PlaceholderErrorMessage,} from '../styles/login-signup'
 import GreenThemedButton from '../components/buttons/GreenThemedButton';
 import {registerUser} from '../api-requests/user-requests'
 import { checkIfEmailExists } from '../api-requests/user-requests';
@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  /* width: 100%; */
 `;
 
 const Form = styled.form`
@@ -33,11 +34,38 @@ const Disclaimer = styled.div`
 // First screen prompts for a valid email address
 // Then goes to another form, first and last name, username and password 
 
-const Input = styled(InputConstructor)`
-    margin-bottom: .4rem;
+
+
+const InputStylesMui = {
+   input: {
+    color: 'white',
+    border: '1px solid #3f3f4a !important'
+
+   },
+   "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      border: 0,
+    },
+    "fieldset": {
+        borderWidth: 0,
+        // border: '0px solid #3f3f4a',
+        color: 'white'
+      }
+
+  },
+//    label: {
+//     color: 'white'
+//    }
+}
+const Input = styled(InputConstructor).attrs<any>(()=>{
+    return{ 
+        InputLabelProps: {style: { color: '#fff' }},
+        sx:InputStylesMui
+    }}               
+)`
+    margin-bottom: 1rem;
     width: 100%;
 `
-
 const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
 
     // const navigate = useNavigate()
@@ -91,33 +119,10 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
             isValidEmail === false ?
              <Form onSubmit={handleCheckEmail}>
                 <Input 
-                sx={{
-                    backgroundColor: '#3f3f4a',
-                   input: {
-                    color: 'white',
-                    border: '1px solid #3f3f4a !important'
-
-                   },
-                   "& .MuiOutlinedInput-root": {
-                    "&.Mui-focused fieldset": {
-                      border: 0,
-                    },
-                    "fieldset": {
-                        borderWidth: 0,
-                        // border: '0px solid #3f3f4a',
-                        color: 'white'
-                      }
-
-                  },
-                   label: {
-                    color: 'white'
-                   }
-                }}
-                InputLabelProps={{
-                    style: { color: '#fff' },
-                }}
+                sx={InputStylesMui}
+               
                 label='Email'
-                required
+                // required
              {...register('email', {
                 required: 'Email is required',
                 pattern: {
@@ -145,20 +150,26 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
                 <Disclaimer>By clicking “Continue”, you have read and agree to Net Finance's Terms of Use and Privacy Policy.</Disclaimer>
                 </Form>
              : 
-             <>
+             <InputWrapper>
                 <Input
+                    label={'First Name'}
                     {...register('firstName')}
                     placeholder={'First Name'}
+                  
                 />
                 <Input
+                label={'Last Name'}
                     {...register('lastName')}
                     placeholder={'Last Name'}
+                  
                 />
                 <Input
+                label={'Username'}
                     {...register('username')}
                     placeholder={'Username'}
                 />
                 <Input
+                label={'Password'}
                     {...register('password')}
                     placeholder={'Password'}
                     type='password'
@@ -169,7 +180,7 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
             title='SIGN UP'
             onClick={handleSubmit(onFormSubmit, onErrors)}
         />
-             </>
+             </InputWrapper>
         }
 
 </Wrapper>
