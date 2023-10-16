@@ -15,12 +15,14 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  /* width: 100%; */
+  width: 100%;
+  margin: 0 auto;
 `;
 
 const Form = styled.form`
   display:flex;
   flex-direction: column;
+  margin: 0 auto;
 `;
 const Disclaimer = styled.div`
     color: #8f94ab;
@@ -59,7 +61,7 @@ const InputStylesMui = {
 }
 const Input = styled(InputConstructor).attrs<any>(()=>{
     return{ 
-        InputLabelProps: {style: { color: '#fff' }},
+        InputLabelProps: {style: { color: '#99999e' }},
         sx:InputStylesMui
     }}               
 )`

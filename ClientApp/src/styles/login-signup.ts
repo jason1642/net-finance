@@ -27,7 +27,7 @@ export const Input = styled(TextField)`
   color: white;
   background-color: #3f3f4a;
   border: none;
-  border-radius: 5px;
+  border-radius: 3px;
   font-size: 16px;
   padding: 18px 22px;
   
@@ -61,4 +61,5 @@ export const InputWrapper = styled.div`
   display:flex;
   flex-direction: column;
   width: 100%;
+  gap: 1rem;
 `;
