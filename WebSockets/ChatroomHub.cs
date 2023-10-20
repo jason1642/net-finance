@@ -43,7 +43,7 @@ namespace net_finance.Hub
         {
             lock (_webSocketList) _webSocketList.Remove(webSocket);
         }
-
+ 
         // send a message to all open sockets
         public async Task SendAll(string message)
         {
