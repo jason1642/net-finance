@@ -47,7 +47,7 @@ namespace net_finance.Hub
         // send a message to all open sockets
         public async Task SendAll(string message)
         {
-            try
+            try 
             {  
                 List<WebSocket> webSocketList;
                 lock (_webSocketList) webSocketList = _webSocketList;
