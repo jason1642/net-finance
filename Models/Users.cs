@@ -163,7 +163,7 @@ public class Users
 
     [BsonElement("email")]
     [JsonPropertyName("email")]
-    public string? email { get; set; }
+    public string? email { get; set; } 
 
     //[BsonIgnore]
     [JsonPropertyName("password")]
