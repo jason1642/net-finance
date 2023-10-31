@@ -42,7 +42,7 @@ namespace net_finance_api.Controllers
         public async Task<List<Users>> Get() =>
             await _usersService.GetAsync();
 
-
+ 
 
         // GET: api/users/5
         [HttpGet("{id:length(24)}")]
