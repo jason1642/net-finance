@@ -48,7 +48,7 @@ namespace net_finance_api.Controllers
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<Users>> Get(string id)
         {
-            var user = await _usersService.GetAsync(id);
+            var user = await _usersService.GetAsync(id); 
 
             if (user is null)
             {
