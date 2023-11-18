@@ -30,18 +30,18 @@ const ButtonWrapper = styled.div`
     
 
 `
-
+const InputWrapper = styled.div`
+  display:flex;
+  gap: 1rem;
+`;
 const ForgotPasswordButton = styled(Link)`
   display:flex;
   color: #52e3c2;
   background-color: transparent;
   border: none;
-  flex-shrink: 3;
-  background-color: red;
-  border: 1px solid green;
+  /* flex-shrink: 3; */
   text-decoration: none;
-  align-items: center;
-  justify-content: center;
+  
   margin-top: 15px;
   &:hover{ 
     cursor: pointer;
@@ -123,8 +123,8 @@ const Login: React.FunctionComponent<ILoginProps> = () => {
 
 
     <Form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
-        <Input
-            sx={{marginBottom: '1rem'}}
+       <InputWrapper>
+          <Input
             {...register('username')}
             placeholder={'Username or email'}
             defaultValue={'anon'}
@@ -135,6 +135,8 @@ const Login: React.FunctionComponent<ILoginProps> = () => {
             defaultValue={'password'}
             placeholder={'Password'}
         />
+       </InputWrapper>
+     
 
 
     <ButtonWrapper>
