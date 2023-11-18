@@ -38,7 +38,7 @@ const Disclaimer = styled.div`
 
 
 
-const InputStylesMui = {
+export const InputStylesMui = {
    input: {
     color: 'white',
     border: '1px solid #3f3f4a !important'

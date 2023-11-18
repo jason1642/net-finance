@@ -8,7 +8,7 @@ import { userLogin } from '../redux/async-actions/user-auth';
 import { useAppDispatch } from '../redux/store';
 import Swal from 'sweetalert2';
 import { useNavigate} from 'react-router-dom';
-
+import { InputStylesMui } from './Register';
 
 interface ILoginProps {
 }
@@ -33,6 +33,7 @@ const ButtonWrapper = styled.div`
 const InputWrapper = styled.div`
   display:flex;
   gap: 1rem;
+  color: white;
 `;
 const ForgotPasswordButton = styled(Link)`
   display:flex;
@@ -125,12 +126,15 @@ const Login: React.FunctionComponent<ILoginProps> = () => {
     <Form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
        <InputWrapper>
           <Input
+                sx={InputStylesMui}
+
             {...register('username')}
             placeholder={'Username or email'}
             defaultValue={'anon'}
         />
         <Input
-            {...register('password')}
+                sx={InputStylesMui}
+                {...register('password')}
             type='password'
             defaultValue={'password'}
             placeholder={'Password'}
