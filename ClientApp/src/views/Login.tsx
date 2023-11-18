@@ -15,9 +15,10 @@ interface ILoginProps {
 
 const Form = styled.form`
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
   justify-content: space-between;
   margin: 0 auto;
+  width: 100%;
   /* border: 1px solid green; */
 `;
 const ButtonWrapper = styled.div`
@@ -26,14 +27,21 @@ const ButtonWrapper = styled.div`
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    
 
 `
 
 const ForgotPasswordButton = styled(Link)`
+  display:flex;
   color: #52e3c2;
   background-color: transparent;
   border: none;
+  flex-shrink: 3;
+  background-color: red;
+  border: 1px solid green;
   text-decoration: none;
+  align-items: center;
+  justify-content: center;
   margin-top: 15px;
   &:hover{ 
     cursor: pointer;

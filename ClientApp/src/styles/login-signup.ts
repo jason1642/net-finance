@@ -32,9 +32,10 @@ export const Input = styled(TextField)`
   font-size: 16px;
   padding: 18px 22px;
   display: flex;
-  /* width: 100%; */
-
-   @media (min-width: 770px) {
+  align-self: center;
+  width: calc(100% - 1rem);
+  margin: 0 auto;
+   @media (max-width: 770px) {
     width: calc(43% - 8px);
 
     }
