@@ -17,10 +17,11 @@ export const Container = styled.div`
 export const Title = styled.div`
   display: flex;
   font-size: 42px;
-  margin-bottom: 1rem;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
   font-weight: 300;
   text-align: left;
-  width: 100%;
+  width: auto;
 `;
 
 export const Input = styled(TextField)`
@@ -30,7 +31,8 @@ export const Input = styled(TextField)`
   border-radius: 3px;
   font-size: 16px;
   padding: 18px 22px;
-  
+  display: flex;
+  /* width: 100%; */
 
    @media (min-width: 770px) {
     width: calc(43% - 8px);

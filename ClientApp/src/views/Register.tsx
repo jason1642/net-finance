@@ -115,7 +115,7 @@ const SignUp: React.FunctionComponent<ISignUpProps> = (props) => {
 
   return (
     <Container >
-        <Title style={{margin: '0 auto', width: 'auto', marginBottom: '25px'}}>Sign Up.</Title>
+        <Title>Sign Up.</Title>
         <Wrapper>
         {
             isValidEmail === false ?

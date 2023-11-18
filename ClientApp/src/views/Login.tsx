@@ -15,8 +15,10 @@ interface ILoginProps {
 
 const Form = styled.form`
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column;
   justify-content: space-between;
+  margin: 0 auto;
+  /* border: 1px solid green; */
 `;
 const ButtonWrapper = styled.div`
     display: flex;
@@ -108,12 +110,13 @@ const Login: React.FunctionComponent<ILoginProps> = () => {
     <Container >
        
        
-        <Title>Log in to Net Finance.</Title>
+        <Title>Log in.</Title>
 
 
 
     <Form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
         <Input
+            sx={{marginBottom: '1rem'}}
             {...register('username')}
             placeholder={'Username or email'}
             defaultValue={'anon'}
