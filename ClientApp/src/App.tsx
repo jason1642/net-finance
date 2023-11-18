@@ -4,14 +4,16 @@ import Header from './components/header/Header'
 import './App.css';
 import MainRoutes from './routes/main-routes';
 import {  useVerifyUserQuery } from './redux/features/userApi';
+import {  useParams } from 'react-router-dom';
+import LoginRegisterHeader from './components/header/LoginRegisterHeader';
 
 
 const App = () =>{
   const {data, isLoading } = useVerifyUserQuery()
-
+  const [pathname, setPathName] = React.useState<string>()
   React.useEffect(()=>{
-
-   
+    console.log(window.location.pathname)
+    setPathName(window.location.pathname)
 
     // api.get('').then(res=> {
     //   const{ask, bid, symbol, regularMarketChange, regularMarketChangePercent, regularMarketDayHigh, 
@@ -52,7 +54,10 @@ const App = () =>{
 
   return (  
     <div className="App">
-       <Header />
+       {
+        pathname === ("/login" || "/register") ? 
+        <LoginRegisterHeader /> : 
+        <Header />} 
        <MainRoutes />
 
        {/* {!isLoading? 

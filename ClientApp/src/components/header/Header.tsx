@@ -1,10 +1,10 @@
-import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import React from 'react'
 import NavButtons from './NavButtons'
 import { userApi} from '../../redux/features/userApi'
 
-const Container = styled.header`
+export const Container = styled.header`
     display: flex;
     align-items: center;
     height: 31px;
