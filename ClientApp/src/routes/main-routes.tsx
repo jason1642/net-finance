@@ -8,9 +8,11 @@ import Account from "../views/Account";
 import { userApi } from "../redux/features/userApi";
 import PublicChat from "../views/PublicChat";
 import { WebSocketProvider } from '../context/PublicChatWebSocket';
+interface ComponentProps {
+    pathName: string;
+}
 
-
-const MainRoutes = () => {
+const MainRoutes: React.FunctionComponent<ComponentProps> = ({pathName}) => {
     // Check if user is currently logged in, if not redirect to login page
     const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
 

@@ -10,11 +10,12 @@ import LoginRegisterHeader from './components/header/LoginRegisterHeader';
 
 const App = () =>{
   const {data, isLoading } = useVerifyUserQuery()
-  const [pathname, setPathName] = React.useState<string>()
+  const params = useParams();
+  const [pathname, setPathName] = React.useState<string>('')
   React.useEffect(()=>{
     console.log(window.location.pathname)
     setPathName(window.location.pathname)
-
+    console.log(params)
     // api.get('').then(res=> {
     //   const{ask, bid, symbol, regularMarketChange, regularMarketChangePercent, regularMarketDayHigh, 
     //     regularMarketDayLow, regularMarketOpen, 
@@ -47,10 +48,7 @@ const App = () =>{
 
  
 
-  },[
- 
- 
-  ]) 
+  },[]) 
 
   return (  
     <div className="App">
@@ -58,7 +56,7 @@ const App = () =>{
         pathname === ("/login" || "/register") ? 
         <LoginRegisterHeader /> : 
         <Header />} 
-       <MainRoutes />
+       <MainRoutes pathName={pathname}/>
 
        {/* {!isLoading? 
           <MainRoutes />
