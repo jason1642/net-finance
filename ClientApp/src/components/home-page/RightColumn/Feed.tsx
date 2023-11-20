@@ -29,7 +29,7 @@ const Feed: React.FunctionComponent<ComponentProps> = () => {
         }
       })
       console.log(response)
-      setNewsApiData(response.data.item)
+      setNewsApiData(response.data.body)
     }
     // const fetchNewsData = async () => {
 
