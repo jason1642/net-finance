@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ButtonUnstyled } from '@mui/core';
+import {Button} from '@mui/base/Button';
 import styled from 'styled-components';
 
 interface IGreenThemedButtonProps {
@@ -9,7 +9,7 @@ interface IGreenThemedButtonProps {
   type?: string;
 }
 
-const Container = styled(ButtonUnstyled)`
+const Container = styled(Button)`
   color: white;
   display: block;
   font-size: 16px;
