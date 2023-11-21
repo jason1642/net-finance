@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+import { ButtonUnstyled } from '@mui/core';
 import styled from 'styled-components';
 
 interface IGreenThemedButtonProps {
@@ -34,7 +34,7 @@ const Container = styled(ButtonUnstyled)`
 
 const GreenThemedButton: React.FunctionComponent<IGreenThemedButtonProps> = ({buttonProps, type = 'button', title, onClick = ()=>{}}) => {
   return (
-    <Container type={type} {...buttonProps} onClick={(e)=>onClick(e)}>
+    <Container type={type} {...buttonProps} onClick={(e:any)=>onClick(e)}>
       {title}
     </Container>
   );

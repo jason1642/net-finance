@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mui/core": "^5.0.0-alpha.54",
     "@mui/icons-material": "^5.11.9",
     "@mui/material": "^5.11.4",
     "@mui/styled-engine-sc": "^5.11.0",
@@ -30,7 +31,6 @@
     "react-hook-form": "^7.42.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.2",
-    "react-scripts": "^5.0.1",
     "react-tooltip": "^5.4.0",
     "react-use-websocket": "^4.3.1",
     "redux-thunk": "^2.4.1",
@@ -41,7 +41,8 @@
     "web-vitals": "^3.5.0"
   },
   "devDependencies": {
-    "@types/react-redux": "^7.1.25"
+    "@types/react-redux": "^7.1.25",
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "HTTPS=true react-scripts start",
