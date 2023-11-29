@@ -177,7 +177,7 @@ markers: {
 }
  
  }
-const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = ({}) => {
+const OverviewLineGraph: React.FunctionComponent<IOverviewLineGraphProps> = () => {
 
     // const [stockDailyData, setStockDailyData] = React.useState<any>(stockTimeData)
     const stockDailyData = stockTimeData

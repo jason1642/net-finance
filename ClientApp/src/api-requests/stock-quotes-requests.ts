@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { StockQuotesTypes } from '../types/stock-quotes'
+// import type { StockQuotesTypes } from '../types/stock-quotes'
 
 const api = axios.create(
     {baseURL: process.env.NODE_ENV === 'production' ?

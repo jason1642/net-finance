@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import moment from 'moment';
+// import moment from 'moment';
 
 interface IChatBubbleProps {
     message: string;

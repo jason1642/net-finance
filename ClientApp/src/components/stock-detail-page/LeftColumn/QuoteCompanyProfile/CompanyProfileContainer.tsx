@@ -25,7 +25,7 @@ const QuoteCompanyProfile: React.FunctionComponent<ComponentProps> = ({ stockDat
 
       console.log(stockData)
 
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 

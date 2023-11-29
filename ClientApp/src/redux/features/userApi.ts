@@ -12,13 +12,13 @@ interface UserLoginSchema {
     username: string;
     password: string;
 }
-interface RegisterUserSchema {
-  firstName: string;
-  lastName: string;
-  username: string;
-  password: string;
-  email: string;
-}
+// interface RegisterUserSchema {
+//   firstName: string;
+//   lastName: string;
+//   username: string;
+//   password: string;
+//   email: string;
+// }
 
 // Define a service using a base URL and expected endpoints
 export const userApi = createApi({

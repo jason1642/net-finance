@@ -3,7 +3,7 @@ import StockDetailPage from '../views/StockDetailPage'
 import HomePage from "../views/HomePage";
 import Login from "../views/Login";
 import Register from "../views/Register";
-import HomeSearchBar from "../components/search-bar/HomeSearchBar";
+// import HomeSearchBar from "../components/search-bar/HomeSearchBar";
 import Account from "../views/Account";
 import { userApi } from "../redux/features/userApi";
 import PublicChat from "../views/PublicChat";

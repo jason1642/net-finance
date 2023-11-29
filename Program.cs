@@ -106,6 +106,7 @@ Console.WriteLine("Hello World!");
 
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -118,14 +119,6 @@ if (app.Environment.IsDevelopment())
     app.MapGet("/debug/routes", (IEnumerable<EndpointDataSource> endpointSources) =>
         string.Join("\n", endpointSources.SelectMany(source => source.Endpoints)));
 }
-app.UseCors(policyName);
-
-  // we have to add this. If you do not context.WebSockets.IsWebSocketRequest is always false
-    app.UseWebSockets(new WebSocketOptions
-    {
-        KeepAliveInterval = TimeSpan.FromSeconds(120), // you cna set ping-pong time period in here
-        ReceiveBufferSize = 4 * 1024 // you can specify buffer size here (default is 4kb)
-    });
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -139,6 +132,19 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html");
+
+
+
+
+app.UseCors(policyName);
+
+  // we have to add this. If you do not context.WebSockets.IsWebSocketRequest is always false
+    app.UseWebSockets(new WebSocketOptions
+    {
+        KeepAliveInterval = TimeSpan.FromSeconds(120), // you cna set ping-pong time period in here
+        ReceiveBufferSize = 4 * 1024 // you can specify buffer size here (default is 4kb)
+    });
+
 
 
 

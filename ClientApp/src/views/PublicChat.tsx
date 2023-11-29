@@ -24,7 +24,7 @@ const Container = styled.div`
 interface IPublicChatProps { 
 }
 
-const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
+const PublicChat: React.FunctionComponent<IPublicChatProps> = () => {
     const { newMessagesList, wsState, connectWs, closeWs } = useContext(WebSocketContext);
 
     const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
@@ -50,6 +50,7 @@ const PublicChat: React.FunctionComponent<IPublicChatProps> = ({}) => {
         return ()=> {
             closeWs();
         }
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
 

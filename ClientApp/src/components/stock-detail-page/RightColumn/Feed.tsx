@@ -28,7 +28,7 @@ const Feed: React.FunctionComponent<ComponentProps> = ({symbol}) => {
       setNewsApiData(response.data.item)
     }
     fetchNewsData()
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <Container>

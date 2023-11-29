@@ -46,7 +46,7 @@ const SubmitButton = styled(Button)`
 `;
 
 const UserInput: React.FunctionComponent<IUserInputProps> = ({userId, roomId}) => {
-  const {register, handleSubmit, setValue, watch, control, formState: {errors} } = useForm({
+  const { handleSubmit, setValue, watch, control } = useForm({
     defaultValues: {
       messageInput: ''
     }

@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import LeftColumn from '../components/stock-detail-page/LeftColumn/LeftColumn'
 import RightColumn from '../components/stock-detail-page/RightColumn/RightColumn'
-import { fetchDailyStockDataSeries } from '../api-requests/alphavantage-requests'
+// import { fetchDailyStockDataSeries } from '../api-requests/alphavantage-requests'
 import {useParams} from 'react-router-dom'
-import StockLineGraph from '../components/graphs/StockLineGraph'
+// import StockLineGraph from '../components/graphs/StockLineGraph'
 import { getCompanyProfile, getQuoteBySymbol } from '../api-requests/stock-quotes-requests'
-import { MergedQuoteCompanyData, StockQuotesTypes } from '../types/stock-quotes'
-import { CompanyProfileTypes } from '../types/company-profile'
+import { MergedQuoteCompanyData } from '../types/stock-quotes'
+// import { CompanyProfileTypes } from '../types/company-profile'
 
 interface ComponentProps {
 

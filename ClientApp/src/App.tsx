@@ -3,13 +3,13 @@ import Footer from './components/footer/Footer'
 import Header from './components/header/Header' 
 import './App.css';
 import MainRoutes from './routes/main-routes';
-import {  useVerifyUserQuery } from './redux/features/userApi';
+// import {  useVerifyUserQuery } from './redux/features/userApi';
 import {  useParams } from 'react-router-dom';
 import LoginRegisterHeader from './components/header/LoginRegisterHeader';
 
 
 const App = () =>{
-  const {data, isLoading } = useVerifyUserQuery()
+  // const {data, isLoading } = useVerifyUserQuery()
   const params = useParams();
   const [pathname, setPathName] = React.useState<string>('')
   React.useEffect(()=>{
@@ -46,8 +46,7 @@ const App = () =>{
     // })
 
 
- 
- 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]) 
 
   return (  
