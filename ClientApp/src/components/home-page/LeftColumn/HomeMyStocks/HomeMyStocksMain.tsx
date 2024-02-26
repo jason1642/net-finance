@@ -52,7 +52,7 @@ import { Link } from 'react-router-dom'
   `;
   const OverflowXDiv = styled.div`
     overflow-x: auto;
-    scrollbar-color: red yellow;
+    scrollbar-color: #909090 transparent;
 `;
 
 const HomeMyStocksMain = () => {
