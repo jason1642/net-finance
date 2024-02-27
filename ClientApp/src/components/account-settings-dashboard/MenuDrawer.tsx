@@ -9,6 +9,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 interface IMenuDrawerProps {
@@ -40,15 +41,21 @@ const MenuDrawer: React.FunctionComponent<IMenuDrawerProps> = (props) => {
     <Toolbar />
     <Divider />
     <List>
-      {['Profile', 'Privacy', 'Notifications', 'Appearance'].map((text, index) => (
-        <ListItem key={text} disablePadding>
-          <ListItemButton>
+      {['Edit Profile', 'Privacy', 'Notifications', 'Appearance'].map((text, index) => (
+                    <Link style={{textDecoration: 'none', color:'white', display: 'inline-block'}} to="edit-profile">
+
+        <ListItem style={{display: 'flex'}} key={text} disablePadding>
+          <ListItemButton style={{display: 'flex',}} >
+            
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon>
             <ListItemText primary={text} />
+
           </ListItemButton>
         </ListItem>
+                    </Link>
+
       ))}
     </List>
     <Divider />

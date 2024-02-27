@@ -12,7 +12,7 @@ interface IEditProfileProps {
 const EditProfile: React.FunctionComponent<IEditProfileProps> = (props) => {
   return (
     <Container>
-
+        This is the edit profile page
     </Container>
   );
 };

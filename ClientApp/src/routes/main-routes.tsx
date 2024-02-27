@@ -8,6 +8,7 @@ import { userApi } from "../redux/features/userApi";
 import PublicChat from "../views/PublicChat";
 import { WebSocketProvider } from '../context/PublicChatWebSocket';
 import AccountSettings from "../views/AccountSettings";
+import EditProfile from "../components/account-settings-dashboard/EditProfile";
 interface ComponentProps {
     pathName: string;
 }
@@ -24,7 +25,14 @@ const MainRoutes: React.FunctionComponent<ComponentProps> = ({pathName}) => {
         },
         {
             path: '/account/settings',
-            element: userData ? <AccountSettings /> : <Navigate to='/' />
+            element: userData ? <AccountSettings /> : <Navigate to='/' />,
+            children: [
+                {
+                    path: 'edit-profile',
+                    element: <EditProfile />,
+                    
+                }
+            ]
         },
         {
             path: '/login',
