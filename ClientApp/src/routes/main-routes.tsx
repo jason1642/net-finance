@@ -3,11 +3,11 @@ import StockDetailPage from '../views/StockDetailPage'
 import HomePage from "../views/HomePage";
 import Login from "../views/Login";
 import Register from "../views/Register";
-// import HomeSearchBar from "../components/search-bar/HomeSearchBar";
 import Account from "../views/Account";
 import { userApi } from "../redux/features/userApi";
 import PublicChat from "../views/PublicChat";
 import { WebSocketProvider } from '../context/PublicChatWebSocket';
+import AccountSettings from "../views/AccountSettings";
 interface ComponentProps {
     pathName: string;
 }
@@ -21,6 +21,10 @@ const MainRoutes: React.FunctionComponent<ComponentProps> = ({pathName}) => {
         {
             path: '/account',
             element: userData ? <Account /> : <Navigate to="/" />  
+        },
+        {
+            path: '/account/settings',
+            element: userData ? <AccountSettings /> : <Navigate to='/' />
         },
         {
             path: '/login',
