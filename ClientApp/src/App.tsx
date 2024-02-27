@@ -50,7 +50,7 @@ const App = () =>{
 
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]) 
+  },[userInfo]) 
 
   return (  
     <div className="App">

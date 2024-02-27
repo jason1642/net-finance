@@ -4,6 +4,7 @@ import { removeTokensLogout } from '../../api-requests/user-requests';
 import { useNavigate, Link} from 'react-router-dom';
 import styled from 'styled-components'
 import { StyledLink } from './Header';
+import AccountNavDropdown from './AccountNavDropdown';
 interface ComponentProps {
   userData: any;
   isLoading: boolean;
@@ -47,7 +48,8 @@ const LinkBatch: React.FunctionComponent<ComponentProps>  = ({userData, isLoadin
      
       <RightSideWrapper>
           <RightSideStyledLink to=''>Help</RightSideStyledLink>
-      {userData && !isLoading && <RightSideStyledLink to='account'>Account</RightSideStyledLink>}
+      {userData && !isLoading && 
+      <AccountNavDropdown/>}
 
 
  {
