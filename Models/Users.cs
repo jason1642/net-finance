@@ -122,7 +122,11 @@ public class OrderHistory
 
 }
 
-
+public class ProfilePicture
+{
+    public ObjectId Id { get; set; }
+    public byte[]? ImageData { get; set; }
+}
 public class Users
 {
    
@@ -131,6 +135,11 @@ public class Users
     public string? _id { get; set; }
 
     //[BsonDefaultValue(c)]
+    
+
+    [BsonElement("profile_picture")]
+    public ProfilePicture? profile_picture { get; set; }
+
     
     [BsonElement("created_at")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -160,6 +169,8 @@ public class Users
     [BsonElement("username")]
     [JsonPropertyName("username")]
     public string? username { get; set; }
+
+
 
     [BsonElement("email")]
     [JsonPropertyName("email")]

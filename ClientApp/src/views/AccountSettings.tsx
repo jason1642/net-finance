@@ -47,7 +47,6 @@ const AccountSettings: React.FunctionComponent<IAccountSettingsProps> = (props) 
     let location = useLocation().pathname.split('/')
     const [pathName, setPathName] = React.useState<string>()
     React.useEffect(()=>{
-
         setPathName(_.startCase(location[location.length - 1].split('-').join(' ')))
         console.log(location)
     },[location])
