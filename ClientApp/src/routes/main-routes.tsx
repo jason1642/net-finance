@@ -24,13 +24,17 @@ const MainRoutes: React.FunctionComponent<ComponentProps> = ({pathName}) => {
             element: userData ? <Account /> : <Navigate to="/" />  
         },
         {
-            path: '/account/settings',
+            path: '/account/settings/',
             element: userData ? <AccountSettings /> : <Navigate to='/' />,
             children: [
                 {
                     path: 'edit-profile',
                     element: <EditProfile />,
-                    
+
+                },
+                {
+                    path: 'notifications',
+                    element: <div>Notifications</div>
                 }
             ]
         },

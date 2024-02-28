@@ -1,12 +1,10 @@
-'use client'
 import * as React from 'react';
 import styled from 'styled-components';
 import { MainWrapper } from '../../views/AccountSettings';
 
 
-interface IEditProfileProps {
+interface INotificationsProps {
 }
-
 const Container = styled.div`
   display: flex;
   height: 100%;
@@ -16,13 +14,12 @@ const Container = styled.div`
 
 
 `;
-
-const EditProfile: React.FunctionComponent<IEditProfileProps> = (props) => {
+const Notifications: React.FunctionComponent<INotificationsProps> = (props) => {
   return (
     <Container>
-        This is the edit profile page
+
     </Container>
   );
 };
 
-export default EditProfile;
+export default Notifications;

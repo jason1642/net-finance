@@ -23,6 +23,7 @@
     "apexcharts": "^3.44.0",
     "axios": "^1.5.1",
     "email-validator": "^2.0.4",
+    "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
@@ -40,6 +41,7 @@
     "web-vitals": "^3.5.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.202",
     "@types/react-redux": "^7.1.25",
     "react-scripts": "^5.0.1"
   },
