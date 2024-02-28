@@ -247,6 +247,29 @@ namespace net_finance_api.Controllers
                 return BadRequest(ModelState);
 
         }
+
+        // Post: api/Users/UpdateProfilePicture
+        [HttpPost("UpdateProfilePicture")]
+        public async Task<IActionResult> updateProfilePicture([FromBody] byte[] profilePicture)
+        {
+             if (!(Request.Cookies.TryGetValue("X-Username", out var username) && Request.Cookies.TryGetValue("X-Refresh-Token", out var refreshToken)))
+                return BadRequest();
+            Users? user = await _usersService.verifyToken(username, refreshToken);
+            if (user == null) return BadRequest();
+
+            var filter = Builders<Users>.Filter.Eq("_id", ObjectId.Parse(user._id));
+            var image = new ImageModel{
+                // id=  123,
+                image_data = profilePicture
+            };
+
+
+    // _usersService.FilterUpdateUser(filter, update);
+            Console.WriteLine(image);
+            return Ok(user);
+
+        }
+
         // Post: api/Users/CreateNewOrder
         [HttpPost("CreateNewOrder")]
         public async Task<IActionResult> createBuyOrder([FromBody] OrderHistory order) 

@@ -122,10 +122,10 @@ public class OrderHistory
 
 }
 
-public class ProfilePicture
+public class ImageModel
 {
-    public ObjectId Id { get; set; }
-    public byte[]? ImageData { get; set; }
+    public ObjectId id { get; set; }
+    public byte[]? image_data { get; set; }
 }
 public class Users
 {
@@ -138,7 +138,7 @@ public class Users
     
 
     [BsonElement("profile_picture")]
-    public ProfilePicture? profile_picture { get; set; }
+    public ImageModel? profile_picture { get; set; }
 
     
     [BsonElement("created_at")]
