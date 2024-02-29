@@ -265,7 +265,7 @@ namespace net_finance_api.Controllers
       profilePicture.CopyTo(ms);
       var fileBytes = ms.ToArray();
       string s = Convert.ToBase64String(fileBytes);
-                 Console.WriteLine(s);
+                //  Console.WriteLine(s);
 
       // act on the Base64 data
             updatedUser.profile_picture = new ImageModel 

@@ -127,8 +127,11 @@ public class ImageModel
      [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
 
-    public string? id { get; set; }
+    public ObjectId? _id { get; set; }
 
+    public ImageModel() {
+        this._id = ObjectId.GenerateNewId();
+    }
     [BsonElement("image_data")]
 
     public byte[]? image_data { get; set; }
