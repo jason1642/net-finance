@@ -250,23 +250,37 @@ namespace net_finance_api.Controllers
 
         // Post: api/Users/UpdateProfilePicture
         [HttpPost("UpdateProfilePicture")]
-        public async Task<IActionResult> updateProfilePicture([FromBody] byte[] profilePicture)
+        public async Task<IActionResult> updateProfilePicture([FromForm] IFormFile profilePicture)
         {
+            
              if (!(Request.Cookies.TryGetValue("X-Username", out var username) && Request.Cookies.TryGetValue("X-Refresh-Token", out var refreshToken)))
                 return BadRequest();
             Users? user = await _usersService.verifyToken(username, refreshToken);
             if (user == null) return BadRequest();
 
-            var filter = Builders<Users>.Filter.Eq("_id", ObjectId.Parse(user._id));
-            var image = new ImageModel{
-                // id=  123,
-                image_data = profilePicture
+
+            var updatedUser = user;
+           await using (var ms = new MemoryStream())
+    {
+      profilePicture.CopyTo(ms);
+      var fileBytes = ms.ToArray();
+      string s = Convert.ToBase64String(fileBytes);
+                 Console.WriteLine(s);
+
+      // act on the Base64 data
+            updatedUser.profile_picture = new ImageModel 
+            {
+                image_data = fileBytes
             };
+                  await _usersService.UpdateAsync(updatedUser._id, updatedUser);
+
+    }
+   
 
 
     // _usersService.FilterUpdateUser(filter, update);
-            Console.WriteLine(image);
-            return Ok(user);
+            Console.WriteLine(username, refreshToken);
+            return Ok(profilePicture);
 
         }
 

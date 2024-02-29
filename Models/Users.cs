@@ -124,7 +124,13 @@ public class OrderHistory
 
 public class ImageModel
 {
-    public ObjectId id { get; set; }
+     [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+
+    public string? id { get; set; }
+
+    [BsonElement("image_data")]
+
     public byte[]? image_data { get; set; }
 }
 public class Users
