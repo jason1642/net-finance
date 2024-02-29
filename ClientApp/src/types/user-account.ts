@@ -12,6 +12,10 @@ export interface UserAccountTypes  {
    refresh_token: string;
    cash: number;
 
+   profile_picture: {
+    _id: any;
+    image_data: string;
+   };
 
 
 

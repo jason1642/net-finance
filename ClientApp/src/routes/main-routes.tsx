@@ -8,7 +8,7 @@ import { userApi } from "../redux/features/userApi";
 import PublicChat from "../views/PublicChat";
 import { WebSocketProvider } from '../context/PublicChatWebSocket';
 import AccountSettings from "../views/AccountSettings";
-import EditProfile from "../components/account-settings-dashboard/EditProfile";
+import EditProfile from "../components/account-settings-dashboard/edit-profile.tsx/EditProfile";
 interface ComponentProps {
     pathName: string;
 }

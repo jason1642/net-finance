@@ -1,8 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import MenuDrawer from '../components/account-settings-dashboard/MenuDrawer';
-import EditProfile from '../components/account-settings-dashboard/EditProfile';
+import EditProfile from '../components/account-settings-dashboard/edit-profile.tsx/EditProfile';
 import {Outlet, useLocation} from 'react-router-dom'
+import { userApi } from '../redux/features/userApi';
 import _ from 'lodash'
 
 const Container = styled.div`
@@ -43,7 +44,7 @@ interface IAccountSettingsProps {
 
 
 const AccountSettings: React.FunctionComponent<IAccountSettingsProps> = (props) => {
-    // const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
+    const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
     let location = useLocation().pathname.split('/')
     const [pathName, setPathName] = React.useState<string>()
     React.useEffect(()=>{
@@ -58,7 +59,7 @@ const AccountSettings: React.FunctionComponent<IAccountSettingsProps> = (props) 
 
         <MainWrapper>  
             <TabTitle>{pathName}</TabTitle>
-            <Outlet />
+            <Outlet context={{userData}}/>
 
         </MainWrapper>
 
