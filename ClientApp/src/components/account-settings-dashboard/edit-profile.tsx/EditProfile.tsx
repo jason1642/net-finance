@@ -6,6 +6,7 @@ import { useOutletContext } from 'react-router-dom';
 import ProfileImage from './ProfileImage';
 import PersonalInformation from './PersonalInformation';
 import { useForm, SubmitHandler } from "react-hook-form"
+import { Button } from '@mui/material';
 
 type Inputs = {
   example: string
@@ -55,9 +56,11 @@ const EditProfile: React.FunctionComponent<IEditProfileProps> = () => {
 
       <ProfileImage userData={userData} />
     
-      <PersonalInformation  register={register}/>
+      <PersonalInformation userData={userData} register={register}/>
     {/* Display/change username */}
-    <button>Submit</button>
+    <Button 
+    sx={{width: '150px', alignSelf: 'center',}}
+    variant='contained'>Submit</Button>
     </Container>
   );
 };
