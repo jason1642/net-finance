@@ -12,8 +12,10 @@ const ProfilePicture = styled(Avatar)`
 `;
 const ImageWrapper = styled.div`
   display:flex;
-  height: 100px;
-  width: 100px;
+  align-self: center;
+  margin-bottom: 2rem;
+  height: 150px;
+  width: 150px;
   position: relative;
   &:hover{
     cursor: pointer;

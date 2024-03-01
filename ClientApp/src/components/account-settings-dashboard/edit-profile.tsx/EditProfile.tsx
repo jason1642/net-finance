@@ -4,19 +4,27 @@ import styled from 'styled-components';
 import { MainWrapper } from '../../../views/AccountSettings';
 import { useOutletContext } from 'react-router-dom';
 import ProfileImage from './ProfileImage';
+import PersonalInformation from './PersonalInformation';
+import { useForm, SubmitHandler } from "react-hook-form"
 
+type Inputs = {
+  example: string
+  exampleRequired: string
+}
 
 interface IEditProfileProps {
 }
 
-const Container = styled.div`
+const Container = styled.form`
   display: flex;
+  flex-direction: column;
   height: 100%;
-  width: 100%;
+  /* width: 100%; */
   max-width: 1400px;
   flex: 1 1 auto;
-
-
+  border-radius: 6px;
+  border: 1px solid grey;
+  padding: 1rem;
 `;
 
 
@@ -25,14 +33,31 @@ const Container = styled.div`
 const EditProfile: React.FunctionComponent<IEditProfileProps> = () => {
   const {userData} = useOutletContext<{userData:any}>()
 
+
   React.useEffect(()=>{
     console.log(userData)
   },[])
 
+
+  const {register, handleSubmit, watch, formState: {errors},} = useForm<Inputs>()
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+
+  // console.log(watch("example")) // watch input value by passing the name of it
+
   return (
-    <Container>
+    <Container onSubmit={handleSubmit(onSubmit)}>
+
+      
+
+
+  
+
       <ProfileImage userData={userData} />
     
+      <PersonalInformation  register={register}/>
+    {/* Display/change username */}
+    <button>Submit</button>
     </Container>
   );
 };

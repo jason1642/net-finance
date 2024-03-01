@@ -1,10 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import MenuDrawer from '../components/account-settings-dashboard/MenuDrawer';
-import EditProfile from '../components/account-settings-dashboard/edit-profile.tsx/EditProfile';
 import {Outlet, useLocation} from 'react-router-dom'
 import { userApi } from '../redux/features/userApi';
 import _ from 'lodash'
+
+
 
 const Container = styled.div`
   display: flex;
@@ -32,7 +33,7 @@ const TabTitle = styled.h2`
     justify-content: center;
     align-items: center;
   /* background-color: grey; */
-  padding: .8rem;
+  padding: .5rem;
   color: white;
   font-weight: 400;
   font-size: 2rem;
@@ -51,6 +52,7 @@ const AccountSettings: React.FunctionComponent<IAccountSettingsProps> = (props) 
         setPathName(_.startCase(location[location.length - 1].split('-').join(' ')))
         console.log(location)
     },[location])
+
 
 
     return (
