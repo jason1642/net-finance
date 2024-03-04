@@ -59,6 +59,7 @@ const EditProfile: React.FunctionComponent<IEditProfileProps> = () => {
       <PersonalInformation userData={userData} register={register}/>
     {/* Display/change username */}
     <Button 
+    type='submit'
     sx={{width: '150px', alignSelf: 'center',}}
     variant='contained'>Submit</Button>
     </Container>

@@ -1,6 +1,7 @@
 
 
 export interface UserAccountTypes  {
+    [key: string]: any;
    _id: string;
    first_name: string;
    last_name: string;
