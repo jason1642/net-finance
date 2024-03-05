@@ -68,14 +68,29 @@ const ChangePicture = styled('button')`
 const ProfileImage: React.FunctionComponent<IProfileImageProps> = ({userData, register}) => {
 
     // add image file upload form
+    const [currentImage, setCurrentImage] = React.useState()
+    const [file, setFile] = React.useState<any>()
 
+    React.useEffect(()=>{
+
+        console.log('file',file)
+        console.log('current image', currentImage)
+    },[file, currentImage])
+
+    const handleChange = (event:any)=>{
+        console.log(event)
+        // console.log(userData.profile_picture.image_data)
+
+        setFile(event.target.files[0])
+        setCurrentImage(event.target.files[0])
+    }
   return (
     <ImageWrapper>
         
     
     <ProfilePicture
       alt='avatar'
-      src={`data:image/jpeg;base64,${userData.profile_picture.image_data}`}
+      src={ `data:image/jpeg;base64,${userData.profile_picture.image_data}`}
       variant='rounded'
       sx={{height: '100%', width: '100%',}}
     />
@@ -90,7 +105,7 @@ const ProfileImage: React.FunctionComponent<IProfileImageProps> = ({userData, re
       startIcon={<CloudUploadIcon />}
     >
       Upload Image
-      <VisuallyHiddenInput type="file" />
+      <VisuallyHiddenInput onChange={handleChange}  type="file" />
     </Button>
         
   </ImageWrapper>
