@@ -284,6 +284,23 @@ namespace net_finance_api.Controllers
 
         }
 
+
+
+    // Post: api/Users/EditProfile
+    [HttpPost("EditProfile")]
+    public async Task<IActionResult> editProfile([FromBody] Users FormInputs)
+    {
+            if (!(Request.Cookies.TryGetValue("X-Username", out var username) && Request.Cookies.TryGetValue("X-Refresh-Token", out var refreshToken)))
+                return BadRequest();
+            Users? user = await _usersService.verifyToken(username, refreshToken);
+            if (user == null) return BadRequest();
+
+
+            
+        return Ok(FormInputs);
+    }
+
+
         // Post: api/Users/CreateNewOrder
         [HttpPost("CreateNewOrder")]
         public async Task<IActionResult> createBuyOrder([FromBody] OrderHistory order) 

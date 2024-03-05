@@ -1,17 +1,21 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Avatar } from '@mui/material';
+import { Avatar, Button } from '@mui/material';
 import { UserAccountTypes } from '../../../types/user-account';
-
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 interface IProfileImageProps {
     userData: UserAccountTypes;
+    register: any;
 }
 
 const ProfilePicture = styled(Avatar)`
-  
+  height: 100%;
+  position: relative;
+  width: 100%;
 `;
 const ImageWrapper = styled.div`
   display:flex;
+  flex-direction: column;
   align-self: center;
   margin-bottom: 2rem;
   height: 150px;
@@ -22,7 +26,19 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const ChangePicture = styled.div`
+const VisuallyHiddenInput = styled('input')({
+    clip: 'rect(0 0 0 0)',
+    clipPath: 'inset(50%)',
+    height: 1,
+    overflow: 'hidden',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    whiteSpace: 'nowrap',
+    width: 1,
+  });
+
+const ChangePicture = styled('button')`
   background-color: grey;
   position: absolute;
   display: flex;
@@ -49,20 +65,34 @@ const ChangePicture = styled.div`
   }
 `;
 
-const ProfileImage: React.FunctionComponent<IProfileImageProps> = ({userData}) => {
+const ProfileImage: React.FunctionComponent<IProfileImageProps> = ({userData, register}) => {
 
     // add image file upload form
 
   return (
     <ImageWrapper>
-
+        
+    
     <ProfilePicture
       alt='avatar'
       src={`data:image/jpeg;base64,${userData.profile_picture.image_data}`}
       variant='rounded'
       sx={{height: '100%', width: '100%',}}
     />
-    <ChangePicture >Edit Image</ChangePicture>
+    
+    <Button
+      component="label"
+      sx={{marginTop:'.5rem', textTransform: 'none'}}
+      role={undefined}
+      variant="contained"
+      size='small'
+      tabIndex={-1}
+      startIcon={<CloudUploadIcon />}
+    >
+      Upload Image
+      <VisuallyHiddenInput type="file" />
+    </Button>
+        
   </ImageWrapper>
   );
 };

@@ -54,7 +54,7 @@ const EditProfile: React.FunctionComponent<IEditProfileProps> = () => {
 
   
 
-      <ProfileImage userData={userData} />
+      <ProfileImage register={register} userData={userData} />
     
       <PersonalInformation userData={userData} register={register}/>
     {/* Display/change username */}
