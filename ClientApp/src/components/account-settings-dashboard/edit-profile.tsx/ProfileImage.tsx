@@ -70,17 +70,22 @@ const ProfileImage: React.FunctionComponent<IProfileImageProps> = ({userData, re
     // add image file upload form
     const [currentImage, setCurrentImage] = React.useState()
     const [file, setFile] = React.useState<any>()
-
+    const [exFormData, setExFormData] = React.useState<any>()
     React.useEffect(()=>{
 
         console.log('file',file)
         console.log('current image', currentImage)
-    },[file, currentImage])
+        console.log(exFormData)
+    },[file, currentImage,exFormData])
 
     const handleChange = (event:any)=>{
-        console.log(event)
+        event.preventDefault()
+        const formData = new FormData()
+        formData.append('file', event.target.files[0])
+        formData.append('fileName', 'testImage')
         // console.log(userData.profile_picture.image_data)
-
+        console.log('formData:', formData)
+        setExFormData(formData)
         setFile(event.target.files[0])
         setCurrentImage(event.target.files[0])
     }
