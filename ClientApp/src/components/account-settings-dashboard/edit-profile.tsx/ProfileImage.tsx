@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Avatar, Button } from '@mui/material';
 import { UserAccountTypes } from '../../../types/user-account';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import axios from 'axios'
+import { updateUserProfilePicture } from '../../../api-requests/user-requests';
 interface IProfileImageProps {
     userData: UserAccountTypes;
     register: any;
@@ -83,25 +83,14 @@ const ProfileImage: React.FunctionComponent<IProfileImageProps> = ({userData, re
         const formData: any = new FormData()
         formData.append('profilePicture', event.target.files[0])
         formData.append('FileName', 'testImage')
-        // console.log(userData.profile_picture.image_data)
-        for (var key of formData.entries()) {
-            console.log(key[0] + ', ' + key[1]);
-        }
+      
 
 
-        const config = {
-            headers:{ 
-                'content-type': 'multipart/form-data',
-            },
-            withCredentials: true,
 
-        }
+        await updateUserProfilePicture(formData)
+        .then(res=>{console.log(res)})
+        .catch(err=>{console.log(err)})
 
-        await axios.post('https://localhost:7108/api/Users/UpdateProfilePicture', formData, config).then((res)=>{
-            console.log(res)
-        }).catch((err:any)=>{
-            console.log(err)
-        })
         setExFormData(formData)
         setFile(event.target.files[0])
         setCurrentImage(URL.createObjectURL(event.target.files[0]))
