@@ -36,7 +36,7 @@ const EditProfile: React.FunctionComponent<IEditProfileProps> = () => {
 
 
   React.useEffect(()=>{
-    console.log(userData)
+    // console.log(userData)
   },[])
 
 

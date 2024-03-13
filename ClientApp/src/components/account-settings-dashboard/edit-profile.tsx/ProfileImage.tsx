@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Avatar, Button } from '@mui/material';
 import { UserAccountTypes } from '../../../types/user-account';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import axios from 'axios'
 interface IProfileImageProps {
     userData: UserAccountTypes;
     register: any;
@@ -68,26 +69,42 @@ const ChangePicture = styled('button')`
 const ProfileImage: React.FunctionComponent<IProfileImageProps> = ({userData, register}) => {
 
     // add image file upload form
-    const [currentImage, setCurrentImage] = React.useState()
+    const [currentImage, setCurrentImage] = React.useState<any>()
     const [file, setFile] = React.useState<any>()
     const [exFormData, setExFormData] = React.useState<any>()
     React.useEffect(()=>{
 
         console.log('file',file)
         console.log('current image', currentImage)
-        console.log(exFormData)
     },[file, currentImage,exFormData])
 
-    const handleChange = (event:any)=>{
+    const handleChange = async (event:any)=>{
         event.preventDefault()
-        const formData = new FormData()
-        formData.append('file', event.target.files[0])
-        formData.append('fileName', 'testImage')
+        const formData: any = new FormData()
+        formData.append('profilePicture', event.target.files[0])
+        formData.append('FileName', 'testImage')
         // console.log(userData.profile_picture.image_data)
-        console.log('formData:', formData)
+        for (var key of formData.entries()) {
+            console.log(key[0] + ', ' + key[1]);
+        }
+
+
+        const config = {
+            headers:{ 
+                'content-type': 'multipart/form-data',
+            },
+            withCredentials: true,
+
+        }
+
+        await axios.post('https://localhost:7108/api/Users/UpdateProfilePicture', formData, config).then((res)=>{
+            console.log(res)
+        }).catch((err:any)=>{
+            console.log(err)
+        })
         setExFormData(formData)
         setFile(event.target.files[0])
-        setCurrentImage(event.target.files[0])
+        setCurrentImage(URL.createObjectURL(event.target.files[0]))
     }
   return (
     <ImageWrapper>
@@ -95,7 +112,7 @@ const ProfileImage: React.FunctionComponent<IProfileImageProps> = ({userData, re
     
     <ProfilePicture
       alt='avatar'
-      src={ `data:image/jpeg;base64,${userData.profile_picture.image_data}`}
+      src={ currentImage || `data:image/jpeg;base64,${userData.profile_picture.image_data}`}
       variant='rounded'
       sx={{height: '100%', width: '100%',}}
     />

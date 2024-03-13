@@ -252,43 +252,60 @@ namespace net_finance_api.Controllers
         [HttpPost("UpdateProfilePicture")]
         public async Task<IActionResult> updateProfilePicture([FromForm] IFormFile profilePicture)
         {
-            
+
+                        Console.WriteLine(profilePicture.FileName);
+            Console.WriteLine("test1");
+
              if (!(Request.Cookies.TryGetValue("X-Username", out var username) && Request.Cookies.TryGetValue("X-Refresh-Token", out var refreshToken)))
                 return BadRequest();
             Users? user = await _usersService.verifyToken(username, refreshToken);
             if (user == null) return BadRequest();
 
+            Console.WriteLine("test2");
 
-            var updatedUser = user;
            await using (var ms = new MemoryStream())
-    {
-      profilePicture.CopyTo(ms);
-      var fileBytes = ms.ToArray();
-      string s = Convert.ToBase64String(fileBytes);
-                //  Console.WriteLine(s);
-
-      // act on the Base64 data
-            updatedUser.profile_picture = new ImageModel 
             {
-                image_data = fileBytes
-            };
-                  await _usersService.UpdateAsync(updatedUser._id, updatedUser);
+                Console.WriteLine("test3");
 
-    }
-   
+            profilePicture.CopyTo(ms);
+            var fileBytes = ms.ToArray();
+            string s = Convert.ToBase64String(fileBytes);
+                        //  Console.WriteLine(s);
+
+            // act on the Base64 data
+                    user.profile_picture = new ImageModel 
+                    {
+                        image_data = fileBytes
+                    };
+                 Console.WriteLine("test4");
+
+
+             
+
+            };
+Console.WriteLine("test5");
+          var filter = Builders<Users>.Filter.Eq("_id", ObjectId.Parse(user._id));
+Console.WriteLine("test6");
+   var update = Builders<Users>.Update.Set("profile_picture", user.profile_picture);
+    await _usersService.FilterUpdateUser(filter, update);
+Console.WriteLine("test7");
 
 
     // _usersService.FilterUpdateUser(filter, update);
-            Console.WriteLine(username, refreshToken);
-            return Ok(profilePicture);
+                  Console.WriteLine("test8");
 
+            return Ok(user);
         }
+
+
+
+
 
 
 
     // Post: api/Users/EditProfile
     [HttpPost("EditProfile")]
-    public async Task<IActionResult> editProfile([FromBody] Users FormInputs)
+    public async Task<IActionResult> editProfile([FromForm] IFormFile FormInputs)
     {
             if (!(Request.Cookies.TryGetValue("X-Username", out var username) && Request.Cookies.TryGetValue("X-Refresh-Token", out var refreshToken)))
                 return BadRequest();
@@ -296,9 +313,12 @@ namespace net_finance_api.Controllers
             if (user == null) return BadRequest();
 
 
-            
+
         return Ok(FormInputs);
     }
+
+
+
 
 
         // Post: api/Users/CreateNewOrder
@@ -334,7 +354,7 @@ namespace net_finance_api.Controllers
                 currency = "USD"
             });
 
-            _usersService.FilterUpdateUser(filter, update);
+            await _usersService.FilterUpdateUser(filter, update);
             Console.WriteLine(user);
             
             return Ok(user);
@@ -360,7 +380,7 @@ namespace net_finance_api.Controllers
                 previous_business_day_date = historyItemData.previous_business_day_date
             });
 
-            _usersService.FilterUpdateUser(filter, update);
+            await _usersService.FilterUpdateUser(filter, update);
             Console.WriteLine(user);
             
             return Ok(user);
