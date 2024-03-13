@@ -284,19 +284,50 @@ namespace net_finance_api.Controllers
 
 
 
-
+    public class UserEditForm
+    {
+        public string? username {get; set;}
+        public string? email {get; set;}
+    }
     // Post: api/Users/EditProfile
     [HttpPost("EditProfile")]
-    public async Task<IActionResult> editProfile([FromForm] IFormFile FormInputs)
+    public async Task<IActionResult> editProfile([FromBody] UserEditForm EditFields)
     {
-            if (!(Request.Cookies.TryGetValue("X-Username", out var username) && Request.Cookies.TryGetValue("X-Refresh-Token", out var refreshToken)))
-                return BadRequest();
-            Users? user = await _usersService.verifyToken(username, refreshToken);
-            if (user == null) return BadRequest();
+        if (ModelState.IsValid)
+            {
+        if (!(Request.Cookies.TryGetValue("X-Username", out var username) && Request.Cookies.TryGetValue("X-Refresh-Token", out var refreshToken)))
+            return BadRequest();
+        Users? user = await _usersService.verifyToken(username, refreshToken);
+
+        if (user == null) return BadRequest();
+        Console.WriteLine(EditFields);
+
+        Users? emailExists = await _usersService.GetAsyncEmail(EditFields.email);
+        
+        Users? usernameExists = await _usersService.GetAsyncUsername(EditFields.username);
+            if (emailExists != null && user.email != EditFields.email) return BadRequest("Email already Exists");
+            if (usernameExists != null && user.username != EditFields.username) return BadRequest("Username is already taken");
+
+        // user.refresh_token = RefreshToken;
 
 
-    
-        return Ok(FormInputs);
+            if (user.email != EditFields.email){
+                user.email = EditFields.email;
+            }
+         if (user.username != EditFields.username){
+                user.username = EditFields.username;
+            }
+
+            await _usersService.UpdateAsync(user._id!, user); 
+
+        return Ok(EditFields);
+
+            }
+        else
+            return BadRequest();
+            
+
+      
     }
 
 

@@ -32,11 +32,11 @@ public class UsersService
     public async Task<Users?> GetAsync(string id) =>
         await _usersCollection.Find(x => x._id == id).FirstOrDefaultAsync();
 
-    public async Task<Users?> GetAsyncEmail(string email) =>
+    public async Task<Users?> GetAsyncEmail(string? email) =>
     await _usersCollection.Find(x => x.email == email).FirstOrDefaultAsync();
 
 
-    public async Task<Users?> GetAsyncUsername(string username) =>
+    public async Task<Users?> GetAsyncUsername(string? username) =>
     await _usersCollection.Find(x => x.username == username).FirstOrDefaultAsync();
 
 
