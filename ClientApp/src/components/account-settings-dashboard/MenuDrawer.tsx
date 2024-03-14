@@ -64,7 +64,7 @@ const MenuDrawer: React.FunctionComponent<IMenuDrawerProps> = (props) => {
     <Divider />
     <List>
       {OptionsArray.map((item, index) => (
-                    <Link style={{textDecoration: 'none', color:'white', display: 'inline-block'}} to="edit-profile">
+                    <Link style={{textDecoration: 'none', color:'white', display: 'inline-block'}} to={item.value}>
 
         <ListItem style={{display: 'flex'}} key={item.value} disablePadding>
           <ListItemButton style={{display: 'flex',}} >

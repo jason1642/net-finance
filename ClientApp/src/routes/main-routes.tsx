@@ -9,6 +9,7 @@ import PublicChat from "../views/PublicChat";
 import { WebSocketProvider } from '../context/PublicChatWebSocket';
 import AccountSettings from "../views/AccountSettings";
 import EditProfile from "../components/account-settings-dashboard/edit-profile.tsx/EditProfile";
+import ChangePassword from "../components/account-settings-dashboard/change-password/ChangePassword";
 interface ComponentProps {
     pathName: string;
 }
@@ -33,8 +34,8 @@ const MainRoutes: React.FunctionComponent<ComponentProps> = ({pathName}) => {
 
                 },
                 {
-                    path: 'notifications',
-                    element: <div>Notifications</div>
+                    path: 'change-password',
+                    element: <ChangePassword />
                 }
             ]
         },

@@ -38,6 +38,8 @@ const InputWrapper = styled.div`
 const InputContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  flex: 1 0 33%;
   justify-content: flex-start;
     /* align-items: flex-start; */
 `;
