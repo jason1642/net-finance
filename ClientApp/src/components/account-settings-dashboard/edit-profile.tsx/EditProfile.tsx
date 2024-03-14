@@ -1,12 +1,12 @@
 'use client'
 import * as React from 'react';
 import styled from 'styled-components';
-import { MainWrapper } from '../../../views/AccountSettings';
 import { useOutletContext } from 'react-router-dom';
 import ProfileImage from './ProfileImage';
 import PersonalInformation from './PersonalInformation';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Button } from '@mui/material';
+import { editUserProfile } from '../../../api-requests/user-requests';
 
 type Inputs = {
   example: string
@@ -43,7 +43,9 @@ const EditProfile: React.FunctionComponent<IEditProfileProps> = () => {
   const {register, handleSubmit, watch, formState: {errors},} = useForm<Inputs>()
 
   const onSubmit: SubmitHandler<Inputs>  = (data) => {
-    
+    console.log(data)
+// editUserProfile()
+
   }
 
   // console.log(watch("example")) // watch input value by passing the name of it

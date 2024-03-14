@@ -48,7 +48,15 @@ export const registerUser = async(formData:RegisterFormData)=>{
     })
 }
 
+interface EditUserProfile {
+    username?: string;
+    email?: string;
+}
+export const editUserProfile = async (editFields:EditUserProfile) => 
+    await api.post('/EditProfile',editFields)
+    .then(res=>res,err=>err)
 
+    
 export const updateUserProfilePicture = async (imageData: FormData)=>
     await api.post('/UpdateProfilePicture', {...imageData, headers:{'content-type': 'multipart/form-data',}})
     .then(res=>res,err=>err)

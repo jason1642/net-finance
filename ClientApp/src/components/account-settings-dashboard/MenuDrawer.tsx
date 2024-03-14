@@ -8,12 +8,34 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
+import { Key, Edit } from '@mui/icons-material';
 import MailIcon from '@mui/icons-material/Mail';
 import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 interface IMenuDrawerProps {
 }
+
+
+interface MenuItemTypes {
+  value: string;
+  label: string;
+  icon: React.ReactElement;
+}
+
+const OptionsArray: Array<MenuItemTypes> = [
+  {
+    value: 'edit-profile',
+    label: 'Edit Profile',
+    icon: <Edit />
+  },
+  {
+    value: 'change-password',
+    label: 'Change Password',
+    icon: <Key />
+  },
+]
+
 
 const MenuDrawer: React.FunctionComponent<IMenuDrawerProps> = (props) => {
   return (
@@ -41,16 +63,16 @@ const MenuDrawer: React.FunctionComponent<IMenuDrawerProps> = (props) => {
     <Toolbar />
     <Divider />
     <List>
-      {['Edit Profile', 'Privacy', 'Notifications', 'Appearance'].map((text, index) => (
+      {OptionsArray.map((item, index) => (
                     <Link style={{textDecoration: 'none', color:'white', display: 'inline-block'}} to="edit-profile">
 
-        <ListItem style={{display: 'flex'}} key={text} disablePadding>
+        <ListItem style={{display: 'flex'}} key={item.value} disablePadding>
           <ListItemButton style={{display: 'flex',}} >
             
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {item.icon}
             </ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText primary={item.label} />
 
           </ListItemButton>
         </ListItem>
@@ -60,11 +82,11 @@ const MenuDrawer: React.FunctionComponent<IMenuDrawerProps> = (props) => {
     </List>
     <Divider />
     <List>
-      {['Black list', 'Password', 'Spam'].map((text, index) => (
+      {['Place Holder', 'Place Holder', 'Spam'].map((text, index) => (
         <ListItem key={text} disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {index % 2 === 0 ? <InboxIcon /> : <Key />}
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItemButton>

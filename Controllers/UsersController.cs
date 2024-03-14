@@ -299,7 +299,7 @@ namespace net_finance_api.Controllers
             return BadRequest();
         Users? user = await _usersService.verifyToken(username, refreshToken);
 
-        if (user == null) return BadRequest();
+        if (user == null) return BadRequest("Can't verify user, Cookies username does not match refreshToken");
         Console.WriteLine(EditFields);
 
         Users? emailExists = await _usersService.GetAsyncEmail(EditFields.email);

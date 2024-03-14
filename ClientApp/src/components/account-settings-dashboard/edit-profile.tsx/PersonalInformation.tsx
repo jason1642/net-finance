@@ -1,5 +1,5 @@
 "use client"
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import * as React from 'react';
 import styled from 'styled-components';
 import { UserAccountTypes } from '../../../types/user-account';
@@ -13,6 +13,7 @@ const theme = createTheme({
 interface IPersonalInformationProps {
     register: any;
     userData: UserAccountTypes;
+    
 }
 
 const Container = styled.div`
@@ -45,16 +46,17 @@ interface formFieldsTypes {
     value: string;
     label: string;
     shouldMap: boolean;
-
+    validations?: any;
+    type?: string;
 }
 
 const formFields: Array<formFieldsTypes> = [
-    {value: "username", label: "Username", shouldMap: true},
+    {value: "username", label: "Username", shouldMap: true, validations: {minLength: 3, maxLength: 12}},
     {value: "first_name", label: "First Name", shouldMap: true},
     {value: "last_name", label: "Last Name", shouldMap: true},
     {value: "profile_picture", label: "Profile Picture", shouldMap: false},
-    {value: "email", label: "Email", shouldMap: true},
-    {value: "password", label: "Password", shouldMap: true}
+    {value: "email", type: 'email',label: "Email", shouldMap: true},
+    // {value: "password", type: 'password', label: "Password", shouldMap: true}
 
 ]
 
@@ -75,6 +77,7 @@ const PersonalInformation: React.FunctionComponent<IPersonalInformationProps> = 
         return  item.shouldMap ? <InputWrapper id={item.value}>
     
         <TextField 
+            type={ item.type ? item.type : 'text'}
             label={item.label}
             defaultValue={userData[item.value]}
             {...register(item.value, {required: true})}
@@ -86,7 +89,9 @@ const PersonalInformation: React.FunctionComponent<IPersonalInformationProps> = 
     })
 }
   
+  {/* <Button variant='contained'>Change Password</Button> */}
 </InputContainer>
+
 
 
 
