@@ -9,9 +9,13 @@ const Container = styled.div`
 `;
 
 const ChangePassword: React.FunctionComponent<IChangePasswordProps> = (props) => {
+
+// Password should be min-5 characters max-15 characters. must contain number and letter
   return (
     <Container>
-        Change your password on this tab
+    
+        
+
 
     </Container>
   );
