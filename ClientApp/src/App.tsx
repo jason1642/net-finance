@@ -6,8 +6,20 @@ import MainRoutes from './routes/main-routes';
 import {  useVerifyUserQuery } from './redux/features/userApi';
 import {  useParams } from 'react-router-dom';
 import LoginRegisterHeader from './components/header/LoginRegisterHeader';
+import CircularProgress from '@mui/material/CircularProgress';
+import styled from 'styled-components';
 
 
+const BackDrop = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  color: #52e3c2;
+  background-color: transparent;
+  height: 100vh;
+  width: 100vw;
+`;
 const App = () =>{
   // const {data, isLoading } = useVerifyUserQuery()
   const params = useParams();
@@ -58,13 +70,21 @@ const App = () =>{
         pathname === ("/login" || "/register") ? 
         <LoginRegisterHeader /> : 
         <Header />} 
-       <MainRoutes pathName={pathname}/>
 
-       {/* {!isLoading? 
-          <MainRoutes />
+
+
+       {/* <MainRoutes loadStatus={userInfo} pathName={pathname}/> */}
+
+       {!userInfo.isLoading? 
+          <MainRoutes loadStatus={userInfo} pathName={pathname}/>
           : 
-          <div>IS LOADING</div>
-      } */}
+          <BackDrop
+          // sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+         
+        >
+          <CircularProgress color="inherit" />
+        </BackDrop>
+      }
   
     
 

@@ -2,6 +2,7 @@ import { useRoutes, Navigate} from "react-router-dom";
 import StockDetailPage from '../views/StockDetailPage'
 import HomePage from "../views/HomePage";
 import Login from "../views/Login";
+import React from 'react'
 import Register from "../views/Register";
 import Account from "../views/Account";
 import { userApi } from "../redux/features/userApi";
@@ -12,21 +13,25 @@ import EditProfile from "../components/account-settings-dashboard/edit-profile.t
 import ChangePassword from "../components/account-settings-dashboard/change-password/ChangePassword";
 interface ComponentProps {
     pathName: string;
+    loadStatus: any;
 }
 
-const MainRoutes: React.FunctionComponent<ComponentProps> = ({pathName}) => {
+const MainRoutes: React.FunctionComponent<ComponentProps> = ({pathName, loadStatus}) => {
     // Check if user is currently logged in, if not redirect to login page
-    const {data: userData} = userApi.endpoints.verifyUser.useQueryState()
+    const {data: userData, error} = userApi.endpoints.verifyUser.useQueryState()
 
     // console.log(userData)
+    React.useEffect(()=>{
+        console.log(error)
+    },[error])
     return useRoutes([
         {
             path: '/account',
-            element: userData ? <Account /> : <Navigate to="/" />  
+            element: userData && (!loadStatus.isLoading && loadStatus.status !== 'pending') ? <Account /> : <Navigate to="/" />  
         },
         {
             path: '/account/settings/',
-            element: userData ? <AccountSettings /> : <Navigate to='/' />,
+            element: userData && (!loadStatus.isLoading && loadStatus.status !== 'pending') ? <AccountSettings /> : <Navigate to='/' />,
             children: [
                 {
                     path: 'edit-profile',

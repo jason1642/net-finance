@@ -12,6 +12,7 @@ const ChangePassword: React.FunctionComponent<IChangePasswordProps> = (props) =>
   return (
     <Container>
         Change your password on this tab
+
     </Container>
   );
 };
