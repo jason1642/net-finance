@@ -21,7 +21,9 @@ const Container = styled.div`
   flex-direction: column;
   /* border: 1px solid white; */
   /* width: 100%; */
+  max-width: 800px;
   padding-left: 1.5rem;
+  align-self: center;
 `;
 
 const Title = styled.h3`

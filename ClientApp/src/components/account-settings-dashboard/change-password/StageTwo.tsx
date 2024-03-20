@@ -7,9 +7,12 @@ const Container = styled.div`
   display: flex;
 `;
 
+
 const StageTwo: React.FunctionComponent<IStageTwoProps> = (props) => {
+
   return (
     <Container>
+        
 
     </Container>
   );
