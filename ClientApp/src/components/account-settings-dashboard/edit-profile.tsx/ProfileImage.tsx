@@ -39,32 +39,32 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
   });
 
-const ChangePicture = styled('button')`
-  background-color: grey;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: black;
+// const ChangePicture = styled('button')`
+//   background-color: grey;
+//   position: absolute;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   color: black;
 
-  top: 50%;
-  height: 50%;
-  width: 100%;
-  border-radius: 20% 20% 0 0;
-  opacity: 0;
+//   top: 50%;
+//   height: 50%;
+//   width: 100%;
+//   border-radius: 20% 20% 0 0;
+//   opacity: 0;
 
  
-  @keyframes appear {
-    0% {opacity: 0}
-    /* 50% {opacity: .4} */
-    100% {opacity: .8}
-  }
- &:hover {
-    opacity: .8;
-    animation: appear 500ms ease-in-out;
+//   @keyframes appear {
+//     0% {opacity: 0}
+//     /* 50% {opacity: .4} */
+//     100% {opacity: .8}
+//   }
+//  &:hover {
+//     opacity: .8;
+//     animation: appear 500ms ease-in-out;
 
-  }
-`;
+//   }
+// `;
 
 const ProfileImage: React.FunctionComponent<IProfileImageProps> = ({userData, register}) => {
 

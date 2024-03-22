@@ -43,7 +43,8 @@
   "devDependencies": {
     "@types/lodash": "^4.14.202",
     "@types/react-redux": "^7.1.25",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "@babel/plugin-proposal-private-property-in-object":"^7.21.11"
   },
   "scripts": {
     "start": "HTTPS=true react-scripts start",

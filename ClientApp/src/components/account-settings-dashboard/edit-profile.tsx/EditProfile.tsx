@@ -6,7 +6,7 @@ import ProfileImage from './ProfileImage';
 import PersonalInformation from './PersonalInformation';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Button } from '@mui/material';
-import { editUserProfile } from '../../../api-requests/user-requests';
+// import { editUserProfile } from '../../../api-requests/user-requests';
 
 type Inputs = {
   username: string;
@@ -39,10 +39,13 @@ const EditProfile: React.FunctionComponent<IEditProfileProps> = () => {
 
   React.useEffect(()=>{
     console.log(userData)
-  },[])
+  },[userData])
 
 
-  const {register, handleSubmit, watch, formState: {errors},} = useForm<Inputs>({
+  const {register, handleSubmit,
+    //  watch, 
+    //  formState: {errors},
+    } = useForm<Inputs>({
     defaultValues:{
       username:userData.username,
       first_name:userData.first_name,
