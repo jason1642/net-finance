@@ -9,8 +9,10 @@ import { Button } from '@mui/material';
 import { editUserProfile } from '../../../api-requests/user-requests';
 
 type Inputs = {
-  example: string
-  exampleRequired: string
+  username: string;
+  email: string;
+  first_name:string;
+  last_name:string;
 }
 
 interface IEditProfileProps {
@@ -36,11 +38,18 @@ const EditProfile: React.FunctionComponent<IEditProfileProps> = () => {
 
 
   React.useEffect(()=>{
-    // console.log(userData)
+    console.log(userData)
   },[])
 
 
-  const {register, handleSubmit, watch, formState: {errors},} = useForm<Inputs>()
+  const {register, handleSubmit, watch, formState: {errors},} = useForm<Inputs>({
+    defaultValues:{
+      username:userData.username,
+      first_name:userData.first_name,
+      last_name: userData.last_name,
+      email: userData.email
+    }
+  })
 
   const onSubmit: SubmitHandler<Inputs>  = (data) => {
     console.log(data)

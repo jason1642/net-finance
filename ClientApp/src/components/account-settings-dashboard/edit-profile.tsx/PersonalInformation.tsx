@@ -60,7 +60,6 @@ const formFields: Array<formFieldsTypes> = [
     {value: "last_name", label: "Last Name", shouldMap: true},
     {value: "profile_picture", label: "Profile Picture", shouldMap: false},
     {value: "email", type: 'email',label: "Email", shouldMap: true},
-    // {value: "password", type: 'password', label: "Password", shouldMap: true}
 
 ]
 

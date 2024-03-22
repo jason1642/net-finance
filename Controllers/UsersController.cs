@@ -302,10 +302,12 @@ namespace net_finance_api.Controllers
         if (user == null) return BadRequest("Can't verify user, Cookies username does not match refreshToken");
         Console.WriteLine(EditFields);
 
+
+
         Users? emailExists = await _usersService.GetAsyncEmail(EditFields.email);
         
         Users? usernameExists = await _usersService.GetAsyncUsername(EditFields.username);
-            if (emailExists != null && user.email != EditFields.email) return BadRequest("Email already Exists");
+            if (emailExists != null && user.email != EditFields.email) return BadRequest(new {message = "That email already exists"});
             if (usernameExists != null && user.username != EditFields.username) return BadRequest("Username is already taken");
 
         // user.refresh_token = RefreshToken;
